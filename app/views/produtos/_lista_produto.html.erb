@@ -1,0 +1,16 @@
+<div id="listagens-tabela">
+<table>
+  <% for produto in @produtos %>
+  <tr class="<%= cycle('lista-linha-impar', 'lista-linha-par') %>">
+    <td class="lista-coluna-principal"><%=h produto.descricao %></td>
+    <td class="lista-coluna-menor"><%=h produto.referencia %></td>
+    <td class="lista-coluna-media"><%=h number_to_currency(produto.valor_venda, :unit => "R$", :separator => ",", :delimiter => ".")%> <%=h produto.unidade_venda%></td>
+	<td class="lista-acoes">    
+		<%= link_to 'Detalhes', produto %>
+    	<%= link_to 'Modificar', edit_produto_path(produto) %>
+    	<%= link_to 'Remover', produto, :confirm => 'Tem certeza?', :method => :delete %>
+	</td>
+  </tr>
+<% end %>
+</table>
+</div>

@@ -1,0 +1,166 @@
+/* START: Pagina Principal */
+
+#banner {
+  background: #9c9;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid;
+  font: small-caps 30px/30px "Times New Roman", serif;
+  color: #284;
+  text-align: left;
+}
+
+#banner img {
+  float: left;
+  width: 5%;
+}
+
+#colunas {
+  background: #141;
+  
+}
+
+#pagina {
+  margin-left: 13em;
+  padding-top: 1ex;
+  padding-left: 2em;
+  background: white;
+  height:	450px;
+
+}
+
+#lateral {
+  float: left;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-bottom: 1em;
+  width: 8em;
+  background: #141;
+  text-align:	left;
+}
+
+#lateral a {
+  color: #bfb;
+  font-size: large;
+}
+
+#pagina {
+	color: #454;
+}
+
+#pagina a {
+	color: #363;
+}
+
+#pagina h1 {
+	font-size: large;
+}
+
+/* END: Pagina Principal */
+
+
+/* START: Formulario Cadastros */
+/* Formulario Cadastros */
+
+#formulario-cadastro fieldset {
+  background: #efe;
+}
+
+#formulario-cadastro legend {
+  color: #dfd;
+  background: #141;
+  font-family: sans-serif;
+  padding: 0.1em 0.5em;
+}
+
+#formulario-cadastro label {
+  width: 10em;
+  float: left;
+  text-align: right;
+  padding-top: 0.2em;
+  margin-right: 0.1em;
+  display: block;
+}
+
+#formulario-cadastro select, .formulario-cadastro textarea, .formulario-cadastro input {
+  margin-left: 0.5em;
+}
+
+#formulario-cadastro .submit {
+  margin-left: 4em;
+}
+
+#formulario-cadastro div {
+  margin: 0.5em 0;
+}
+
+#formulario-div-opcoes-radiobuttons label {
+	display:inline;
+	float:none;
+	margin-left:3cm;
+	margin-right:0.1em;
+	width:10em;
+}
+/* END: Formulario Cadastros */
+
+
+
+
+/**************************************
+*	Listagens
+***************************************/
+#listagens-tabela {
+	height:	340px;
+}
+
+#listagens-tabela table {
+        border-collapse: collapse;
+}
+
+#listagens-tabela table tr td {
+  padding: 			1px;
+  vertical-align: 	center;
+}
+
+#listagens-tabela table tr th {
+  padding-bottom: 			1px;
+  vertical-align:	center;
+  font-weight:		bolder;
+}
+
+#listagens-tabela .lista-coluna-principal {
+  width:        40%;
+  text-align:	left;
+}
+
+#listagens-tabela .lista-coluna-menor {
+  width:        25%;
+  text-align:	right;
+}
+
+#listagens-tabela .lista-coluna-media {
+  width:        35%;
+  text-align:	right;
+}
+
+#listagens-tabela .lista-acoes {
+  font-size:    x-small;
+  text-align:   right;
+  padding-left: 1em;
+}
+
+#listagens-tabela .lista-linha-par {
+  background:   #eeeeee;
+}
+
+#listagens-tabela .lista-linha-impar {
+  background:   #bbbbbb;
+}
+
+#listagens-caixa-letras {
+  padding-bottom: 3px;
+}
+
+#listagens-paginacao {
+  float:	none;
+}

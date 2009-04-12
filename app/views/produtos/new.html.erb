@@ -1,0 +1,71 @@
+<div id="formulario-cadastro">
+<h1>Novo Produto</h1>
+<% form_for(@produto) do |form| %>
+  <%= form.error_messages %>
+  <fieldset>
+    <legend>Dados Básicos</legend>
+
+    <div>
+      <%= form.label :descricao, "Descrição:" %>
+      <%= form.text_field :descricao, :size => 50 %>
+    </div>
+
+    <div>
+      <%= form.label :referencia, "Referência:" %>
+      <%= form.text_field :referencia, :size => 10 %>
+    </div>
+
+    <div>
+      <%= form.label :unidade_venda, "Unidade de Venda:" %>
+		<%=
+		form.select :unidade_venda,
+		    Produto.find(:all).collect {|unidade| [unidade.descricao, unidade.id]},
+		    :prompt => "-- Selecionar --",
+		    :selected => nil
+		%>
+    </div>
+
+    <div>
+      <%= form.label :valor_venda, "Valor de Venda:" %>
+      <%= form.text_field :valor_venda, :size => 5 %>
+    </div>
+
+    <div>
+      <%= form.label :codigo_barras, "Código de Barras:" %>
+      <%= form.text_field :codigo_barras, :size => 20, :disabled => true %>
+    </div>
+  </fieldset>
+  <fieldset>
+	<legend>Gestão de Estoque</legend>
+    
+    <div>
+      <%= form.label :estoque_minimo, "Quantidade Mínima:" %>
+      <%= form.text_field :estoque_minimo, :size => 5 %>
+    </div>
+
+    <div>
+      <%= form.label :estoque_maximo, "Quantidade Máxima:" %>
+      <%= form.text_field :estoque_maximo, :size => 5 %>
+    </div>
+  </fieldset>
+  <fieldset>
+	<legend>Dados Fabricante</legend>
+	
+	<div>
+      <%= form.label :fabricante, "Fabricante:" %>
+      <%= form.text_field :fabricante, :size => 50 %>
+    </div>
+
+	<div>
+      <%= form.label :referencia_fabricante, "Código Referência:" %>
+      <%= form.text_field :referencia_fabricante, :size => 50 %>
+    </div>
+
+  </fieldset>  
+  <p>
+    <%= form.submit "Criar" %>
+  </p>
+<% end %>
+
+<%= link_to 'Voltar', produtos_path %>
+</div>

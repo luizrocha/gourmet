@@ -1,0 +1,111 @@
+<div id="formulario-cadastro">
+<h1>Novo Cliente</h1>
+<% form_for(@cliente) do |form| %>
+  <%= form.error_messages %>
+  <fieldset>
+    <legend>Dados Básicos</legend>
+    <div>
+      <%= form.label :nome, "Nome:" %>
+      <%= form.text_field :nome, :size => 50 %>
+    </div>
+    <div id="formulario-div-opcoes-radiobuttons"> 
+	  <label for="cliente_nome_morador">Morador</label>
+	  <%=radio_button("cliente", "categoria", "M")%>
+	  <label for="cliente_nome_funcionario">Funcionário</label>
+	  <%=radio_button("cliente", "categoria", "F")%>
+	  <label for="cliente_nome_visitante">Visitante</label>
+	  <%=radio_button("cliente", "categoria", "V")%>
+	</div>
+	<div>
+	  <%= form.label :bloco, "Bloco:" %>
+      <%= form.text_field :bloco, :size => 3 %> 
+    </div>
+    <div>
+      <%= form.label :apartamento, "Apartamento:" %>
+      <%= form.text_field :apartamento, :size => 3 %>
+    </div>
+    <div>
+      <%= form.label :observacao, "Observações:" %>
+      <%= form.text_area :observacao, :rows => 3, :cols => 40 %>
+    </div>
+  </fieldset>
+  <fieldset>
+	<legend>Adicionais</legend>
+	  <div id="clientes-adicionais">
+		  <% form_remote_tag(:url => {:action => 'send_email'}, :update => 'clientes-adicionais') do %>
+				<div>
+				  Nome: <%= text_field 'dependente', 'nome', :size => 50 %>
+				</div>
+				<div>
+					E-Mail: <%= text_field 'dependente', 'email', :size => 20 %><br/>
+				</div>
+				<div>
+					Limite: <%= text_field 'dependente', 'limite_credito', :size => 5 %><br/>
+				</div>
+				<%= submit_tag 'Adicionar' %>
+		   <% end -%>
+    	<table>
+	     <tr>
+		   <th>Nome</th>
+		   <th>E-Mail</th>
+		   <th>Limite</th>
+		 </tr>
+		<% for dependente in @cliente.dependentes %>
+		 <tr>		  
+		   <td><%=h dependente.nome %></td>
+		   <td><%=h dependente.email %></td>
+		   <td><%=h dependente.limite_credito %></td>
+		 </tr>
+		<%end%>
+	  </table>
+	</div> 
+  </fieldset>
+  <fieldset>
+	<legend>Contatos</legend>
+    <div>
+      <%= form.label :email, "E-mail:" %>
+      <%= form.text_field :email, :size => 20 %>
+    </div>
+    <div>
+      <%= form.label :telefone, "Telefone:" %>
+      <%= form.text_field :telefone, :size => 10 %>
+    </div>
+    <div>
+      <%= form.label :telefone_celular, "Celular:" %>
+      <%= form.text_field :telefone_celular, :size => 10 %>
+    </div>
+    <div>
+      <%= form.label :telefone_comercial, "Telefone Comercial:" %>
+      <%= form.text_field :telefone_comercial, :size => 10 %>
+    </div>
+    <div>
+      <%= form.label :endereco_comercial, "Endereço Comercial:" %>
+      <%= form.text_field :endereco_comercial, :size => 50 %>
+    </div>
+  </fieldset>
+  <fieldset>
+	<legend>Dados Financeiros</legend>
+	<div>
+      <%= form.label :cpf, "CPF:" %>
+      <%= form.text_field :cpf, :size => 14 %>
+    </div>
+	<div>
+      <%= form.label :rg, "RG:" %>
+      <%= form.text_field :rg, :size => 14 %>
+    </div>
+	<div>
+      <%= form.label :limite_credito, "Limite Crédito:" %>
+      <%= form.text_field :limite_credito, :size => 5 %>
+    </div>
+	<div>
+      <%= form.label :saldo, "Saldo:" %>
+      <%= form.text_field :saldo, :size => 5, :disabled => true %>
+    </div>
+  </fieldset>  
+  <p>
+    <%= form.submit "Salvar" %>
+  </p>
+<% end %>
+<%= link_to 'Exibir', @cliente %> |
+<%= link_to 'Voltar', clientes_path %>
+</div>

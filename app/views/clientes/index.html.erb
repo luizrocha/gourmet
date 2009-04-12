@@ -1,0 +1,7 @@
+<div id="listagens">
+<h1>Listagem de Clientes</h1>
+<%= render :partial => 'lista_cliente', :object => @clientes -%>
+<%= render :partial => 'lista_cliente_paginacao', :object => @clientes -%>
+</div>
+<br />
+<%= link_to 'Adicionar Cliente', new_cliente_path %>

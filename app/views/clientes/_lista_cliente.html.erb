@@ -1,0 +1,26 @@
+<div id="listagens-tabela">
+<table>
+  <tr class="lista-linha-par">
+    <th class="lista-coluna-principal">
+    	<%=link_to_remote "Nome", :url => { :action => "por_ordenacao", :ordem => "nome #{@tipo_ordenacao}, bloco, apartamento", :tipo_ordenacao => @tipo_ordenacao}%>
+    </th>
+    <th class="lista-coluna-menor">
+    	<%=link_to_remote "Bloco", :url => { :action => "por_ordenacao", :ordem => "bloco #{@tipo_ordenacao}, apartamento, nome", :tipo_ordenacao => @tipo_ordenacao}%>
+    </th>
+    <th class="lista-coluna-menor">Apartamento</th>
+	<th/>
+  </tr>
+  <% for cliente in @clientes %>
+  <tr class="<%= cycle('lista-linha-impar', 'lista-linha-par') %>">
+    <td class="lista-coluna-principal"><%=h cliente.nome %></td>
+    <td class="lista-coluna-menor"><%=h cliente.bloco %></td>
+    <td class="lista-coluna-menor"><%=h cliente.apartamento %></td>
+	<td class="lista-acoes">    
+		<%= link_to 'Detalhes', cliente %>
+    	<%= link_to 'Modificar', edit_cliente_path(cliente) %>
+    	<%= link_to 'Remover', cliente, :confirm => 'Tem certeza?', :method => :delete %>
+	</td>
+  </tr>
+<% end %>
+</table>
+</div>

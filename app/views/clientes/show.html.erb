@@ -1,0 +1,48 @@
+<p>
+  <b>Nome:</b>
+  <%=h @cliente.nome %>
+</p>
+
+<p>
+  <b>Bloco:</b>
+  <%=h @cliente.bloco %>
+</p>
+
+<p>
+  <b>Apartamento:</b>
+  <%=h @cliente.apartamento %>
+</p>
+
+<p>
+  <b>Observacao:</b>
+  <%=h @cliente.observacao %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @cliente.email %>
+</p>
+
+<p>
+  <b>Telefone:</b>
+  <%=h @cliente.telefone %>
+</p>
+
+<p>
+  <b>Telefone celular:</b>
+  <%=h @cliente.telefone_celular %>
+</p>
+
+<p>
+  <b>Cpf:</b>
+  <%=h @cliente.cpf %>
+</p>
+
+<p>
+  <b>Rg:</b>
+  <%=h @cliente.rg %>
+</p>
+
+
+<%= link_to 'Edit', edit_cliente_path(@cliente) %> |
+<%= link_to 'Back', clientes_path %>

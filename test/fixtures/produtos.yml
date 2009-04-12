@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  descricao: MyString
+  fabricante: MyString
+  referencia_fabricante: MyString
+  referencia: 1
+  codigo_barras: MyString
+  estoque_minimo: 9.99
+  estoque_maximo: 9.99
+  valor_venda: 9.99
+  unidade_venda: MyString
+
+two:
+  descricao: MyString
+  fabricante: MyString
+  referencia_fabricante: MyString
+  referencia: 1
+  codigo_barras: MyString
+  estoque_minimo: 9.99
+  estoque_maximo: 9.99
+  valor_venda: 9.99
+  unidade_venda: MyString

@@ -1,0 +1,23 @@
+<div id="listagens-paginacao">
+	<table id="paginacao-controles">
+		<tr>
+	<% if @produtos.previous_page then %>
+		<td>
+		<%= link_to_remote "anterior", {:url => { :controller => "produtos", :action => "por_letra", :page => 			"#{@produtos.previous_page}", :letra => "#{@letra}"},
+	    :failure => "alert('HTTP Error ' + request.status + '!')"}-%>
+		</td>
+	<% else %>
+		<td>anterior</td>
+	<% end %>		
+	<% if @produtos.next_page then %>
+		<td>
+		<%= link_to_remote "próxima", :url => { :controller => "produtos", :action => "por_letra", :page => "#{@produtos.next_page}", :letra => "#{@letra}" }	-%>
+		</td>
+	<% else %>
+		<td>próxima</td>
+	<% end %>
+		</tr>
+	</table>
+</div>
+
+

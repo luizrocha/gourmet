@@ -1,0 +1,48 @@
+<h1>Editing produto</h1>
+
+<% form_for(@produto) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :descricao %><br />
+    <%= f.text_field :descricao %>
+  </p>
+  <p>
+    <%= f.label :fabricante %><br />
+    <%= f.text_field :fabricante %>
+  </p>
+  <p>
+    <%= f.label :referencia_fabricante %><br />
+    <%= f.text_field :referencia_fabricante %>
+  </p>
+  <p>
+    <%= f.label :referencia %><br />
+    <%= f.text_field :referencia %>
+  </p>
+  <p>
+    <%= f.label :codigo_barras %><br />
+    <%= f.text_field :codigo_barras %>
+  </p>
+  <p>
+    <%= f.label :estoque_minimo %><br />
+    <%= f.text_field :estoque_minimo %>
+  </p>
+  <p>
+    <%= f.label :estoque_maximo %><br />
+    <%= f.text_field :estoque_maximo %>
+  </p>
+  <p>
+    <%= f.label :valor_venda %><br />
+    <%= f.text_field :valor_venda %>
+  </p>
+  <p>
+    <%= f.label :unidade_venda %><br />
+    <%= f.text_field :unidade_venda %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @produto %> |
+<%= link_to 'Back', produtos_path %>

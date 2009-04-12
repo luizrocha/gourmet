@@ -1,0 +1,14 @@
+= Alphabar
+
+See Alphabar for usage information.
+
+= Installation
+
+== Standard Method
+
+    ruby ./script/plugin install http://alphabar.rubyforge.org/svn/trunk
+    mv vendor/plugins/trunk vendor/plugins/alphabar
+
+== Piston Method
+
+    piston import http://alphabar.rubyforge.org/svn/trunk vendor/plugins/alphbar

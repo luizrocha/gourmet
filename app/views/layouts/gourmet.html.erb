@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>IXCA Gourmet - <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'gourmet' %>
+  <%= javascript_include_tag :defaults %>
+</head>
+
+<body id="principal">
+	<div id="banner">
+		<%= image_tag("logo_grape.png") %>
+	    <%= @page_title || "IXCA Gourmet" %>
+	</div>
+	<div id="colunas">
+		<div id="lateral">
+			<a href="http://localhost:3000">Principal</a><br />
+			<hr/>
+			<%= link_to 'Produtos',	:controller	=> 'produtos' %><br/>
+			<%= link_to 'Clientes',	:controller	=> 'clientes' %><br/>
+			<%= link_to 'Compras',	:controller	=> 'compras' %><br/>	
+		</div>
+		<div id="pagina">
+			<% if flash[:notice] -%>
+	        	<div id="notice"><%= flash[:notice] -%></div>
+	      	<% end %>
+	      	<%= yield :layout -%>
+		</div>
+	</div>
+</body>
+</html>

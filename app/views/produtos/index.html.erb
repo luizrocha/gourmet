@@ -1,0 +1,8 @@
+<div id="listagens">
+<h1>Listagem de Produtos</h1>
+<%= render :partial => 'lista_produto_alphabox' -%>
+<%= render :partial => 'lista_produto', :object => @produtos -%>
+<%= render :partial => 'lista_produto_paginacao', :object => @produtos -%>
+</div>
+<br/>
+<%= link_to 'Adicionar Produto', new_produto_path %>
