@@ -53,6 +53,20 @@
     </div>
   </fieldset>
   <fieldset>
+	<legend>Dependentes</legend>
+	 <div id="dependentes">
+		<table id="tabela_dependentes">
+		   <tr>
+		   	<th>Nome</th>
+			<th>E-Mail</th>
+			<th>Limite</th>
+			<th></th>
+		   </tr>		
+		   <%= render :partial => 'cliente_dependentes', :collection => @cliente.dependentes, :object => @cliente, :as => "cliente"  -%>
+		</table>
+	 </div> 
+  </fieldset>
+  <fieldset>
 	<legend>Dados Financeiros</legend>
 	<div>
       <%= form.label :cpf, "CPF:" %>

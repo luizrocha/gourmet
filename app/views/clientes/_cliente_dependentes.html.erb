@@ -1,0 +1,6 @@
+<tr>
+	<td><%= cliente_dependentes.nome %></td>
+	<td><%= cliente_dependentes.email %></td>
+	<td><%= cliente_dependentes.limite_credito %></td>	
+	<td><%= link_to_remote "remover", :url => {:action => "remover_dependente", :id => @cliente.id, :dependente => cliente_dependentes.id} %></td>
+</tr>

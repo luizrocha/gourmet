@@ -52,6 +52,9 @@ class ClientesController < ApplicationController
   # GET /clientes/new.xml
   def new
     @cliente = Cliente.new
+    @cliente.dependentes.build
+
+    
 
     respond_to do |format|
       format.html # new.html.erb
@@ -95,6 +98,26 @@ class ClientesController < ApplicationController
         format.html { render :action => "edit" }
         format.xml  { render :xml => @cliente.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  def remover_dependente
+  end
+
+  def adiciona_dependente
+    puts "Params: "+params.to_s
+    if params[:cliente].has_key? :id then
+      @cliente = Cliente.find(params[:id])
+    else
+      @cliente = Cliente.new(params[:cliente])
+    end
+
+    adicional = Cliente.new(:nome => params[:novo_dependente][:nome], :email => params[:novo_dependente][:email], :limite_credito => params[:novo_dependente][:limite_credito])
+    adicional.responsavel = @cliente
+    @cliente.dependentes << adicional
+
+    respond_to do |format|
+      format.js if request.xhr?  
     end
   end
 

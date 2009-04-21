@@ -1,0 +1,11 @@
+<div>
+	  Nome: <%= text_field 'novo_dependente', 'nome', :size => 50 %>
+	</div>
+	<div>
+	  E-Mail: <%= text_field 'novo_dependente', 'email', :size => 20 %><br/>
+	</div>
+	<div>
+	  Limite: <%= text_field 'novo_dependente', 'limite_credito', :size => 5 %><br/>
+	</div>
+	  <%= submit_to_remote 'adiciona_dependente', 'Adicionar...', :url => { :action => 'adiciona_dependente' },
+		    :update => { :success => "succeed", :failure => "fail" } -%>

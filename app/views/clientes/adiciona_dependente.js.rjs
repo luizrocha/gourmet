@@ -1,0 +1,1 @@
+page.replace_html "cliente-dependentes" , :partial => "cliente_dependentes"
