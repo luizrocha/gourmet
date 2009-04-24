@@ -11,8 +11,7 @@
 			<%= text_field 'compras', 'novo_item' %>
 		</div>
 		<div id="selecao-produto-busca-item-codigo-barras">
-			<% form_remote_tag :url => { :action => "adiciona_produto_lista_compras"}, 
-				:condition => "jQuery(\"#compras_codigo_barras_item\").value != '';" do -%>
+			<% form_remote_tag :url => { :action => "adiciona_produto_lista_compras"} do -%>
 					<label for="compras_codigo_barras_item">Cod Barras:</label>
 					<%= text_field 'compras', 'codigo_barras_item' %>
 					<%= submit_tag 'Create' %>
