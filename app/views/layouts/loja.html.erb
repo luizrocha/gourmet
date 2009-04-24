@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>IXCA Gourmet - Loja</title>
+  <%= stylesheet_link_tag 'gourmet' %>
+  <%= javascript_include_tag "jquery.js" %>
+  <%= javascript_include_tag "jquery.hotkeys.js" %>
+  <script>jQuery.noConflict();</script>
+  <%= javascript_include_tag "loja.js" %>
+  <%= javascript_include_tag :defaults %>
+</head>
+
+<body id="principal">
+	<div id="banner">
+		<%= image_tag("logo_grape.png") %>
+	    <%= @page_title || "IXCA Gourmet" %>
+	</div>
+	<div id="loja">
+		<% if flash[:notice] -%>
+        	<div id="notice"><%= flash[:notice] -%></div>
+      	<% end %>
+      	<%= yield :layout -%>
+	</div>
+</body>
+</html>

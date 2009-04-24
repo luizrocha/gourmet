@@ -164,3 +164,87 @@
 #listagens-paginacao {
   float:	none;
 }
+
+
+/**************************************
+*	Loja
+***************************************/
+
+#loja fieldset {
+  background: #efe;
+  font-size: 15pt;
+  height: 130px;
+}
+
+#loja legend {
+  color: #dfd;
+  background: #141;
+  font-family: sans-serif;
+  padding: 0.1em 0.5em;
+}
+
+#loja label {
+  width: 10em;
+  text-align: right;
+  padding-top: 0.2em;
+  margin-right: 0.1em;
+}
+
+#loja select, #loja textarea, #loja input {
+  margin-left: 0.5em;
+  font-size:    medium;
+
+}
+
+#loja .submit {
+  margin-left: 4em;
+}
+
+#loja div {
+  margin: 0.5em 0;
+}
+
+#selecao-produto-busca-item-descricao {
+	position: absolute;
+	top: 150px;
+	left: 75px;
+}
+
+#selecao-produto-busca-item-codigo-barras {
+	position: absolute;
+	top: 150px;
+	left: 75px;	
+}
+
+/**************************************
+*	Auto-Complete
+***************************************/
+
+
+div.auto_complete {
+	width: 350px;
+	background: #fff ;
+}
+
+div.auto_complete ul {
+	border:1px solid #888 ;
+	margin:0;
+	padding:0;
+	width:100%;
+	list-style-type:none;
+}
+
+div.auto_complete ul li {
+	margin:0;
+	padding:3px;
+}
+
+div.auto_complete ul li.selected {
+	background-color: #ffb ;
+}
+
+div.auto_complete ul strong.highlight {
+	color: #800 ;
+	margin:0;
+	padding:0;
+}	
