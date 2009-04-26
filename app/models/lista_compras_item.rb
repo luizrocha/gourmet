@@ -2,13 +2,21 @@ class ListaComprasItem
 
 	attr_reader :produto, :quantidade
 	
-	def initialize(produto)
+	def initialize(produto, quantidade = nil)
 	  @produto = produto
-	  @quantidade = 1
+    if (quantidade)
+      @quantidade = quantidade.to_f
+    else
+	    @quantidade = 1
+    end
   end
   
-  def incrementa_quantidade
-    @quantidade += 1
+  def incrementa_quantidade (quantidade = nil)
+    if (quantidade)
+      @quantidade += quantidade.to_f
+    else
+      @quantidade += 1
+    end
   end
   
   def decrementa_quantidade

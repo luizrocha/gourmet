@@ -5,12 +5,12 @@ class ListaCompras
     @items = []
   end
   
-  def adiciona_produto(produto)
+  def adiciona_produto(produto, quantidade = nil)
     item_corrente = @items.find {|item| item.produto == produto}
     if item_corrente
-      item_corrente.incrementa_quantidade
+        item_corrente.incrementa_quantidade(quantidade)  
     else
-      item_corrente = ListaComprasItem.new(produto)
+      item_corrente = ListaComprasItem.new(produto, quantidade)
       @items << item_corrente
     end
     item_corrente

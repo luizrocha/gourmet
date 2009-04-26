@@ -24,7 +24,11 @@ jQuery(document).ready(function() {
 		jQuery("#compras_novo_item").focus();
 	});			
 	jQuery("#compras_codigo_barras_item").bind('keydown', 'return',function (evt){ 
-		jQuery("#selecao-produto-busca-item-codigo-barras > form").submit();
+		if (jQuery("#selecao-produto-busca-item-codigo-barras > form").onsubmit()) {
+			jQuery("#selecao-produto-busca-item-codigo-barras > form").submit();
+			jQuery("#selecao-produto-busca-item-codigo-barras > form").reset();
+			jQuery("#compras_codigo_barras_item").focus().select();
+		}
 		jQuery("#compras_quantidade_item").focus().select();
 		return false;
 	});

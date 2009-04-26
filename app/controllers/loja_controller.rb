@@ -14,7 +14,9 @@ class LojaController < ApplicationController
   def adiciona_produto_lista_compras
     produto = Produto.find_by_descricao(params[:descricao_item]) if params[:descricao_item]
     produto = Produto.find_by_codigo_barras(params[:compras][:codigo_barras_item]) if params[:compras]
-    @item_corrente = @listacompras.adiciona_produto(produto)
+    quantidade = params[:quantidade_item]
+    if !produto then redirect_to_index end
+    @item_corrente = @listacompras.adiciona_produto(produto, quantidade)
     respond_to do |format|
       format.js 
     end

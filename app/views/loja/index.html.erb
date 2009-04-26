@@ -20,7 +20,7 @@
 		</div>	
 	</p>
 	<div class="auto_complete" id="compras_novo_item_auto_complete"></div>
-	<%= auto_complete_field :compras_novo_item, :url=>{:action=>'autocomplete_novo_item'},:after_update_element => "function(element,value){"+remote_function(:url => { :action => :adiciona_produto_lista_compras }, :with=>"'descricao_item='+element.value")+"; jQuery(\"#compras_quantidade_item\").val(\"1\"); jQuery(\"#compras_novo_item\").val(\"\"); jQuery(\"#compras_quantidade_item\").focus().select();}" %>
+	<%= auto_complete_field :compras_novo_item, :url=>{:action=>'autocomplete_novo_item'},:after_update_element => "function(element,value){"+remote_function(:url => { :action => :adiciona_produto_lista_compras }, :with=>"'descricao_item='+element.value+'&quantidade_item='+jQuery('#compras_quantidade_item').val()")+";jQuery(\"#compras_quantidade_item\").val(\"1\"); jQuery(\"#compras_novo_item\").val(\"\"); jQuery(\"#compras_quantidade_item\").focus().select();}" %>
   </fieldset>
 </div>
 
