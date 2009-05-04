@@ -1,16 +1,20 @@
 class Produto < ActiveRecord::Base
   
   cattr_reader :per_page
-  @@per_page = 9
+  @@per_page = 15
+
+  belongs_to :unidade_venda  
   
-  
-  validates_presence_of :descricao, :unidade_venda, :valor_venda, :message => "deve ser preenchido"
-  validates_uniqueness_of :referencia, :message => "deve ser um valor único"
+  validates_inclusion_of :unidade_venda_id, :in => UnidadeVenda.find(:all).map {|unidade| unidade.id}
+  validates_presence_of :descricao, :unidade_venda_id, :valor_venda, :message => "deve ser preenchido"
   validates_numericality_of :valor_venda, :message => "deve ser preenchido com um número válido"
-  validates_length_of :unidade_venda, :maximum => 2, :message => "pode ter no máximo 2 caracteres"
   validates_length_of :descricao, :maximum => 50, :message => "pode ter no máximo 50 caracteres"
   validate :valor_venda_deve_ser_no_minimo_1_centavo
+  validates_uniqueness_of :codigo_barras, :allow_nil => true, :allow_blank => true, :message => "já é um código de outro produto cadastrado"
 
+  def permitidaVendaFracionaria
+    return (unidade_venda.fracionario)
+  end
   
   protected
     def valor_venda_deve_ser_no_minimo_1_centavo

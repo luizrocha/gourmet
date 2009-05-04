@@ -1,59 +1,76 @@
 /* START: Pagina Principal */
 
 #banner {
-  background: #9c9;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid;
-  font: small-caps 30px/30px "Times New Roman", serif;
-  color: #284;
-  text-align: left;
+background: #9c9;
+padding-top: 8px;
+padding-bottom: 8px;
+border-bottom: 2px solid;
+font: small-caps 30px/30px "Times New Roman", serif;
+color: #284;
+text-align: left;
 }
 
 #banner img {
-  float: left;
-  width: 5%;
+float: left;
+width: 5%;
 }
 
 #colunas {
-  background: #141;
-  
+background: #141;
 }
 
 #pagina {
-  margin-left: 13em;
-  padding-top: 1ex;
-  padding-left: 2em;
-  background: white;
-  height:	500px;
-
+margin-left: 13em;
+padding-top: 1ex;
+padding-left: 2em;
+background: white;
+height: 500px;
 }
 
 #lateral {
-  float: left;
-  padding-top: 1em;
-  padding-left: 1em;
-  padding-bottom: 1em;
-  width: 8em;
-  background: #141;
-  text-align:	left;
+float: left;
+padding-top: 1em;
+padding-left: 1em;
+padding-bottom: 1em;
+width: 8em;
+background: #141;
+text-align: left;
 }
 
 #lateral a {
-  color: #bfb;
-  font-size: large;
+color: #bfb;
+font-size: large;
 }
 
 #pagina {
-	color: #454;
+color: #454;
 }
 
 #pagina a {
-	color: #363;
+color: #363;
 }
 
 #pagina h1 {
-	font-size: large;
+font-size: large;
+}
+
+#alertas {
+background: pink none repeat scroll 0 0;
+color: #339955;
+height: 1em;
+margin-left: 0;
+margin-top: 1em;
+padding: 0.5em;
+text-align: center;
+width: 51em;
+}
+
+#errorExplanation {
+	background: pink none repeat scroll 0 0;	
+}
+
+.fieldWithErrors {
+	background: pink none repeat scroll 0 0;
 }
 
 /* END: Pagina Principal */
@@ -63,43 +80,43 @@
 /* Formulario Cadastros */
 
 #formulario-cadastro fieldset {
-  background: #efe;
+background: #efe;
 }
 
 #formulario-cadastro legend {
-  color: #dfd;
-  background: #141;
-  font-family: sans-serif;
-  padding: 0.1em 0.5em;
+color: #dfd;
+background: #141;
+font-family: sans-serif;
+padding: 0.1em 0.5em;
 }
 
 #formulario-cadastro label {
-  width: 10em;
-  float: left;
-  text-align: right;
-  padding-top: 0.2em;
-  margin-right: 0.1em;
-  display: block;
+width: 10em;
+float: left;
+text-align: right;
+padding-top: 0.2em;
+margin-right: 0.1em;
+display: block;
 }
 
 #formulario-cadastro select, .formulario-cadastro textarea, .formulario-cadastro input {
-  margin-left: 0.5em;
+margin-left: 0.5em;
 }
 
 #formulario-cadastro .submit {
-  margin-left: 4em;
+margin-left: 4em;
 }
 
 #formulario-cadastro div {
-  margin: 0.5em 0;
+margin: 0.5em 0;
 }
 
 #formulario-div-opcoes-radiobuttons label {
-	display:inline;
-	float:none;
-	margin-left:3cm;
-	margin-right:0.1em;
-	width:10em;
+display: inline;
+float: none;
+margin-left: 3cm;
+margin-right: 0.1em;
+width: 10em;
 }
 /* END: Formulario Cadastros */
 
@@ -110,59 +127,57 @@
 *	Listagens
 ***************************************/
 #listagens-tabela {
-	height:	340px;
+height: 325px;
 }
-
 #listagens-tabela table {
-        border-collapse: collapse;
+border-collapse: collapse;
 }
-
 #listagens-tabela table tr td {
-  padding: 			1px;
-  vertical-align: 	center;
+padding: 1px;
 }
-
 #listagens-tabela table tr th {
-  padding-bottom: 			1px;
-  vertical-align:	center;
-  font-weight:		bolder;
+font-weight: bolder;
+padding-bottom: 1px;
 }
-
 #listagens-tabela .lista-coluna-principal {
-  width:        40%;
-  text-align:	left;
+text-align: left;
+width: 51%;
 }
-
 #listagens-tabela .lista-coluna-menor {
-  width:        25%;
-  text-align:	right;
+text-align: left;
+width: 5%;
 }
-
 #listagens-tabela .lista-coluna-media {
-  width:        35%;
-  text-align:	right;
+text-align: right;
+width: 5%;
+}
+#listagens-tabela .lista-acoes {
+font-size: x-small;
+padding-left: 1em;
+text-align: right;
+width: 13%;
 }
 
 #listagens-tabela .lista-acoes {
-  font-size:    x-small;
-  text-align:   right;
-  padding-left: 1em;
+font-size: x-small;
+text-align: right;
+padding-left: 1em;
 }
 
 #listagens-tabela .lista-linha-par {
-  background:   #eeeeee;
+background: #eeeeee;
 }
 
 #listagens-tabela .lista-linha-impar {
-  background:   #bbbbbb;
+background: #bbbbbb;
 }
 
 #listagens-caixa-letras {
-  padding-bottom: 3px;
+padding-bottom: 3px;
 }
 
 #listagens-paginacao {
-  float:	none;
+float: none;
 }
 
 
@@ -170,50 +185,193 @@
 *	Loja
 ***************************************/
 
+#notice {
+background: white none repeat scroll 0 0;
+color: #FFFFFF;
+margin-top: 1em;
+margin-left: 0em;
+padding: 0.5em 0.5em 0.5em 0.5em;
+text-align: center;
+width: 51em;
+}
+
+#selecao-produto {
+position: relative;
+top: 5px;
+}
+
 #loja fieldset {
-  background: #efe;
-  font-size: 15pt;
-  height: 130px;
+background: #EEFFEE;
+font-size: 15pt;
+width: 900px;
 }
 
 #loja legend {
-  color: #dfd;
-  background: #141;
-  font-family: sans-serif;
-  padding: 0.1em 0.5em;
+color: #dfd;
+background: #141;
+font-family: sans-serif;
+padding: 0.1em 0.5em;
 }
 
 #loja label {
-  width: 10em;
-  text-align: right;
-  padding-top: 0.2em;
-  margin-right: 0.1em;
+width: 10em;
+text-align: right;
+padding-top: 0.2em;
+margin-right: 0.1em;
 }
 
 #loja select, #loja textarea, #loja input {
-  margin-left: 0.5em;
-  font-size:    medium;
-
+margin-left: 0.5em;
+font-size: medium;
 }
 
 #loja .submit {
-  margin-left: 4em;
+margin-left: 4em;
 }
 
-#loja div {
-  margin: 0.5em 0;
+#selecao-produto-fieldset {
+height: 130px;
 }
 
 #selecao-produto-busca-item-descricao {
-	position: absolute;
-	top: 150px;
-	left: 75px;
+position: relative;
+left: 27px;
+top: 5px;
 }
 
 #selecao-produto-busca-item-codigo-barras {
-	position: absolute;
-	top: 150px;
-	left: 75px;	
+position: relative;
+left: 1px;
+top: 5px;
+}
+
+#listagem-compras {
+position: relative;
+top: 20px;
+}
+
+listagem-compras-divtabela {
+overflow: auto;
+}
+
+#listagem-compras-divtotal {
+position: relative;
+bottom: 2px;
+}
+
+#listagem-compras-fieldset {
+height: 250px;
+}
+
+#listagem-compras-tabela .descricao {
+width: 500px;
+text-align: left;
+}
+
+#listagem-compras-tabela .valor {
+width: 70px;
+text-align: right;
+}
+
+#listagem-compras-tabela .quantidade {
+width: 100px;
+text-align: right;
+}
+
+#listagem-compras-tabela .valor-total-item {
+width: 100px;
+text-align: right;
+}
+
+#listagem-compras-tabela .acoes {
+width: 10px;
+text-align: left;
+}
+
+#listagem-compras-tabela .valor-total {
+text-align: right;
+font-weight: bold;
+}
+
+#finaliza-compra label {
+width: 10em;
+text-align: right;
+margin-right: 0.1em;
+}
+
+#finaliza-compra {
+float: left;
+position: fixed;
+left: 100px;
+top: 60px
+}
+
+#finaliza-compra fieldset {
+height: 450px;
+}
+
+
+#finaliza-compra div {
+margin-left: 6em;
+}
+
+
+#finaliza-compra-resumo-pagamento {
+float: right;
+width: 12em;
+background-color: #aaaaaa;
+}
+
+#finaliza-compra-resumo-pagamento table {
+text-align: right;
+}
+
+#tipo-pagamento-prepago table {
+margin-left: 8em;
+}
+
+#tipo-pagamento-conta label {
+text-align: left;
+position: relative;
+left: 5px;
+}
+
+#tipo-pagamento-conta-busca-cliente {
+margin-left: 40px;
+border: 1px dotted #ccc;
+position: relative;
+top: -30px;
+left: 50px;
+width: 600px;
+}
+
+#tipo-pagamento-conta-tabela-clientes {
+margin-left: 40px;
+border: 1px dotted #ccc;
+position: relative;
+top: -30px;
+left: 50px;
+width: 600px;
+}
+
+#tipo-pagamento-conta-tabela-clientes .nome {
+width: 300px;
+text-align: left;
+}
+
+#tipo-pagamento-conta-tabela-clientes .bloco {
+width: 30px;
+text-align: right;
+}
+
+#tipo-pagamento-conta-tabela-clientes .apartamento {
+width: 40px;
+text-align: right;
+}
+
+#tipo-pagamento-conta-tabela-clientes .valor {
+width: 100px;
+text-align: right;
 }
 
 /**************************************
@@ -222,29 +380,29 @@
 
 
 div.auto_complete {
-	width: 350px;
-	background: #fff ;
+width: 350px;
+background: #fff ;
 }
 
 div.auto_complete ul {
-	border:1px solid #888 ;
-	margin:0;
-	padding:0;
-	width:100%;
-	list-style-type:none;
+border: 1px solid #888 ;
+margin: 0;
+padding: 0;
+width: 100%;
+list-style-type: none;
 }
 
 div.auto_complete ul li {
-	margin:0;
-	padding:3px;
+margin: 0;
+padding: 3px;
 }
 
 div.auto_complete ul li.selected {
-	background-color: #ffb ;
+background-color: #ffb ;
 }
 
 div.auto_complete ul strong.highlight {
-	color: #800 ;
-	margin:0;
-	padding:0;
-}	
+color: #800 ;
+margin: 0;
+padding: 0;
+}

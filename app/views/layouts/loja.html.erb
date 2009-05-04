@@ -19,10 +19,14 @@
 	    <%= @page_title || "IXCA Gourmet" %>
 	</div>
 	<div id="loja">
-		<% if flash[:notice] -%>
-        	<div id="notice"><%= flash[:notice] -%></div>
-      	<% end %>
-      	<%= yield :layout -%>
+		<div id="notice">
+		  <% if flash[:notice] then -%>
+        	<%= flash[:notice] -%>
+		  <% else -%>
+			M
+      	  <% end -%>
+		</div>
+		<%= yield :layout -%>
 	</div>
 </body>
 </html>

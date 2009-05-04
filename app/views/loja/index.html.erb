@@ -1,5 +1,5 @@
 <div id="selecao-produto">	
-  <fieldset>
+  <fieldset id="selecao-produto-fieldset">
     <legend>Produto</legend>
 	<p>	
 		<div id="selecao-produto-quantidade-item">		
@@ -11,19 +11,16 @@
 			<%= text_field 'compras', 'novo_item' %>
 		</div>
 		<div id="selecao-produto-busca-item-codigo-barras">
-			<% form_remote_tag :url => { :action => "adiciona_produto_lista_compras"} do -%>
-					<label for="compras_codigo_barras_item">Cod Barras:</label>
-					<%= text_field 'compras', 'codigo_barras_item' %>
-					<%= submit_tag 'Create' %>
-			<% end -%>
-		
-		</div>	
+			<label for="compras_codigo_barras_item">Cod Barras:</label>
+			<%= text_field 'compras', 'codigo_barras_item' %>
+		</div>
 	</p>
 	<div class="auto_complete" id="compras_novo_item_auto_complete"></div>
-	<%= auto_complete_field :compras_novo_item, :url=>{:action=>'autocomplete_novo_item'},:after_update_element => "function(element,value){"+remote_function(:url => { :action => :adiciona_produto_lista_compras }, :with=>"'descricao_item='+element.value+'&quantidade_item='+jQuery('#compras_quantidade_item').val()")+";jQuery(\"#compras_quantidade_item\").val(\"1\"); jQuery(\"#compras_novo_item\").val(\"\"); jQuery(\"#compras_quantidade_item\").focus().select();}" %>
+	<%= auto_complete_field :compras_novo_item, :url=>{:action=>'autocomplete_novo_item'},:after_update_element => "function(element,value){"+remote_function(:url => { :action => :adiciona_produto_lista_compras }, :with=>"'descricao_item='+element.value+'&quantidade_item='+jQuery('#compras_quantidade_item').val()")+";jQuery(\"#compras_quantidade_item\").val(\"1\"); jQuery(\"#compras_novo_item\").val(\"\"); jQuery(\"#compras_novo_item\").focus().select();}" %>
   </fieldset>
 </div>
 
 <div id="listagem-compras">
 <%= render :partial => 'listagem_compras' %>
+<%#= render :partial => 'finaliza_compra'%>
 </div>

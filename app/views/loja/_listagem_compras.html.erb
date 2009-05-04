@@ -1,18 +1,26 @@
-	<table id="tabela-lista-compras">
+<fieldset id="listagem-compras-fieldset">
+  <legend>Items</legend>
+	<div id="listagem-compras-divtabela">
+	  <table id="listagem-compras-tabela">
 		<tr>
-			<th>Item</th>
-			<th>Valor Unitário</th>
-			<th>Quantidade</th>
-			<th>Valor Total</th>
+			<th class="descricao">Item</th>
+			<th class="valor">Valor</th>
+			<th class="quantidade">Qtd</th>
+			<th class="valor-total-item">Total</th>
 			<th/>
 		</tr>
 		<% for item in @listacompras.items %>
 		<tr>
-			<td><%= item.descricao %></td>
-			<td><%= item.produto.valor_venda %></td>
-			<td><%= item.quantidade %></td>
-			<td><%= item.valor_total%>	
-			<td><%#= link_to_remote "remover", :url => {:action => "remover_dependente", :id => @cliente.id, :dependente => cliente_dependentes.id} %></td>
+			<td class="descricao"><%= item.descricao %></td>
+			<td class="valor"><%= number_to_currency(item.produto.valor_venda, :unit => "R$", :delimiter => ".", :separator => ",") %></td>
+			<td class="quantidade"><%= item.quantidade %></td>
+			<td class="valor-total-item"><%= number_to_currency(item.valor_total, :unit => "R$", :delimiter => ".", :separator => ",")%> </td>
+			<td class="acoes"><%#= link_to_remote "remover", :url => {:action => "remover_dependente", :id => @cliente.id, :dependente => cliente_dependentes.id} %></td>
 		</tr>
 		<% end %>
-	</table>
+	  </table>
+	</div>
+	<div id="listagem-compras-divtotal">
+		<%= number_to_currency(@listacompras.valor_total, :unit => "R$", :delimiter => ".", :separator => ",") %></td>
+	</div>
+</fieldset>

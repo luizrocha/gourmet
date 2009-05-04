@@ -1,3 +1,4 @@
+<%= javascript_include_tag "formulario_produtos.js" %>
 <div id="formulario-cadastro">
 <h1>Novo Produto</h1>
 <% form_for(@produto) do |form| %>
@@ -11,18 +12,13 @@
     </div>
 
     <div>
-      <%= form.label :referencia, "Referência:" %>
-      <%= form.text_field :referencia, :size => 10 %>
-    </div>
-
-    <div>
-      <%= form.label :unidade_venda, "Unidade de Venda:" %>
+      <%= form.label :unidade_venda_id, "Unidade de Venda:" %>
 		<%=
-		form.select :unidade_venda,
-		    Produto.find(:all).collect {|unidade| [unidade.descricao, unidade.id]},
+		form.select :unidade_venda_id,
+		    UnidadeVenda.find(:all).collect {|unidade| [unidade.nome, unidade.id]},
 		    :prompt => "-- Selecionar --",
 		    :selected => nil
-		%>
+		%>		
     </div>
 
     <div>
@@ -32,7 +28,7 @@
 
     <div>
       <%= form.label :codigo_barras, "Código de Barras:" %>
-      <%= form.text_field :codigo_barras, :size => 20, :disabled => true %>
+      <%= form.text_field :codigo_barras, :size => 20 %>
     </div>
   </fieldset>
   <fieldset>

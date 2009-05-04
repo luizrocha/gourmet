@@ -1,4 +1,13 @@
-page.select("div#notice" ).each { |div| div.hide }
+if flash[:notice] then
+  page['notice'].update(flash[:notice])
+  page['notice'].visual_effect :highlight, :startcolor => "#ffffff", :endcolor => "#cc1133"
+  page<<"$('notice').style.background='#cc1133'"
+  page<<"$('notice').style.color='#000000'"
+else
+  page<<"$('notice').style.background='#ffffff'"
+  page<<"$('notice').style.color='#ffffff'"
+  page['notice'].update("M")
+end
 page.replace_html("listagem-compras" , :partial => "listagem_compras" , :object => @listacompras)
 #page[:cart].visual_effect :blind_down if @cart.total_items == 1
 #page[:current_item].visual_effect :grow if @current_item.quantity == 1

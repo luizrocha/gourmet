@@ -1,0 +1,100 @@
+<div id="finaliza-compra">
+	<fieldset>
+		<legend>Detalhe Pagamento</legend>
+		<div id="finaliza-compra-resumo-pagamento">
+		  <table>
+			<tr>
+				<td>Cartao</td>
+				<td>50,00</td>
+			</tr>
+			<tr>
+				<td>Dinheiro</td>
+				<td>230,00</td>
+			</tr>
+			<tr>
+				<td>a Prazo</td>
+				<td>23,00</td>
+			</tr>
+			<tr>
+				<td>EM ABERTO</td>
+				<td>320,00</td>
+			</tr>
+		  </table>	
+		</div>
+		
+		<input type="checkbox" name="tipoPagamento" value="Cartao"/>Cartão
+		<div id="tipo-pagamento-cartao">
+			<label for="tipo-pagamento-cartao-valor">R$:</label>
+			<input type="text" id="tipo-pagamento-cartao-valor" size="8">
+			<select name="tipo-pagamento-cartao-seleciona">
+				<option value="VisaElectron">Visa Electron</option>
+				<option value="Maestro">Maestro</option>
+				<option value="Redeshop">RedeShop</option>
+			</select>
+		</div>
+		<input type="checkbox" name="tipoPagamento" value="Dinheiro">Dinheiro<br/>
+		<div id="tipo-pagamento-dinheiro">
+			<label for="tipo-pagamento-dinheiro-montante">R$:</label>
+			<input type="text" id="tipo-pagamento-dinheiro-montante" size="8"/><br/>
+		</div>		
+		<input type="checkbox" name="tipoPagamento" value="Pre-Pago">Pré-Pago<br/>
+		<div id="tipo-pagamento-prepago">
+			<label for="tipo-pagamento-prepago-valor">R$:</label>
+			<input type="text" id="tipo-pagamento-prepago-valor" size="8"/>
+			<label for="tipo-pagamento-prepago-identificador">Cartão:</label>
+			<input type="text" id="tipo-pagamento-prepago-identificador" size="20"/><br/>
+				<table>
+					<tr>
+						<td>Pré Pago 323433252</td>
+						<td>R$ 100.00</td>
+					</tr>
+					<tr>
+						<td>Pré Pago 322242346</td>
+						<td>R$  90.00</td>
+					</tr>
+				</table>
+		</div>		
+		<input type="checkbox" name-"tipoPagamento" value="Conta">Conta<br/>
+		<div id="tipo-pagamento-conta">
+			<label for="tipo-pagamento-prepago-valor">R$:</label>
+			<input type="text" id="tipo-pagamento-prepago-valor" size="8"/>
+			<div id="tipo-pagamento-conta-busca-cliente">
+				<label for="tipo-pagamento-conta-bloco">Bloco:</label>
+				<input type="text" id="tipo-pagamento-conta-bloco" size="5"/>
+				<label for="tipo-pagamento-conta-apartamento">Apto:</label>
+				<input type="text" id="tipo-pagamento-conta-apartamento" size="5"/><br/>
+				<label for="tipo-pagamento-conta-nome">Nome:</label>
+				<input type="text" id="tipo-pagamento-conta-nome" size="30"/>
+			</div>
+			<div id="tipo-pagamento-conta-tabela-clientes">
+				<table>
+					<tr>
+						<th class="nome">Nome</th>
+						<th class="bloco">Bloco</th>
+						<th class="apartamento">Apto</th>
+						<th class="valor">Valor</th>
+					</tr>
+					<tr>
+						<td class="nome">Dante Rocha</td>
+						<td class="bloco">1</td>
+						<td class="apartamento">704</td>
+						<td class="valor">43,56</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</fieldset>
+</div>	
+<!--			
+	(cartao credito)
+		(bandeira) {VisaElectron, Maestro, Redeshop}
+	(dinheiro)
+		(total dinheiro)
+		(troco a ser dado)
+	(prazo)
+		(bloco)(apartamento)
+		(nome cliente)
+	(pre-pago)
+		(identificador cartao)
+!-->
+</div>

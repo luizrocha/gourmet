@@ -60,11 +60,14 @@ class ProdutosController < ApplicationController
   # POST /produtos.xml
   def create
     @produto = Produto.new(params[:produto])
-
     respond_to do |format|
       if @produto.save
-        flash[:notice] = 'Produto was successfully created.'
-        format.html { redirect_to(@produto) }
+        flash[:notice] = 'Produto foi criado com sucesso.'
+        if (params[:commit].eql? "Criar-ModoRapido" ) then
+          format.html { redirect_to :action => "new"}
+        else
+          format.html { redirect_to :action => "index"}          
+        end
         format.xml  { render :xml => @produto, :status => :created, :location => @produto }
       else
         format.html { render :action => "new" }

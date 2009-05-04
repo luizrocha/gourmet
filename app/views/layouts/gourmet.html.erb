@@ -6,6 +6,9 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>IXCA Gourmet - <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'gourmet' %>
+  <%= javascript_include_tag "jquery.js" %>
+  <%= javascript_include_tag "jquery.hotkeys.js" %>
+  <script>jQuery.noConflict();</script>
   <%= javascript_include_tag :defaults %>
 </head>
 
@@ -20,12 +23,14 @@
 			<hr/>
 			<%= link_to 'Produtos',	:controller	=> 'produtos' %><br/>
 			<%= link_to 'Clientes',	:controller	=> 'clientes' %><br/>
-			<%= link_to 'Compras',	:controller	=> 'compras' %><br/>	
+			<%= link_to 'Caixa Loja', {:controller => 'loja'}, :popup => ['new_window','height=1100,width=1500'] %><br/>	
 		</div>
 		<div id="pagina">
 			<% if flash[:notice] -%>
-	        	<div id="notice"><%= flash[:notice] -%></div>
-	      	<% end %>
+			  <div id="alertas">
+	        	<%= flash[:notice] -%>
+			  </div>
+			<% end %>
 	      	<%= yield :layout -%>
 		</div>
 	</div>

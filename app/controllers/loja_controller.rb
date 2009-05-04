@@ -12,11 +12,16 @@ class LojaController < ApplicationController
   end
 
   def adiciona_produto_lista_compras
+    flash[:notice] = nil
     produto = Produto.find_by_descricao(params[:descricao_item]) if params[:descricao_item]
-    produto = Produto.find_by_codigo_barras(params[:compras][:codigo_barras_item]) if params[:compras]
-    quantidade = params[:quantidade_item]
-    if !produto then redirect_to_index end
-    @item_corrente = @listacompras.adiciona_produto(produto, quantidade)
+    produto = Produto.find_by_codigo_barras(params[:codigo_barras_item]) if params[:codigo_barras_item]
+    quantidade = BigDecimal.new(params[:quantidade_item])
+    begin
+      validar_Item_Venda(quantidade, produto)
+      @item_corrente = @listacompras.adiciona_produto(produto, quantidade)
+    rescue Exception => e:
+      flash[:notice] = e.to_s 
+    end
     respond_to do |format|
       format.js 
     end
@@ -34,6 +39,20 @@ private
   def busca_lista_compras
     @listacompras = (session[:listacompras] ||= ListaCompras.new)
   end
+  
+  def validar_Item_Venda(quantidade, produto)
+     if (!produto) then
+       raise "Produto não encontrado!"
+     end
+     if ( quantidade < 0) then
+       raise "Quantidade não pode ser negativa!"
+     end
+     q,m = quantidade.divmod(BigDecimal("1")) 
+     produto_permite_fracao = produto.permitidaVendaFracionaria
+     if (m != 0 && !produto_permite_fracao ) then
+       raise "Venda fracionaria não permitida para este produto!"
+     end
+  end  
   
   def redirect_to_index(msg = nil)
     flash[:notice] = msg if msg
