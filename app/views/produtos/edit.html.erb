@@ -1,48 +1,69 @@
-<h1>Editing produto</h1>
+<%= javascript_include_tag "formulario_produtos.js" %>
+<div id="formulario-cadastro">
+<h1>Editando Produto</h1>
+<% form_for(@produto) do |form| %>
+  <%= form.error_messages %>
+  <fieldset>
+    <legend>Dados Básicos</legend>
 
-<% form_for(@produto) do |f| %>
-  <%= f.error_messages %>
+	 <%= hidden_field(:produto, :id) -%> 
 
+    <div>
+      <%= form.label :descricao, "Descrição:" %>
+      <%= form.text_field :descricao, :size => 50 %>
+    </div>
+
+    <div>
+      <%= form.label :unidade_venda_id, "Unidade de Venda:" %>
+		<%=
+		form.select :unidade_venda_id,
+		    UnidadeVenda.find(:all).collect {|unidade| [unidade.nome, unidade.id]},
+		    :prompt => "-- Selecionar --",
+		    :selected => @produto.unidade_venda_id
+		%>		
+    </div>
+
+    <div>
+      <%= form.label :valor_venda, "Valor de Venda:" %>
+      <%= form.text_field :valor_venda, :size => 5 %>
+    </div>
+
+    <div>
+      <%= form.label :codigo_barras, "Código de Barras:" %>
+      <%= form.text_field :codigo_barras, :size => 20 %>
+    </div>
+  </fieldset>
+  <fieldset>
+	<legend>Gestão de Estoque</legend>
+    
+    <div>
+      <%= form.label :estoque_minimo, "Quantidade Mínima:" %>
+      <%= form.text_field :estoque_minimo, :size => 5 %>
+    </div>
+
+    <div>
+      <%= form.label :estoque_maximo, "Quantidade Máxima:" %>
+      <%= form.text_field :estoque_maximo, :size => 5 %>
+    </div>
+  </fieldset>
+  <fieldset>
+	<legend>Dados Fabricante</legend>
+	
+	<div>
+      <%= form.label :fabricante, "Fabricante:" %>
+      <%= form.text_field :fabricante, :size => 50 %>
+    </div>
+
+	<div>
+      <%= form.label :referencia_fabricante, "Código Referência:" %>
+      <%= form.text_field :referencia_fabricante, :size => 50 %>
+    </div>
+
+  </fieldset>  
   <p>
-    <%= f.label :descricao %><br />
-    <%= f.text_field :descricao %>
-  </p>
-  <p>
-    <%= f.label :fabricante %><br />
-    <%= f.text_field :fabricante %>
-  </p>
-  <p>
-    <%= f.label :referencia_fabricante %><br />
-    <%= f.text_field :referencia_fabricante %>
-  </p>
-  <p>
-    <%= f.label :referencia %><br />
-    <%= f.text_field :referencia %>
-  </p>
-  <p>
-    <%= f.label :codigo_barras %><br />
-    <%= f.text_field :codigo_barras %>
-  </p>
-  <p>
-    <%= f.label :estoque_minimo %><br />
-    <%= f.text_field :estoque_minimo %>
-  </p>
-  <p>
-    <%= f.label :estoque_maximo %><br />
-    <%= f.text_field :estoque_maximo %>
-  </p>
-  <p>
-    <%= f.label :valor_venda %><br />
-    <%= f.text_field :valor_venda %>
-  </p>
-  <p>
-    <%= f.label :unidade_venda %><br />
-    <%= f.text_field :unidade_venda %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
+    <%= form.submit "Salvar" %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @produto %> |
-<%= link_to 'Back', produtos_path %>
+<%= link_to 'Voltar', produtos_path %>
+</div>

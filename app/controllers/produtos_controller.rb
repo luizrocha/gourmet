@@ -1,4 +1,5 @@
 class ProdutosController < ApplicationController
+  protect_from_forgery :only => [:create, :update, :destroy] 
 
   # GET /produtos
   # GET /produtos.xml
@@ -22,12 +23,18 @@ class ProdutosController < ApplicationController
   end
 
   def por_descricao
-    @produtos = 
+    if (params[:produto] && params[:produto][:descricao]) then
+      @produtos = Produto.find(:all, :conditions => "descricao like '#{params[:produto][:descricao]}%'", :order => "descricao")
+      render :layout=>false
+    else
+      @produtos = Produto.paginate(:all, :conditions => "descricao like '#{params[:descricao]}%'", :order => "descricao", :page => params[:page])
       respond_to do |format|
-      format.html { render :action => "index" }
-      format.xml { render :xml => @produtos }
+        format.html { render :action => "index" }
+        format.xml { render :xml => @produtos }
+        format.js if request.xhr?
+      end
     end
-  end    
+  end   
 
   # GET /produtos/1
   # GET /produtos/1.xml
@@ -83,8 +90,8 @@ class ProdutosController < ApplicationController
 
     respond_to do |format|
       if @produto.update_attributes(params[:produto])
-        flash[:notice] = 'Produto was successfully updated.'
-        format.html { redirect_to(@produto) }
+        flash[:notice] = 'Produto atualizado com sucesso.'
+        format.html { redirect_to :action => "index"}          
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

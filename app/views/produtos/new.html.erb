@@ -17,7 +17,7 @@
 		form.select :unidade_venda_id,
 		    UnidadeVenda.find(:all).collect {|unidade| [unidade.nome, unidade.id]},
 		    :prompt => "-- Selecionar --",
-		    :selected => nil
+		    :selected => @produto.unidade_venda_id
 		%>		
     </div>
 

@@ -74,7 +74,10 @@ jQuery(document).ready(function() {
 	//						
 	//*********************************************************************
 	
-	//Foco inicial
-	jQuery("#produto_descricao").focus().select();	
+	//Foco inicial em Descricao no caso de novo Produto.
+	if ( jQuery("#produto_id").length == 0) {
+		jQuery("#produto_descricao").focus().select();	
+	}
+	
 
 })
