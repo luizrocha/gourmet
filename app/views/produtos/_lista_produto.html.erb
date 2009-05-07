@@ -1,7 +1,13 @@
 <div id="listagens-tabela">
-<table>
+<script type="text/javascript">
+	jQuery("table tr").dblclick(function(){
+		jQuery("td:first > form",this).submit();
+	});
+</script>
+<table>	
   <% for produto in @produtos %>
   <tr class="<%= cycle('lista-linha-impar', 'lista-linha-par') %>">
+	<td class="lista-coluna-invisivel"><%= button_to 'a', produto, :method => "get" %></td>
     <td class="lista-coluna-principal"><%=h produto.descricao %></td>
     <td class="lista-coluna-menor">R$</td>
     <td class="lista-coluna-media"><%=h number_to_currency(produto.valor_venda, :unit => "", :separator => ",", :delimiter => ".")%> <%=h produto.unidade_venda.sigla%></td>

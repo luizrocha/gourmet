@@ -16,22 +16,24 @@ class ProdutosController < ApplicationController
     @produtos = Produto.paginate(:all, :conditions => "descricao like '#{params[:letra]}%'", :order => "descricao", :page => params[:page])
     @letra = params[:letra]
     respond_to do |format|
+      format.js if request.xhr?
       format.html { render :action => "index" }
       format.xml { render :xml => @produtos }
-      format.js if request.xhr?
     end
   end
 
   def por_descricao
-    if (params[:produto] && params[:produto][:descricao]) then
+    if (params[:produto]) then
+      @autocomplete_render = true
       @produtos = Produto.find(:all, :conditions => "descricao like '#{params[:produto][:descricao]}%'", :order => "descricao")
-      render :layout=>false
+      render :layout=>false, :template => "produtos/renderiza_autocomplete_descricao.html.erb" and return
     else
+      @autocomplete_render = false    
       @produtos = Produto.paginate(:all, :conditions => "descricao like '#{params[:descricao]}%'", :order => "descricao", :page => params[:page])
       respond_to do |format|
+        format.js if request.xhr?
         format.html { render :action => "index" }
         format.xml { render :xml => @produtos }
-        format.js if request.xhr?
       end
     end
   end   

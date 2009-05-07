@@ -1,0 +1,4 @@
+page.select("div#alertas" ).each { |div| div.hide }
+page.replace_html("listagens-tabela" , :partial => "lista_produto")
+page.replace_html("listagens-paginacao" , :partial => "lista_produto_paginacao" )
+

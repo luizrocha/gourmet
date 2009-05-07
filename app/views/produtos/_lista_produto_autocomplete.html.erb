@@ -1,7 +1,6 @@
 <div id="listagens-autocomplete-produto">
 	<div id="selecao-produto-busca-item-descricao">
-		<label for="compras_novo_item">Produto:</label>
-		<%= text_field 'produto', 'descricao' %>
+		<%= text_field 'produto', 'descricao', :size => 50 %>
 	</div>
 	<div class="auto_complete" id="produto_descricao_auto_complete"></div>
 	<%= auto_complete_field :produto_descricao, :url=>{:action=>'por_descricao'},:after_update_element => "function(element,value){"+remote_function(:url => { :action => :por_descricao }, :with=>"'descricao='+element.value+'&page=1'")+"; jQuery(\"#produto_descricao\").val(\"\"); jQuery(\"#produto_descricao\").focus().select();}" %>

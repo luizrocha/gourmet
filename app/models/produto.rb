@@ -1,7 +1,7 @@
 class Produto < ActiveRecord::Base
   
   cattr_reader :per_page
-  @@per_page = 15
+  @@per_page = 12
 
   belongs_to :unidade_venda  
   

@@ -66,11 +66,11 @@ width: 51em;
 }
 
 #errorExplanation {
-	background: pink none repeat scroll 0 0;	
+background: pink none repeat scroll 0 0;
 }
 
 .fieldWithErrors {
-	background: pink none repeat scroll 0 0;
+background: pink none repeat scroll 0 0;
 }
 
 /* END: Pagina Principal */
@@ -120,8 +120,25 @@ width: 10em;
 }
 /* END: Formulario Cadastros */
 
+#exibicao_propriedade {
+	padding-top: 0.5em;
+}
 
+#exibicao_propriedade .label{
+	width: 10em;
+	float: left; 
+	text-align: right;
+	margin-right: 0.1em;
+	font-weight: bold;
+	height: 1em;
+}
 
+#exibicao_propriedade .propriedade{
+	text-align: left;
+	height: 1em;
+	margin-left: 10em;
+	padding-left: 0.3em;
+}
 
 /**************************************
 *	Listagens
@@ -141,7 +158,12 @@ padding-bottom: 1px;
 }
 #listagens-tabela .lista-coluna-principal {
 text-align: left;
-width: 51%;
+width: 45%;
+}
+#listagens-tabela .lista-coluna-invisivel {
+text-align: left;
+display:none;
+width: 0.1%;
 }
 #listagens-tabela .lista-coluna-menor {
 text-align: left;
@@ -172,14 +194,15 @@ background: #eeeeee;
 background: #bbbbbb;
 }
 
-#listagens-caixa-letras {
-padding-bottom: 3px;
+#listagens-cabecalho {
+padding-bottom: 16px;
 }
 
-#listagens-paginacao {
-float: none;
+#listagens-autocomplete-produto {
+float: right;
+margin-right: 300px;
+margin-top: -5px
 }
-
 
 /**************************************
 *	Loja

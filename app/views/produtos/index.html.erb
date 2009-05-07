@@ -1,7 +1,10 @@
+<%= javascript_include_tag "listagem_produtos.js" %>
 <div id="listagens">
 <h1>Listagem de Produtos</h1>
+<div id="listagens-cabecalho">
 <%= render :partial => 'lista_produto_autocomplete' -%>
 <%= render :partial => 'lista_produto_alphabox' -%>
+</div>
 <%= render :partial => 'lista_produto', :object => @produtos -%>
 <%= render :partial => 'lista_produto_paginacao', :object => @produtos -%>
 </div>

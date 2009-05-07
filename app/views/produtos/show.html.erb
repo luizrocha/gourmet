@@ -1,48 +1,35 @@
-<p>
-  <b>Descricao:</b>
-  <%=h @produto.descricao %>
-</p>
-
-<p>
-  <b>Fabricante:</b>
-  <%=h @produto.fabricante %>
-</p>
-
-<p>
-  <b>Referencia fabricante:</b>
-  <%=h @produto.referencia_fabricante %>
-</p>
-
-<p>
-  <b>Referencia:</b>
-  <%=h @produto.referencia %>
-</p>
-
-<p>
-  <b>Codigo barras:</b>
-  <%=h @produto.codigo_barras %>
-</p>
-
-<p>
-  <b>Estoque minimo:</b>
-  <%=h @produto.estoque_minimo %>
-</p>
-
-<p>
-  <b>Estoque maximo:</b>
-  <%=h @produto.estoque_maximo %>
-</p>
-
-<p>
-  <b>Valor venda:</b>
-  <%= number_to_currency(@produto.valor_venda, :unit => "$") %>
-</p>
-
-<p>
-  <b>Unidade venda:</b>
-  <%=h @produto.unidade_venda %>
-</p>
-
-
-<%= link_to 'Edit', edit_produto_path(@produto) %> |
-<%= link_to 'Back', produtos_path %>
+<div id="exibicao_propriedade">
+  <div class="label">Descricao:</div>
+  <div class="propriedade"><%=h @produto.descricao %></div>
+</div>
+<div id="exibicao_propriedade">
+  <div class="label">Unidade venda:</div>
+  <div class="propriedade"><%=h @produto.unidade_venda.nome %> (<%=h @produto.unidade_venda.sigla %>)</div>
+</div>
+<div id="exibicao_propriedade">
+  <div class="label">Valor venda:</div>
+  <div class="propriedade"><%= number_to_currency(@produto.valor_venda, :unit => "R$", :separator => ",", :delimiter => ".") -%></div>
+</div>
+<div id="exibicao_propriedade">
+  <div class="label">Codigo barras:</div>
+  <div class="propriedade"><%=h @produto.codigo_barras %></div>
+</div>
+<div id="exibicao_propriedade">
+  <div class="label">Fabricante:</div>
+  <div class="propriedade"><%=h @produto.fabricante %>2</div>
+</div>
+<div id="exibicao_propriedade">
+  <div class="label">Referência Fabricante:</div>
+  <div class="propriedade"><%=h @produto.referencia_fabricante %></div>
+</div>
+<div id="exibicao_propriedade">
+  <div class="label">Estoque minimo:</div>
+  <div class="propriedade"><%=h @produto.estoque_minimo %></div>
+</div>
+<div id="exibicao_propriedade">
+  <div class="label">Estoque maximo:</div>
+  <div class="propriedade"><%=h @produto.estoque_maximo %></div>
+</div>
+<br/><br/>
+<%= link_to 'Editar', edit_produto_path(@produto) %> |
+<%= link_to 'Voltar', produtos_path %>
