@@ -146,33 +146,41 @@ width: 10em;
 #listagens-tabela {
 height: 325px;
 }
+
 #listagens-tabela table {
 border-collapse: collapse;
 }
+
 #listagens-tabela table tr td {
 padding: 1px;
 }
+
 #listagens-tabela table tr th {
 font-weight: bolder;
 padding-bottom: 1px;
 }
+
 #listagens-tabela .lista-coluna-principal {
 text-align: left;
 width: 45%;
 }
+
 #listagens-tabela .lista-coluna-invisivel {
 text-align: left;
 display:none;
 width: 0.1%;
 }
+
 #listagens-tabela .lista-coluna-menor {
 text-align: left;
 width: 5%;
 }
+
 #listagens-tabela .lista-coluna-media {
 text-align: right;
 width: 5%;
 }
+
 #listagens-tabela .lista-acoes {
 font-size: x-small;
 padding-left: 1em;
@@ -215,7 +223,24 @@ margin-top: 1em;
 margin-left: 0em;
 padding: 0.5em 0.5em 0.5em 0.5em;
 text-align: center;
-width: 51em;
+width: 700px;
+}
+
+#loja label {
+width: 10em;
+text-align: right;
+font-size: 18px;
+padding-top: 0.2em;
+margin-right: 0.1em;
+}
+
+#loja select, textarea, input, td {
+margin-left: 0.5em;
+font-size: 15px;
+}
+
+#loja .submit {
+margin-left: 4em;
 }
 
 #selecao-produto {
@@ -226,7 +251,10 @@ top: 5px;
 #loja fieldset {
 background: #EEFFEE;
 font-size: 15pt;
-width: 900px;
+}
+
+#loja .fieldset-camposprincipais {
+width: 600px;
 }
 
 #loja legend {
@@ -236,41 +264,37 @@ font-family: sans-serif;
 padding: 0.1em 0.5em;
 }
 
-#loja label {
-width: 10em;
-text-align: right;
-padding-top: 0.2em;
-margin-right: 0.1em;
+#fieldset-selecao-produto{
+height: 85px;
+width: 900px;	
 }
 
-#loja select, #loja textarea, #loja input {
-margin-left: 0.5em;
-font-size: medium;
-}
-
-#loja .submit {
-margin-left: 4em;
-}
-
-#selecao-produto-fieldset {
-height: 130px;
+#selecao-produto-quantidade-item {
+position: relative;
+top: -20px;
+width: 500px;
+border: 2px solid  #00FF00;	
 }
 
 #selecao-produto-busca-item-descricao {
 position: relative;
 left: 27px;
-top: 5px;
+top: -15px;
+width: 475px;
+border: 2px solid  #00FF00;
 }
 
 #selecao-produto-busca-item-codigo-barras {
 position: relative;
 left: 1px;
-top: 5px;
+top: -45px;
+width: 500px;
+border: 2px solid  #00FF00;
 }
 
 #listagem-compras {
 position: relative;
-top: 20px;
+top: 10px;
 }
 
 listagem-compras-divtabela {
@@ -316,41 +340,39 @@ text-align: right;
 font-weight: bold;
 }
 
-#finaliza-compra label {
+#loja .fieldset-camposlaterais{
+	width: 320px;
+	height: 366px;
+	float: right;
+	position:relative;
+	top: -382px;
+}
+
+
+#adiciona-pagamento {
+//float: left;
+position: fixed;
+left: 6px;
+top: 112px;
+width: 100px;
+height: 300px;
+}
+
+#adiciona-pagamento .tipo-pagamento{
+margin-left: 6em;
+width: 475px;
+border: 3px solid #446655;
+}
+
+#fieldset-adiciona-pagamento { 
+width: 200px;
+height: 300px;
+}
+
+#adiciona-pagamento label {
 width: 10em;
 text-align: right;
 margin-right: 0.1em;
-}
-
-#finaliza-compra {
-float: left;
-position: fixed;
-left: 100px;
-top: 60px
-}
-
-#finaliza-compra fieldset {
-height: 450px;
-}
-
-
-#finaliza-compra div {
-margin-left: 6em;
-}
-
-
-#finaliza-compra-resumo-pagamento {
-float: right;
-width: 12em;
-background-color: #aaaaaa;
-}
-
-#finaliza-compra-resumo-pagamento table {
-text-align: right;
-}
-
-#tipo-pagamento-prepago table {
-margin-left: 8em;
 }
 
 #tipo-pagamento-conta label {
@@ -360,42 +382,12 @@ left: 5px;
 }
 
 #tipo-pagamento-conta-busca-cliente {
-margin-left: 40px;
-border: 1px dotted #ccc;
 position: relative;
 top: -30px;
-left: 50px;
-width: 600px;
+left: 120px;
+width: 350px;
 }
 
-#tipo-pagamento-conta-tabela-clientes {
-margin-left: 40px;
-border: 1px dotted #ccc;
-position: relative;
-top: -30px;
-left: 50px;
-width: 600px;
-}
-
-#tipo-pagamento-conta-tabela-clientes .nome {
-width: 300px;
-text-align: left;
-}
-
-#tipo-pagamento-conta-tabela-clientes .bloco {
-width: 30px;
-text-align: right;
-}
-
-#tipo-pagamento-conta-tabela-clientes .apartamento {
-width: 40px;
-text-align: right;
-}
-
-#tipo-pagamento-conta-tabela-clientes .valor {
-width: 100px;
-text-align: right;
-}
 
 /**************************************
 *	Auto-Complete

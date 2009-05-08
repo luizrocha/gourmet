@@ -44,7 +44,7 @@ jQuery(document).ready(function() {
 	});
 	
 	//Inicializacao com campo codigo barras visivel e produto descricao invisivel.
-	jQuery("#selecao-produto-busca-item-descricao").css("visibility", "hidden");
+	//jQuery("#selecao-produto-busca-item-descricao").css("visibility", "hidden");
 	//Inicializacao do foco no campo codigo de barras.
 	jQuery("#compras_codigo_barras_item").focus().select();
 	//Mapeamento Inicial da tecla ENTER no campo Quantidade transfere foco para campo Codigo Barras
@@ -52,4 +52,7 @@ jQuery(document).ready(function() {
 		jQuery("#compras_codigo_barras_item").focus().select();
 		return false;
 	});
+	
+	
+	//jQuery("#tipo-pagamento-accordion").accordion();
 });

@@ -1,0 +1,42 @@
+<div id="adiciona-pagamento">
+	<fieldset  class="fieldset-adiciona-pagamento">
+		<legend>Detalhe Pagamento</legend>
+		<div id="tipo-pagamento-accordion">
+		<input type="radio" name="tipoPagamento" value="Cartao"/>Cartão
+		<div id="tipo-pagamento-cartao" class="tipo-pagamento">
+			<label for="tipo-pagamento-cartao-valor">R$:</label>
+			<input type="text" id="tipo-pagamento-cartao-valor" size="4">
+			<select name="tipo-pagamento-cartao-seleciona">
+				<option value="VisaElectron">Visa Electron</option>
+				<option value="Maestro">Maestro</option>
+				<option value="Redeshop">RedeShop</option>
+			</select>
+		</div>
+		<input type="radio" name="tipoPagamento" value="Dinheiro">Dinheiro<br/>
+		<div id="tipo-pagamento-dinheiro" class="tipo-pagamento">
+			<label for="tipo-pagamento-dinheiro-montante">R$:</label>
+			<input type="text" id="tipo-pagamento-dinheiro-montante" size="4"/><br/>
+		</div>		
+		<input type="radio" name="tipoPagamento" value="Pre-Pago">Pré-Pago<br/>
+		<div id="tipo-pagamento-prepago" class="tipo-pagamento">
+			<label for="tipo-pagamento-prepago-valor">R$:</label>
+			<input type="text" id="tipo-pagamento-prepago-valor" size="4"/>
+			<label for="tipo-pagamento-prepago-identificador">IDPréPago:</label>
+			<input type="text" id="tipo-pagamento-prepago-identificador" size="10"/><br/>
+		</div>		
+		<input type="radio" name="tipoPagamento" value="Conta">Conta<br/>
+		<div id="tipo-pagamento-conta" class="tipo-pagamento">
+			<label for="tipo-pagamento-prepago-valor">R$:</label>
+			<input type="text" id="tipo-pagamento-prepago-valor" size="4"/>
+			<div id="tipo-pagamento-conta-busca-cliente">
+				<label for="tipo-pagamento-conta-bloco">Bloco:</label>
+				<input type="text" id="tipo-pagamento-conta-bloco" size="2"/>
+				<label for="tipo-pagamento-conta-apartamento">Apto:</label>
+				<input type="text" id="tipo-pagamento-conta-apartamento" size="3"/><br/>
+				<label for="tipo-pagamento-conta-nome">Nome:</label>
+				<input type="text" id="tipo-pagamento-conta-nome" size="25"/>
+			</div>
+		</div>
+				</div>
+	</fieldset>
+</div>

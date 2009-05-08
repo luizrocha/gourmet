@@ -1,5 +1,5 @@
 <div id="selecao-produto">	
-  <fieldset id="selecao-produto-fieldset">
+  <fieldset id="fieldset-selecao-produto" class="fieldset-camposprincipais">
     <legend>Produto</legend>
 	<p>	
 		<div id="selecao-produto-quantidade-item">		
@@ -22,5 +22,9 @@
 
 <div id="listagem-compras">
 <%= render :partial => 'listagem_compras' %>
-<%#= render :partial => 'finaliza_compra'%>
+<%= render :partial => 'adiciona_pagamento'%>
 </div>
+
+<fieldset class="fieldset-camposlaterais">
+	<legend>Resumo Pagamento</legend>
+</fieldset>

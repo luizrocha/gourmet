@@ -1,4 +1,4 @@
-<fieldset id="listagem-compras-fieldset">
+<fieldset id="listagem-compras-fieldset"  class="fieldset-camposprincipais">
   <legend>Items</legend>
 	<div id="listagem-compras-divtabela">
 	  <table id="listagem-compras-tabela">
@@ -12,9 +12,9 @@
 		<% for item in @listacompras.items %>
 		<tr>
 			<td class="descricao"><%= item.descricao %></td>
-			<td class="valor"><%= number_to_currency(item.produto.valor_venda, :unit => "R$", :delimiter => ".", :separator => ",") %></td>
+			<td class="valor"><%= number_to_currency(item.produto.valor_venda, :unit => "", :delimiter => ".", :separator => ",") %></td>
 			<td class="quantidade"><%= item.quantidade %></td>
-			<td class="valor-total-item"><%= number_to_currency(item.valor_total, :unit => "R$", :delimiter => ".", :separator => ",")%> </td>
+			<td class="valor-total-item"><%= number_to_currency(item.valor_total, :unit => "", :delimiter => ".", :separator => ",")%> </td>
 			<td class="acoes"><%#= link_to_remote "remover", :url => {:action => "remover_dependente", :id => @cliente.id, :dependente => cliente_dependentes.id} %></td>
 		</tr>
 		<% end %>
