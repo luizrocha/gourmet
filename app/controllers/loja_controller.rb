@@ -8,6 +8,9 @@ class LojaController < ApplicationController
   
   def autocomplete_novo_item
     @produtos = Produto.find(:all, :conditions => "descricao like '#{params[:compras][:novo_item]}%'", :order => "descricao")
+    if (!@produtos || @produtos.length == 0) then
+      @produtos = Produto.find(:all, :conditions => "codigo_barras = '#{params[:compras][:novo_item]}'", :order => "descricao")
+    end
     render :layout=>false
   end
 
@@ -37,7 +40,7 @@ class LojaController < ApplicationController
 
 private
   def busca_lista_compras
-    @listacompras = (session[:listacompras] ||= ListaCompras.new)
+    @listacompras = (session[:listacompras] ||= Compras.new)
   end
   
   def validar_Item_Venda(quantidade, produto)

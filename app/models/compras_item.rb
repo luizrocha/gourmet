@@ -1,4 +1,4 @@
-class ListaComprasItem
+class ComprasItem
 
 	attr_reader :produto, :quantidade
 	

@@ -1,4 +1,4 @@
-class ListaCompras
+class Compras
   attr_reader :items
   
   def initialize
@@ -10,7 +10,7 @@ class ListaCompras
     if item_corrente
         item_corrente.incrementa_quantidade(quantidade)  
     else
-      item_corrente = ListaComprasItem.new(produto, quantidade)
+      item_corrente = ComprasItem.new(produto, quantidade)
       @items << item_corrente
     end
     item_corrente

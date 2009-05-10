@@ -273,7 +273,6 @@ width: 900px;
 position: relative;
 top: -20px;
 width: 500px;
-border: 2px solid  #00FF00;	
 }
 
 #selecao-produto-busca-item-descricao {
@@ -281,7 +280,6 @@ position: relative;
 left: 27px;
 top: -15px;
 width: 475px;
-border: 2px solid  #00FF00;
 }
 
 #selecao-produto-busca-item-codigo-barras {
@@ -289,12 +287,10 @@ position: relative;
 left: 1px;
 top: -45px;
 width: 500px;
-border: 2px solid  #00FF00;
 }
 
 #listagem-compras {
-position: relative;
-top: 10px;
+ margin-top: 10px;
 }
 
 listagem-compras-divtabela {
@@ -345,7 +341,7 @@ font-weight: bold;
 	height: 366px;
 	float: right;
 	position:relative;
-	top: -382px;
+	top: -392px;
 }
 
 
@@ -361,7 +357,6 @@ height: 300px;
 #adiciona-pagamento .tipo-pagamento{
 margin-left: 6em;
 width: 475px;
-border: 3px solid #446655;
 }
 
 #fieldset-adiciona-pagamento { 
@@ -392,7 +387,6 @@ width: 350px;
 /**************************************
 *	Auto-Complete
 ***************************************/
-
 
 div.auto_complete {
 width: 350px;
