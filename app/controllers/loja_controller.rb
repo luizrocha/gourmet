@@ -2,15 +2,14 @@ class LojaController < ApplicationController
   protect_from_forgery :only => [:create, :update, :destroy] 
   before_filter :busca_lista_compras, :except => :esvazia_lista_compras
 
-
   def index
   end
   
   def autocomplete_novo_item
     @produtos = Produto.find(:all, :conditions => "descricao like '#{params[:compras][:novo_item]}%'", :order => "descricao")
-    if (!@produtos || @produtos.length == 0) then
-      @produtos = Produto.find(:all, :conditions => "codigo_barras = '#{params[:compras][:novo_item]}'", :order => "descricao")
-    end
+#    if (!@produtos || @produtos.length == 0) then
+#      @produtos = Produto.find(:all, :conditions => "codigo_barras = '#{params[:compras][:novo_item]}'", :order => "descricao")
+#    end
     render :layout=>false
   end
 
@@ -20,8 +19,7 @@ class LojaController < ApplicationController
     produto = Produto.find_by_codigo_barras(params[:codigo_barras_item]) if params[:codigo_barras_item]
     quantidade = BigDecimal.new(params[:quantidade_item])
     begin
-      validar_Item_Venda(quantidade, produto)
-      @item_corrente = @listacompras.adiciona_produto(produto, quantidade)
+      @item_corrente = @pedido.adiciona_produto(produto, quantidade)
     rescue Exception => e:
       flash[:notice] = e.to_s 
     end
@@ -29,9 +27,37 @@ class LojaController < ApplicationController
       format.js 
     end
   end
+  
+  def adiciona_pagamento
+    flash[:notice] = nil
+    #Tratamento Parametros e Lookups Referencias
+    tipo_pgto = params[:tipo_pagamento]
+    if ( tipo_pgto.eql? "Cartao" ) then
+      cartao = params[:tipo_pagamento_cartao_identificador]
+      pgto_valor = BigDecimal.new(params[:tipo_pagamento_cartao_valor])
+    elsif ( tipo_pgto.eql? "Conta" ) then
+      pgto_valor = BigDecimal.new(params[:tipo_pagamento_conta_valor])
+      cliente_nome = params[:tipo_pagamento_conta_cliente]
+      cliente_bloco = params[:tipo_pagamento_conta_bloco]
+      cliente_apartamento = params[:tipo_pagamento_conta_apartamento]
+      #Buscar Ref do Cliente
+      cliente = nil
+    else
+      pgto_valor = BigDecimal.new(params[:tipo_pagamento_dinheiro_valor])
+    end
+    
+    begin
+      @pedido.adiciona_pagamento(pgto_valor, cliente, cartao)
+    rescue Exception => e:
+      flash[:notice] = e.to_s
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def esvazia_lista_compras
-    session[:listacompras] = nil
+    session[:pedido] = nil
     respond_to do |format|
       format.js if request.xhr?
       format.html {redirect_to_index}
@@ -40,23 +66,9 @@ class LojaController < ApplicationController
 
 private
   def busca_lista_compras
-    @listacompras = (session[:listacompras] ||= Compras.new)
+    @pedido = (session[:pedido] ||= Pedido.new)
   end
-  
-  def validar_Item_Venda(quantidade, produto)
-     if (!produto) then
-       raise "Produto não encontrado!"
-     end
-     if ( quantidade < 0) then
-       raise "Quantidade não pode ser negativa!"
-     end
-     q,m = quantidade.divmod(BigDecimal("1")) 
-     produto_permite_fracao = produto.permitidaVendaFracionaria
-     if (m != 0 && !produto_permite_fracao ) then
-       raise "Venda fracionaria não permitida para este produto!"
-     end
-  end  
-  
+
   def redirect_to_index(msg = nil)
     flash[:notice] = msg if msg
     redirect_to :action => 'index'

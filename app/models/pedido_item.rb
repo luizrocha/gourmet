@@ -1,11 +1,11 @@
-class ComprasItem
+class PedidoItem
 
 	attr_reader :produto, :quantidade
 	
 	def initialize(produto, quantidade = nil)
 	  @produto = produto
     if (quantidade)
-      @quantidade = quantidade.to_f
+      @quantidade = quantidade
     else
 	    @quantidade = 1
     end
@@ -13,7 +13,7 @@ class ComprasItem
   
   def incrementa_quantidade (quantidade = nil)
     if (quantidade)
-      @quantidade += quantidade.to_f
+      @quantidade += quantidade
     else
       @quantidade += 1
     end

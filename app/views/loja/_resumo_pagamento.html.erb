@@ -1,3 +1,24 @@
 	<fieldset class="fieldset-camposlaterais">
 		<legend>Resumo Pagamento</legend>
+		<div id="resumo-pagamento-divtabela">
+	  		<table id="resumo-pagamento-tabela">
+				<tr>
+					<th class="descricao">Descrição</th>
+					<th class="valor">Valor</th>
+					<th/>
+				</tr>
+				<% for pagamento in @pedido.pagamentos %>
+				<tr>
+					<td class="descricao"><%= pagamento.descricao %></td>
+					<td class="valor"><%= number_to_currency(pagamento.valor, :unit => "", :delimiter => ".", :separator => ",") %></td>
+					<td class="acoes"><%#= link_to_remote "remover", :url => {:action => "remover_dependente", :id => @cliente.id, :dependente => cliente_dependentes.id} %></td>
+				</tr>
+				<% end %>
+	  		</table>
+		</div>
+		<div id="listagem-compras-divtotal">
+			Total Pedido: <%= number_to_currency(@pedido.valor_total, :unit => "R$", :delimiter => ".", :separator => ",") %>
+			<br/>
+			Total Restante: <%= number_to_currency(@pedido.valor_restante, :unit => "R$", :delimiter => ".", :separator => ",") %>
+		</div>
 	</fieldset>

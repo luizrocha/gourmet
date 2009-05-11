@@ -1,42 +1,45 @@
 <div id="adiciona-pagamento">
 	<fieldset  class="fieldset-adiciona-pagamento">
 		<legend>Detalhe Pagamento</legend>
-		<div id="tipo-pagamento-accordion">
-		<input type="radio" name="tipoPagamento" value="Cartao"/>Cartão
-		<div id="tipo-pagamento-cartao" class="tipo-pagamento">
-			<label for="tipo-pagamento-cartao-valor">R$:</label>
-			<input type="text" id="tipo-pagamento-cartao-valor" size="4">
-			<select name="tipo-pagamento-cartao-seleciona">
+  <% remote_form_for :pagamento, :url => { :action => "adiciona_pagamento" } do |f| %>
+		<div id="tipo-pagamento">
+		  <input type="radio" name="tipo_pagamento" value="Dinheiro">Dinheiro<br/>
+		  <div id="tipo-pagamento-dinheiro" class="tipo-pagamento">
+			<label for="tipo_pagamento_dinheiro_valor">R$:</label>
+			<input type="text" id="tipo_pagamento_dinheiro_valor" name="tipo_pagamento_dinheiro_valor" size="4"/><br/>
+		  </div>			
+		  <input type="radio" name="tipo_pagamento" value="Cartao"/>Cartão
+		  <div id="tipo_pagamento_cartao" class="tipo-pagamento">
+			<label for="tipo_pagamento_cartao_valor">R$:</label>
+			<input type="text" id="tipo_pagamento_cartao_valor" name="tipo_pagamento_cartao_valor" size="4">
+			<select name="tipo_pagamento_cartao_identificador">
 				<option value="VisaElectron">Visa Electron</option>
 				<option value="Maestro">Maestro</option>
 				<option value="Redeshop">RedeShop</option>
 			</select>
-		</div>
-		<input type="radio" name="tipoPagamento" value="Dinheiro">Dinheiro<br/>
-		<div id="tipo-pagamento-dinheiro" class="tipo-pagamento">
-			<label for="tipo-pagamento-dinheiro-montante">R$:</label>
-			<input type="text" id="tipo-pagamento-dinheiro-montante" size="4"/><br/>
-		</div>		
-		<input type="radio" name="tipoPagamento" value="Pre-Pago">Pré-Pago<br/>
-		<div id="tipo-pagamento-prepago" class="tipo-pagamento">
-			<label for="tipo-pagamento-prepago-valor">R$:</label>
-			<input type="text" id="tipo-pagamento-prepago-valor" size="4"/>
-			<label for="tipo-pagamento-prepago-identificador">IDPréPago:</label>
-			<input type="text" id="tipo-pagamento-prepago-identificador" size="10"/><br/>
-		</div>		
-		<input type="radio" name="tipoPagamento" value="Conta">Conta<br/>
-		<div id="tipo-pagamento-conta" class="tipo-pagamento">
-			<label for="tipo-pagamento-prepago-valor">R$:</label>
-			<input type="text" id="tipo-pagamento-prepago-valor" size="4"/>
+		  </div>			
+		  <input type="radio" name="tipo_pagamento" value="Conta">Conta<br/>
+		  <div id="tipo-pagamento-conta" class="tipo-pagamento">
+			<label for="tipo_pagamento_conta_valor">R$:</label>
+			<input type="text" id="tipo_pagamento_conta_valor" name="tipo_pagamento_conta_valor" size="4"/>
 			<div id="tipo-pagamento-conta-busca-cliente">
-				<label for="tipo-pagamento-conta-bloco">Bloco:</label>
-				<input type="text" id="tipo-pagamento-conta-bloco" size="2"/>
-				<label for="tipo-pagamento-conta-apartamento">Apto:</label>
-				<input type="text" id="tipo-pagamento-conta-apartamento" size="3"/><br/>
-				<label for="tipo-pagamento-conta-nome">Nome:</label>
-				<input type="text" id="tipo-pagamento-conta-nome" size="25"/>
+				<label for="tipo_pagamento_conta_bloco">Bloco:</label>
+				<input type="text" id="tipo_pagamento_conta_bloco" name="tipo_pagamento_conta_bloco" size="2"/>
+				<label for="tipo_pagamento_conta_apartamento">Apto:</label>
+				<input type="text" id="tipo_pagamento_conta_apartamento" name="tipo_pagamento_conta_apartamento" size="3"/><br/>
+				<label for="tipo_pagamento_conta_nome">Nome:</label>
+				<input type="text" id="tipo_pagamento_conta_cliente" name="tipo_pagamento_conta_cliente" size="25"/>
 			</div>
+		  </div>
+		  <input type="radio" name="tipo_pagamento" value="Pre-Pago">Pré-Pago<br/>
+		  <div id="tipo-pagamento-prepago" class="tipo-pagamento">
+			<label for="tipo_pagamento_prepago_valor">R$:</label>
+			<input type="text" id="tipo_pagamento_prepago_valor" name="tipo_pagamento_prepago_valor" size="4"/>
+			<label for="tipo_pagamento_prepago_identificador">IDPréPago:</label>
+			<input type="text" id="tipo_pagamento_prepago_identificador" size="10"/><br/>
+		  </div>		
 		</div>
-				</div>
+  <%= submit_tag "Adiciona Pagamento", :disable_with => "Aguarde...", :id => "adiciona-pagamento-submitbutton"%>
+	<%end%>
 	</fieldset>
 </div>

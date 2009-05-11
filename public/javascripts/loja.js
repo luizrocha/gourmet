@@ -35,8 +35,8 @@ jQuery(document).ready(function() {
 	//ALT + F8 - Exibe DIV Insercao de Pagamentos
     jQuery(document).bind('keydown', 'alt+f8',function (evt){ 
 		jQuery("#adiciona-pagamento").css("visibility", "visible");
-		jQuery(".tipo-pagamento").css("visibility", "hidden");
-		jQuery("#tipo-pagamento-dinheiro").css("visibility", "visible");	
+		//jQuery(".tipo-pagamento").css("visibility", "hidden");
+		//jQuery("#tipo-pagamento-dinheiro").css("visibility", "visible");	
 	});
 	
 	//Handle de submit no campo codigo_barras para adicionar produto
@@ -85,5 +85,11 @@ jQuery(document).ready(function() {
 	});
 	
 	jQuery("#adiciona-pagamento").css("visibility", "hidden");
+
+
+	//***************
+	// Handle Adicionar Pagmaentos
+	
+	//Botao Submit -> esconder e re-setar div apos o click
 
 });
