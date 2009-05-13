@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090503203224) do
+ActiveRecord::Schema.define(:version => 20090513040158) do
 
   create_table "clientes", :force => true do |t|
     t.string   "nome",               :limit => 50,                                                :null => false
@@ -36,19 +36,20 @@ ActiveRecord::Schema.define(:version => 20090503203224) do
   add_index "clientes", ["nome"], :name => "index_clientes_on_nome"
 
   create_table "produtos", :force => true do |t|
-    t.string   "descricao",             :limit => 50, :null => false
+    t.string   "descricao",             :limit => 50,                    :null => false
     t.string   "fabricante"
     t.string   "referencia_fabricante"
     t.integer  "referencia"
     t.string   "codigo_barras"
     t.decimal  "estoque_minimo"
     t.decimal  "estoque_maximo"
-    t.decimal  "valor_venda",                         :null => false
+    t.decimal  "valor_venda",                                            :null => false
     t.datetime "data_cadastro"
     t.datetime "data_ultima_alteracao"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "unidade_venda_id",                    :null => false
+    t.integer  "unidade_venda_id",                                       :null => false
+    t.boolean  "adiciona_taxa_servico",               :default => false
   end
 
   create_table "sessions", :force => true do |t|
