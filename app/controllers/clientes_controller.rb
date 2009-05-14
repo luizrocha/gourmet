@@ -1,15 +1,23 @@
 class ClientesController < ApplicationController
-  # GET /clientes
-  # GET /clientes.xml
-  def index
-    @clientes = Cliente.paginate(:all, :order => "nome, bloco, apartamento", :page => params[:page])
-    @tipo_ordenacao = "asc"
-    @ordem = "nome, bloco, apartamento"
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @clientes }
+  protect_from_forgery :only => [:create, :update, :destroy] 
+
+
+    def autocomplete_cliente
+      nomeToken = params[:nome] if params[:nome]
+      bloco = params[:bloco] if (params[:bloco] && params[:bloco].length > 0)
+      apartamento = params[:apartamento] if (params[:apartamento] && params[:apartamento].length > 0)
+      #Se tiver bloco e apto, ignora token do nome
+      if (bloco && apartamento) then
+        @clientes = Cliente.find(:all, :conditions => "bloco = '#{bloco}' and apartamento = '#{apartamento}'", :order => "nome")
+      elsif (bloco) then
+        @clientes = Cliente.find(:all, :conditions => "nome like '#{nomeToken}%' and bloco = '#{bloco}'", :order => "nome")        
+      elsif (apartamento) then
+        @clientes = Cliente.find(:all, :conditions => "nome like '#{nomeToken}%' and apartamento = '#{apartamento}'", :order => "nome")
+      else
+        @clientes = Cliente.find(:all, :conditions => "nome like '#{nomeToken}%'", :order => "nome")
+      end
+      render :layout=>false
     end
-  end
 
   def por_ordenacao
     @clientes = Cliente.paginate(:all, :order => params[:ordem], :page => params[:page])
@@ -36,6 +44,17 @@ class ClientesController < ApplicationController
     end
   end
 
+  # GET /clientes
+  # GET /clientes.xml
+  def index
+    @clientes = Cliente.paginate(:all, :order => "nome, bloco, apartamento", :page => params[:page])
+    @tipo_ordenacao = "asc"
+    @ordem = "nome, bloco, apartamento"
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @clientes }
+    end
+  end
 
   # GET /clientes/1
   # GET /clientes/1.xml

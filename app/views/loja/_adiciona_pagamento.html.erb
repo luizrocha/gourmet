@@ -28,7 +28,21 @@
 				<label for="tipo_pagamento_conta_apartamento">Apto:</label>
 				<input type="text" id="tipo_pagamento_conta_apartamento" name="tipo_pagamento_conta_apartamento" size="3"/><br/>
 				<label for="tipo_pagamento_conta_nome">Nome:</label>
-				<input type="text" id="tipo_pagamento_conta_cliente" name="tipo_pagamento_conta_cliente" size="25"/>
+				<%#= text_field_with_auto_complete :tipo_pagamento_conta, :nome %> 
+				<input type="text" id="nome" name="nome" size="30"/>				
+				<div class="auto_complete" id="tipo_pagamento_conta_cliente_auto_complete"></div>
+				<script type="text/javascript">
+				  new Ajax.Autocompleter(
+				    'nome',
+				    'tipo_pagamento_conta_cliente_auto_complete',
+				    '/clientes/autocomplete_cliente',
+				    {
+					  callback: function(e, qs) { return qs + '&bloco='+$F('tipo_pagamento_conta_bloco')+'&apartamento='+$F('tipo_pagamento_conta_apartamento');},
+					  minChars: 0
+				 	}
+				  );
+				</script>
+				
 			</div>
 		  </div>
 		  <input type="radio" name="tipo_pagamento" value="Pre-Pago">Pré-Pago<br/>
