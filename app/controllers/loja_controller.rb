@@ -7,9 +7,6 @@ class LojaController < ApplicationController
   
   def autocomplete_novo_item
     @produtos = Produto.find(:all, :conditions => "descricao like '#{params[:compras][:novo_item]}%'", :order => "descricao")
-#    if (!@produtos || @produtos.length == 0) then
-#      @produtos = Produto.find(:all, :conditions => "codigo_barras = '#{params[:compras][:novo_item]}'", :order => "descricao")
-#    end
     render :layout=>false
   end
 
@@ -31,19 +28,16 @@ class LojaController < ApplicationController
   def adiciona_pagamento
     flash[:notice] = nil
     #Tratamento Parametros e Lookups Referencias
+    pgto_valor = BigDecimal.new(params[:valor].gsub(",","."))
     tipo_pgto = params[:tipo_pagamento]
     if ( tipo_pgto.eql? "Cartao" ) then
-      cartao = params[:tipo_pagamento_cartao_identificador]
-      pgto_valor = BigDecimal.new(params[:tipo_pagamento_cartao_valor])
+      cartao = params[:bandeira_cartao]
     elsif ( tipo_pgto.eql? "Conta" ) then
-      pgto_valor = BigDecimal.new(params[:tipo_pagamento_conta_valor])
       cliente_nome = params[:tipo_pagamento_conta_cliente]
       cliente_bloco = params[:tipo_pagamento_conta_bloco]
       cliente_apartamento = params[:tipo_pagamento_conta_apartamento]
       #Buscar Ref do Cliente
       cliente = nil
-    else
-      pgto_valor = BigDecimal.new(params[:tipo_pagamento_dinheiro_valor])
     end
     
     begin

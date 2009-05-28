@@ -346,42 +346,33 @@ font-weight: bold;
 }
 
 
-#adiciona-pagamento {
+#adiciona_pagamento {
 //float: left;
-position: fixed;
-left: 6px;
+position: absolute;
 top: 112px;
-width: 100px;
-height: 300px;
+left: 6px;
+//width: 636px;
+//height: 300px;
 }
 
-#adiciona-pagamento .tipo-pagamento{
-margin-left: 6em;
-width: 475px;
+#pagamento_complementos {
+	position:relative;
 }
 
-#fieldset-adiciona-pagamento { 
-width: 200px;
-height: 300px;
+#fieldset_adiciona_pagamento{
+	height:300px;	
 }
 
-#adiciona-pagamento label {
-width: 10em;
-text-align: right;
-margin-right: 0.1em;
+.pagamento_complemento {
+	position:absolute;
+	top:5px;
+	left:0;
 }
 
-#tipo-pagamento-conta label {
-text-align: left;
-position: relative;
-left: 5px;
-}
-
-#tipo-pagamento-conta-busca-cliente {
-position: relative;
-top: -30px;
-left: 120px;
-width: 350px;
+#adiciona_pagamento_submitbutton {
+	position:relative;
+	top:-25px;
+	float:right;
 }
 
 

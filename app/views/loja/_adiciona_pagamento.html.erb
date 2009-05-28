@@ -1,59 +1,62 @@
-<div id="adiciona-pagamento">
-	<fieldset  class="fieldset-adiciona-pagamento">
-		<legend>Detalhe Pagamento</legend>
-  <% remote_form_for :pagamento, :url => { :action => "adiciona_pagamento" } do |f| %>
-		<div id="tipo-pagamento">
-		  <input type="radio" name="tipo_pagamento" value="Dinheiro">Dinheiro<br/>
-		  <div id="tipo-pagamento-dinheiro" class="tipo-pagamento">
-			<label for="tipo_pagamento_dinheiro_valor">R$:</label>
-			<input type="text" id="tipo_pagamento_dinheiro_valor" name="tipo_pagamento_dinheiro_valor" size="4"/><br/>
-		  </div>			
-		  <input type="radio" name="tipo_pagamento" value="Cartao"/>Cartão
-		  <div id="tipo_pagamento_cartao" class="tipo-pagamento">
-			<label for="tipo_pagamento_cartao_valor">R$:</label>
-			<input type="text" id="tipo_pagamento_cartao_valor" name="tipo_pagamento_cartao_valor" size="4">
-			<select name="tipo_pagamento_cartao_identificador">
-				<option value="VisaElectron">Visa Electron</option>
-				<option value="Maestro">Maestro</option>
-				<option value="Redeshop">RedeShop</option>
-			</select>
-		  </div>			
-		  <input type="radio" name="tipo_pagamento" value="Conta">Conta<br/>
-		  <div id="tipo-pagamento-conta" class="tipo-pagamento">
-			<label for="tipo_pagamento_conta_valor">R$:</label>
-			<input type="text" id="tipo_pagamento_conta_valor" name="tipo_pagamento_conta_valor" size="4"/>
-			<div id="tipo-pagamento-conta-busca-cliente">
-				<label for="tipo_pagamento_conta_bloco">Bloco:</label>
-				<input type="text" id="tipo_pagamento_conta_bloco" name="tipo_pagamento_conta_bloco" size="2"/>
-				<label for="tipo_pagamento_conta_apartamento">Apto:</label>
-				<input type="text" id="tipo_pagamento_conta_apartamento" name="tipo_pagamento_conta_apartamento" size="3"/><br/>
-				<label for="tipo_pagamento_conta_nome">Nome:</label>
-				<%#= text_field_with_auto_complete :tipo_pagamento_conta, :nome %> 
-				<input type="text" id="nome" name="nome" size="30"/>				
-				<div class="auto_complete" id="tipo_pagamento_conta_cliente_auto_complete"></div>
+<fieldset  id="fieldset_adiciona_pagamento" class="fieldset-camposprincipais">
+	<legend>Detalhe Pagamento</legend>
+  	<% remote_form_for :pagamento, :url => { :action => "adiciona_pagamento" } do |f| %>
+		<select id="pagamento_tipo" name="tipo_pagamento">
+			<option value="Dinheiro">Dinheiro</option>
+			<option value="Cartao">Cartão</option>
+			<option value="Conta">Conta</option>
+			<option value="PrePago">Pré-Pago</option>									
+		</select>
+		<label for="pagamento_valor">R$:</label>
+		<input type="text" id="pagamento_valor" name="valor" size="8"/><br/>
+		<div id="pagamento_complementos">
+			<!-- Complemento para pagamento tipo Dinheiro -->
+			<div id="pagamento_complemento_dinheiro" class="pagamento_complemento">
+				<label for="pagamento_montante">Dinheiro:</label>
+				<input type="text" id="pagamento_montante" name="montante" size="8"/>
+				<label for="pagamento_troco">Troco:</label>
+				<input type="text" id="pagamento_troco" disabled="true" size="8"/>
+			</div>			
+			
+			<!-- Complemento para pagamento tipo Cartao -->
+			<div id="pagamento_complemento_cartao" class="pagamento_complemento">
+				<select name="bandeira_cartao">
+					<option value="VisaElectron">Visa Electron</option>
+					<option value="Maestro">Maestro</option>
+					<option value="Redeshop">RedeShop</option>
+				</select>
+			</div>
+			
+			<!-- Complemento para pagamento tipo conta -->
+			<div id="pagamento_complemento_conta" class="pagamento_complemento">
+				<input type="hidden" id="pagamento_conta_cliente_id" name="cliente_id" value="">
+				<label for="pagamento_conta_bloco">Bloco:</label>
+				<input type="text" id="pagamento_conta_bloco" name="bloco" size="2"/>
+				<label for="pagamento_conta_apartamento">Apto:</label>
+				<input type="text" id="pagamento_conta_apartamento" name="apartamento" size="3"/><br/>
+				<label for="pagamento_conta_nome">Nome:</label>
+				<input type="text" id="pagamento_conta_nome" name="nome" size="30"/>				
+				<div class="auto_complete" id="pagamento_conta_cliente_auto_complete"></div>
 				<script type="text/javascript">
 				  new Ajax.Autocompleter(
-				    'nome',
-				    'tipo_pagamento_conta_cliente_auto_complete',
+				    'pagamento_conta_nome',
+				    'pagamento_conta_cliente_auto_complete',
 				    '/clientes/autocomplete_cliente',
 				    {
-					  callback: function(e, qs) { return qs + '&bloco='+$F('tipo_pagamento_conta_bloco')+'&apartamento='+$F('tipo_pagamento_conta_apartamento');},
-					  minChars: 0
+					  callback: function(e, qs) { return qs + 						
+						'&bloco='+$F('pagamento_conta_bloco')+'&apartamento='+$F('pagamento_conta_apartamento');},
+					  	minChars: 0
 				 	}
 				  );
-				</script>
-				
+				</script>	
+			</div>			
+			
+			<!-- Complemento para pagamento tipo pre-pago -->
+			<div id="pagamento_complemento_prepago" class="pagamento_complemento">
+				<label for="pagamento_prepago_identificador">IDPréPago:</label>
+				<input type="text" id="pagamento_prepago_identificador" name="prepago_id" size="10"/><br/>
 			</div>
-		  </div>
-		  <input type="radio" name="tipo_pagamento" value="Pre-Pago">Pré-Pago<br/>
-		  <div id="tipo-pagamento-prepago" class="tipo-pagamento">
-			<label for="tipo_pagamento_prepago_valor">R$:</label>
-			<input type="text" id="tipo_pagamento_prepago_valor" name="tipo_pagamento_prepago_valor" size="4"/>
-			<label for="tipo_pagamento_prepago_identificador">IDPréPago:</label>
-			<input type="text" id="tipo_pagamento_prepago_identificador" size="10"/><br/>
-		  </div>		
 		</div>
-  <%= submit_tag "Adiciona Pagamento", :disable_with => "Aguarde...", :id => "adiciona-pagamento-submitbutton"%>
+  		<%= submit_tag "Confirmar", :disable_with => "Aguarde...", :id => "adiciona_pagamento_submitbutton"%>
 	<%end%>
-	</fieldset>
-</div>
+</fieldset>

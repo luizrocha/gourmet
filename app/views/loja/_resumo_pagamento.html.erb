@@ -19,6 +19,6 @@
 		<div id="listagem-compras-divtotal">
 			Total Pedido: <%= number_to_currency(@pedido.valor_total, :unit => "R$", :delimiter => ".", :separator => ",") %>
 			<br/>
-			Total Restante: <%= number_to_currency(@pedido.valor_restante, :unit => "R$", :delimiter => ".", :separator => ",") %>
+			Total Restante: <span id="resumo_pagamento_restante"><%= number_to_currency(@pedido.valor_restante, :unit => "R$", :delimiter => ".", :separator => ",") %></span>
 		</div>
 	</fieldset>
