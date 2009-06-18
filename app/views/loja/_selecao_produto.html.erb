@@ -1,0 +1,29 @@
+<fieldset id="fieldset-selecao-produto" class="fieldset-camposprincipais">
+    <legend>Produto</legend>
+	<p>	
+		<div id="selecao-produto-quantidade-item">		
+			<label for="compras_quantidade_item">Quantidade:</label>
+			<% if @item_corrente %>
+				<%= hidden_field 'compras', 'modo_edicao', :value => "true"%>
+				<%= text_field 'compras', 'quantidade_item', :maxlength => 5, :value => @item_corrente.quantidade%>
+			<% else %>
+				<%= hidden_field 'compras', 'modo_edicao', :value => "false"%>
+				<%= text_field 'compras', 'quantidade_item', :maxlength => 5, :value => 1%>
+			<% end %>
+		</div>
+		<div id="selecao-produto-busca-item-descricao">
+			<label for="compras_novo_item">Produto:</label>
+			<% if @item_corrente %>
+				<%= text_field 'compras', 'novo_item', :value => @item_corrente.produto.descricao%>
+			<% else %>
+				<%= text_field 'compras', 'novo_item' %>
+			<% end %>
+		</div>
+	</p>
+	<div class="auto_complete" id="compras_novo_item_auto_complete"></div>
+	<%= auto_complete_field :compras_novo_item, :url=>{:action=>'autocomplete_novo_item'}, :frequency => 0.4 %>
+  </fieldset>
+<script type="text/javascript">
+    //Adicionado para chamar foco para modificar quantidade ao editar produto.
+	jQuery("#compras_quantidade_item").focus().select();
+</script>

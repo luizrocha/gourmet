@@ -1,21 +1,23 @@
 <fieldset id="listagem-compras-fieldset"  class="fieldset-camposprincipais">
   <legend>Items</legend>
+  <table id="listagem-compras-tabela">
+	<tr>
+		<th class="descricao">Item</th>
+		<th class="valor">Valor</th>
+		<th class="quantidade">Qtd</th>
+		<th class="valor-total-item">Total</th>
+		<th/>
+	</tr>
+	</table>
 	<div id="listagem-compras-divtabela">
-	  <table id="listagem-compras-tabela">
-		<tr>
-			<th class="descricao">Item</th>
-			<th class="valor">Valor</th>
-			<th class="quantidade">Qtd</th>
-			<th class="valor-total-item">Total</th>
-			<th/>
-		</tr>
+		<table id="listagem-compras-tabela">
 		<% for item in @pedido.items %>
 		<tr>
 			<td class="descricao"><%= item.descricao %></td>
 			<td class="valor"><%= number_to_currency(item.produto.valor_venda, :unit => "", :delimiter => ".", :separator => ",") %></td>
 			<td class="quantidade"><%= item.quantidade %></td>
 			<td class="valor-total-item"><%= number_to_currency(item.valor_total.to_s, :unit => "", :delimiter => ".", :separator => ",")%> </td>
-			<td class="acoes"><%#= link_to_remote "remover", :url => {:action => "remover_dependente", :id => @cliente.id, :dependente => cliente_dependentes.id} %></td>
+			<td class="acoes"><%= link_to_remote "Ed", :url => {:action => "editar_produto_lista_compras", :id => item.produto.id} %><%= link_to_remote "Rm", :url => {:action => "remover_produto_lista_compras", :id => item.produto.id} %></td>
 		</tr>
 		<% end %>
 	  </table>

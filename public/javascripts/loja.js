@@ -2,17 +2,17 @@ jQuery(document).ready(function() {
 	//*********************************************************************
 	//					 MAPEAMENTOS TECLAS
 	//						
-	//*********************************************************************
-
-	//ALT + F6 - Foco no campo Quantidade Item
-    jQuery(document).bind('keydown', 'alt+f6',function (evt){ 
+	//*********************************************************************	
+	//F3 - Foco no campo Quantidade Item
+    jQuery(document).bind('keydown', 'alt+f3',function (evt){ 
 		jQuery("#compras_quantidade_item").val("1");
 		jQuery("#compras_codigo_barras_item").val("");
 		jQuery("#compras_novo_item").val("");
-		jQuery("#compras_quantidade_item").focus().select();	
+		jQuery("#compras_quantidade_item").focus().select();
+		return false;
 	});
 	
-	//ALT + F8 - Exibe/Esconde DIV Insercao de Pagamentos
+	//F8 - Exibe/Esconde DIV Insercao de Pagamentos
     jQuery(document).bind('keydown', 'alt+f8',function (evt){ 
 		var visibility_adicionaPagamento = jQuery("#adiciona_pagamento").css("visibility");
 		if (visibility_adicionaPagamento == "hidden") {
@@ -37,31 +37,45 @@ jQuery(document).ready(function() {
 			jQuery("#listagem-compras").css("visibility", "visible");			
 		}
 	});	
-	
+
 	//ENTER (no campo quantidade) - Transfere foco para campo busca produto.
-	jQuery("#compras_quantidade_item").bind('keydown', 'return',function (evt){ 
-		jQuery("#compras_novo_item").focus().select();
-		return false;
+	jQuery("#compras_quantidade_item").livequery('keydown', function(evt){
+		switch (evt.keyCode) {
+		  //Se tecla for ENTER
+		  case 13: 
+			jQuery("#compras_novo_item").focus().select();
+			return true;
+		  	break;
+		  
+		  default: return true;
+		}
 	});	
 	
 	//ENTER (no campo busca produto) - Se for numerico, adiciona por codigo barras, caso contrario, autocomplete
-	jQuery("#compras_novo_item").bind('keydown', 'return',function (evt){ 
-			codigo_barras  = jQuery("#compras_novo_item").val();
+	jQuery("#compras_novo_item").livequery('keydown', function(evt){
+		switch (evt.keyCode) {
+		  //Se tecla for ENTER
+		  case 13: 
+			descricao_produto  = jQuery("#compras_novo_item").val();
+			quantidade = jQuery("#compras_quantidade_item").val();
 			//Se primeiros caracteres sao numericos, continua como codigo barras			
 			var regXPIniciaNumerico = /^\d/;
-			var tokenEhCodigoBarras = regXPIniciaNumerico.exec(codigo_barras);
+			var tokenEhCodigoBarras = regXPIniciaNumerico.exec(descricao_produto);
 			if (tokenEhCodigoBarras) {
-				quantidade = jQuery("#compras_quantidade_item").val();
-				new Ajax.Request('/loja/adiciona_produto_lista_compras', {asynchronous:true, evalScripts:true, method:'post', parameters:'authenticity_token=18694f0f8b9836a93f2b1d22e2d09ca925c87b3c&codigo_barras_item='+codigo_barras+'&quantidade_item='+quantidade}); 
-				jQuery("#compras_novo_item").val("");
-				jQuery("#compras_novo_item").focus().select();
-				jQuery("#compras_quantidade_item").val("1");
-				return false;				
-
-			//Caso contrario, abandona requisicao e continua com autoomplete
+				new Ajax.Request('/loja/adiciona_produto_lista_compras', {asynchronous:true, evalScripts:true, method:'post', parameters:'authenticity_token=18694f0f8b9836a93f2b1d22e2d09ca925c87b3c&codigo_barras_item='+descricao_produto+'&quantidade_item='+quantidade}); 
+			//Caso contrario, abandona requisicao e continua com insercao por descricao
 			} else {
-				return true; 
+				modo_edicao = jQuery("#compras_modo_edicao").val();
+				new Ajax.Request('/loja/adiciona_produto_lista_compras', {asynchronous:true, evalScripts:true, method:'post', parameters:'authenticity_token=18694f0f8b9836a93f2b1d22e2d09ca925c87b3c&descricao_item='+descricao_produto+'&quantidade_item='+quantidade+'&modo_edicao='+modo_edicao}); 
 			}
+			jQuery("#compras_novo_item").val("");
+			jQuery("#compras_quantidade_item").val("1");
+			jQuery("#compras_novo_item").focus().select();
+			return true;
+
+		  //Para qualquer outra tecla diferente de ENTER, tratativa normal (devolve handler)
+		  default: return true;
+		}		
 	});
 
 	//ENTER (no campo valor pagamento) - Transfere focus para complemento, dependendo do tipo do pagamento
@@ -96,7 +110,7 @@ jQuery(document).ready(function() {
 	//*********************************************************************
 
  	//Click nos tipos pagamentos exibe suas respectivas divs, esconde as outras e reseta os campos
-	jQuery("#pagamento_tipo").click(function(){
+	jQuery("#pagamento_tipo").bind('click', function(evt){
 		tipo = jQuery("#pagamento_tipo").val();
 		if (tipo == "Dinheiro") {
 			jQuery("#pagamento_complementos").css("visibility", "visible");
@@ -148,5 +162,5 @@ jQuery(document).ready(function() {
 	    centsSeparator: ',',
 	    thousandsSeparator: '.'
 	});
-
+	
 });

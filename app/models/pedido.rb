@@ -32,12 +32,18 @@ class Pedido
     pagamento
   end
   
+  def altera_quantidade_produto(produto, quantidade)
+    validar_item_venda(quantidade, produto)
+    item_corrente = @items.find {|item| item.produto == produto}
+    if item_corrente
+        item_corrente.modifica_quantidade(quantidade)  
+    end
+    item_corrente
+  end
+  
   def remove_produto(produto)
     item_corrente = @items.find {|item| item.produto == produto}
-    item_corrente.decrementa_quantidade
-    if (item_corrente.quantidade == 0)
-      @items.delete(item_corrente)
-    end
+    @items.delete(item_corrente)
     item_corrente
   end
   
@@ -53,7 +59,7 @@ class Pedido
   def total_de_items
     @items.sum { |item| item.quantidade }
   end
-  
+    
 private
 
 def validar_item_venda(quantidade, produto)

@@ -23,10 +23,12 @@ class ProdutosController < ApplicationController
   end
 
   def por_descricao
+    #Se parametro passado for produto, entao renderiza listagem para autocomplete
     if (params[:produto]) then
       @autocomplete_render = true
       @produtos = Produto.find(:all, :conditions => "descricao like '#{params[:produto][:descricao]}%'", :order => "descricao")
       render :layout=>false, :template => "produtos/renderiza_autocomplete_descricao.html.erb" and return
+    #Senao, renderiza listagem de produtos normalmente
     else
       @autocomplete_render = false    
       @produtos = Produto.paginate(:all, :conditions => "descricao like '#{params[:descricao]}%'", :order => "descricao", :page => params[:page])

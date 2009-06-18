@@ -1,21 +1,6 @@
 <div id="selecao-produto">	
-  <fieldset id="fieldset-selecao-produto" class="fieldset-camposprincipais">
-    <legend>Produto</legend>
-	<p>	
-		<div id="selecao-produto-quantidade-item">		
-			<label for="compras_quantidade_item">Quantidade:</label>
-			<%= text_field 'compras', 'quantidade_item', :maxlength => 3, :value => 1%>
-		</div>
-		<div id="selecao-produto-busca-item-descricao">
-			<label for="compras_novo_item">Produto:</label>
-			<%= text_field 'compras', 'novo_item' %>
-		</div>
-	</p>
-	<div class="auto_complete" id="compras_novo_item_auto_complete"></div>
-	<%= auto_complete_field :compras_novo_item, :url=>{:action=>'autocomplete_novo_item'}, :frequency => 0.4, :after_update_element => "function(element,value){"+remote_function(:url => { :action => :adiciona_produto_lista_compras }, :with=>"'descricao_item='+element.value+'&quantidade_item='+jQuery('#compras_quantidade_item').val()")+";jQuery(\"#compras_quantidade_item\").val(\"1\"); jQuery(\"#compras_novo_item\").val(\"\"); jQuery(\"#compras_novo_item\").focus().select();}" %>
-  </fieldset>
+<%= render :partial => 'selecao_produto' %>
 </div>
-
 <div id="listagem-compras">
 <%= render :partial => 'listagem_compras' %>
 </div>
@@ -24,4 +9,9 @@
 </div>
 <div id="resumo-pagamento">
 <%= render :partial => 'resumo_pagamento' %>
+</div>
+<div id="barra-status">
+<fieldset class="fieldset-barrastatus">
+ddd
+</fieldset>
 </div>

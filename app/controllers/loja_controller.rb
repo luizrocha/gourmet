@@ -1,6 +1,7 @@
 class LojaController < ApplicationController
   protect_from_forgery :only => [:create, :update, :destroy] 
   before_filter :busca_lista_compras, :except => :esvazia_lista_compras
+  before_filter :limpar_aviso
 
   def index
   end
@@ -15,14 +16,36 @@ class LojaController < ApplicationController
     produto = Produto.find_by_descricao(params[:descricao_item]) if params[:descricao_item]
     produto = Produto.find_by_codigo_barras(params[:codigo_barras_item]) if params[:codigo_barras_item]
     quantidade = BigDecimal.new(params[:quantidade_item])
+    modo_edicao = params[:modo_edicao]
     begin
-      @item_corrente = @pedido.adiciona_produto(produto, quantidade)
+      if (modo_edicao != 'true') then
+        @pedido.adiciona_produto(produto, quantidade)
+      else
+        @pedido.altera_quantidade_produto(produto, quantidade)        
+      end
     rescue Exception => e:
       flash[:notice] = e.to_s 
     end
     respond_to do |format|
       format.js 
     end
+  end
+  
+  def editar_produto_lista_compras
+    produto = Produto.find_by_id(params[:id]) if params[:id]
+    @item_corrente = @pedido.items.find {|item| item.produto == produto}
+    respond_to do |format|
+       format.js {render :layout => false}       
+    end  
+  end
+  
+  
+  def remover_produto_lista_compras
+    produto = Produto.find_by_id(params[:id]) if params[:id]    
+    @pedido.remove_produto(produto)
+    respond_to do |format|
+      format.js {render :layout=>false, :template => "loja/adiciona_produto_lista_compras.rjs"}
+    end    
   end
   
   def adiciona_pagamento
@@ -61,6 +84,10 @@ class LojaController < ApplicationController
 private
   def busca_lista_compras
     @pedido = (session[:pedido] ||= Pedido.new)
+  end
+
+  def limpar_aviso
+    flash[:notice] = nil
   end
 
   def redirect_to_index(msg = nil)

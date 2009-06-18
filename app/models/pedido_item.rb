@@ -23,6 +23,10 @@ class PedidoItem
     @quantidade -= 1 if @quantidade > 0
   end
   
+  def modifica_quantidade(quantidade)
+    @quantidade = quantidade
+  end
+  
   def descricao
     @produto.descricao
   end

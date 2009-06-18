@@ -8,6 +8,5 @@ else
   page<<"$('notice').style.color='#ffffff'"
   page['notice'].update("M")
 end
-page.replace_html("selecao-produto" , :partial => "selecao_produto")
-page.replace_html("listagem-compras" , :partial => "listagem_compras" , :object => @pedido)
-page.replace_html("resumo-pagamento" , :partial => "resumo_pagamento" , :object => @pedido)
+page.replace_html("selecao-produto" , :partial => "selecao_produto" , :object => @item_corrente)
+page.replace_html("listagem-compras" , :partial => "listagem_compras" , :object => @pedido, :object => @item_corrente)

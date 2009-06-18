@@ -24,7 +24,7 @@ margin-left: 13em;
 padding-top: 1ex;
 padding-left: 2em;
 background: white;
-height: 500px;
+//height: 200px;
 }
 
 #lateral {
@@ -252,6 +252,8 @@ top: 5px;
 #loja fieldset {
 background: #EEFFEE;
 font-size: 15pt;
+overflow: auto;
+
 }
 
 #loja .fieldset-camposprincipais {
@@ -265,9 +267,10 @@ font-family: sans-serif;
 padding: 0.1em 0.5em;
 }
 
+
 #fieldset-selecao-produto{
 height: 85px;
-width: 900px;	
+width: 200px;	
 }
 
 #selecao-produto-quantidade-item {
@@ -290,12 +293,15 @@ top: -45px;
 width: 500px;
 }
 
-#listagem-compras {
- margin-top: 10px;
+#listagem-compras{
+	margin-top: 10px;
+ 	width: 646px;
+ 	height: 276px;
 }
 
-listagem-compras-divtabela {
+#listagem-compras-divtabela {
 overflow: auto;
+height: 200px;
 }
 
 #listagem-compras-divtotal {
@@ -308,22 +314,22 @@ height: 250px;
 }
 
 #listagem-compras-tabela .descricao {
-width: 500px;
+width: 350px;
 text-align: left;
 }
 
 #listagem-compras-tabela .valor {
-width: 70px;
+width: 50px;
 text-align: right;
 }
 
 #listagem-compras-tabela .quantidade {
-width: 100px;
+width: 60px;
 text-align: right;
 }
 
 #listagem-compras-tabela .valor-total-item {
-width: 100px;
+width: 60px;
 text-align: right;
 }
 
@@ -343,6 +349,15 @@ font-weight: bold;
 	float: right;
 	position:relative;
 	top: -392px;
+	left: -250px;
+}
+
+#loja .fieldset-barrastatus{
+	width: 967px;
+	height: 30px;
+	float: center;
+	position:relative;
+	top: 10px;	
 }
 
 
