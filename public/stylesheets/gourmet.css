@@ -286,11 +286,10 @@ top: -15px;
 width: 475px;
 }
 
-#selecao-produto-busca-item-codigo-barras {
-position: relative;
-left: 1px;
-top: -45px;
-width: 500px;
+#selecao-produto-botoes-controle{
+	left:430px;
+	position:relative;
+	top:-37px;		
 }
 
 #listagem-compras{
@@ -302,11 +301,6 @@ width: 500px;
 #listagem-compras-divtabela {
 overflow: auto;
 height: 200px;
-}
-
-#listagem-compras-divtotal {
-position: relative;
-bottom: 2px;
 }
 
 #listagem-compras-fieldset {
@@ -343,24 +337,6 @@ text-align: right;
 font-weight: bold;
 }
 
-#loja .fieldset-camposlaterais{
-	width: 320px;
-	height: 366px;
-	float: right;
-	position:relative;
-	top: -392px;
-	left: -250px;
-}
-
-#loja .fieldset-barrastatus{
-	width: 967px;
-	height: 30px;
-	float: center;
-	position:relative;
-	top: 10px;	
-}
-
-
 #adiciona_pagamento {
 //float: left;
 position: absolute;
@@ -388,6 +364,39 @@ left: 6px;
 	position:relative;
 	top:-25px;
 	float:right;
+}
+
+#loja .fieldset-camposlaterais{
+	width: 320px;
+	height: 366px;
+	float: right;
+	position:relative;
+	top: -392px;
+	left: -250px;
+}
+
+#resumo-pagamento-divtabela {
+	overflow: auto;
+	height: 150px;
+}
+
+
+#resumo-pagamento-divtotal {
+	position: relative;
+	top: 20px;
+	right:30px;
+	float: right;
+	font-weight:bold;
+}
+
+#resumo-pagamento-botoes-controle{
+	position:relative;
+	top: 35px;
+}
+
+#resumo-pagamento-botoes-controle button{
+	width: 20em;
+	font-size:15px;
 }
 
 

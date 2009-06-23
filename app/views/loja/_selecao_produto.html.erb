@@ -19,6 +19,11 @@
 				<%= text_field 'compras', 'novo_item' %>
 			<% end %>
 		</div>
+		<div id="selecao-produto-botoes-controle">
+			<% if @item_corrente %>
+				<button id="botao_adicionar_item" type="button">Atualizar</button>
+			<% end %>
+		</div>
 	</p>
 	<div class="auto_complete" id="compras_novo_item_auto_complete"></div>
 	<%= auto_complete_field :compras_novo_item, :url=>{:action=>'autocomplete_novo_item'}, :frequency => 0.4 %>

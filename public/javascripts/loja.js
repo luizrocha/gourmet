@@ -56,26 +56,17 @@ jQuery(document).ready(function() {
 		switch (evt.keyCode) {
 		  //Se tecla for ENTER
 		  case 13: 
-			descricao_produto  = jQuery("#compras_novo_item").val();
-			quantidade = jQuery("#compras_quantidade_item").val();
-			//Se primeiros caracteres sao numericos, continua como codigo barras			
-			var regXPIniciaNumerico = /^\d/;
-			var tokenEhCodigoBarras = regXPIniciaNumerico.exec(descricao_produto);
-			if (tokenEhCodigoBarras) {
-				new Ajax.Request('/loja/adiciona_produto_lista_compras', {asynchronous:true, evalScripts:true, method:'post', parameters:'authenticity_token=18694f0f8b9836a93f2b1d22e2d09ca925c87b3c&codigo_barras_item='+descricao_produto+'&quantidade_item='+quantidade}); 
-			//Caso contrario, abandona requisicao e continua com insercao por descricao
-			} else {
-				modo_edicao = jQuery("#compras_modo_edicao").val();
-				new Ajax.Request('/loja/adiciona_produto_lista_compras', {asynchronous:true, evalScripts:true, method:'post', parameters:'authenticity_token=18694f0f8b9836a93f2b1d22e2d09ca925c87b3c&descricao_item='+descricao_produto+'&quantidade_item='+quantidade+'&modo_edicao='+modo_edicao}); 
-			}
-			jQuery("#compras_novo_item").val("");
-			jQuery("#compras_quantidade_item").val("1");
-			jQuery("#compras_novo_item").focus().select();
-			return true;
+			adicionaItemCarrinho();
+		  return true;
 
 		  //Para qualquer outra tecla diferente de ENTER, tratativa normal (devolve handler)
 		  default: return true;
-		}		
+		}			
+	});
+	
+	//ADICIONA ACAO BOTAO ISERIR/ATUALIZAR CARRINHO
+	jQuery("#botao_adicionar_item").live('click', function() {
+		adicionaItemCarrinho();
 	});
 
 	//ENTER (no campo valor pagamento) - Transfere focus para complemento, dependendo do tipo do pagamento
@@ -164,3 +155,21 @@ jQuery(document).ready(function() {
 	});
 	
 });
+
+function adicionaItemCarrinho(){
+	descricao_produto  = jQuery("#compras_novo_item").val();
+	quantidade = jQuery("#compras_quantidade_item").val();
+	//Se primeiros caracteres sao numericos, continua como codigo barras			
+	var regXPIniciaNumerico = /^\d/;
+	var tokenEhCodigoBarras = regXPIniciaNumerico.exec(descricao_produto);
+	if (tokenEhCodigoBarras) {
+		new Ajax.Request('/loja/adiciona_produto_lista_compras', {asynchronous:true, evalScripts:true, method:'post', parameters:'authenticity_token=18694f0f8b9836a93f2b1d22e2d09ca925c87b3c&codigo_barras_item='+descricao_produto+'&quantidade_item='+quantidade}); 
+	//Caso contrario, abandona requisicao e continua com insercao por descricao
+	} else {
+		modo_edicao = jQuery("#compras_modo_edicao").val();
+		new Ajax.Request('/loja/adiciona_produto_lista_compras', {asynchronous:true, evalScripts:true, method:'post', parameters:'authenticity_token=18694f0f8b9836a93f2b1d22e2d09ca925c87b3c&descricao_item='+descricao_produto+'&quantidade_item='+quantidade+'&modo_edicao='+modo_edicao}); 
+	}
+	jQuery("#compras_novo_item").val("");
+	jQuery("#compras_quantidade_item").val("1");
+	jQuery("#compras_novo_item").focus().select();
+}

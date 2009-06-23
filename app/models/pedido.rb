@@ -52,8 +52,11 @@ class Pedido
   end
 
   def valor_restante
-    total_pago = @pagamentos.sum { |pagamento| pagamento.valor }
-    return (valor_total - total_pago)
+    return (valor_total - valor_pago)
+  end
+
+  def valor_pago
+    return @pagamentos.sum { |pagamento| pagamento.valor }
   end
 
   def total_de_items
@@ -66,8 +69,8 @@ def validar_item_venda(quantidade, produto)
    if (!produto) then
      raise "Produto não encontrado!"
    end
-   if ( quantidade < 0) then
-     raise "Quantidade não pode ser negativa!"
+   if ( quantidade <= 0) then
+     raise "Quantidade deve ser um número positivo!"
    end
    q,m = quantidade.divmod(BigDecimal("1")) 
    produto_permite_fracao = produto.permitidaVendaFracionaria
