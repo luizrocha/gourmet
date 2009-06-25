@@ -21,6 +21,10 @@ class LojaController < ApplicationController
       if (modo_edicao != 'true') then
         @pedido.adiciona_produto(produto, quantidade)
       else
+        item = @pedido.obtem_item_produto(produto)
+        if (item.quantidade > quantidade)
+          flash[:notice] = 'Lembre-se que remover ou diminuir a quantidade de um produto gera um evento para Auditoria'
+        end
         @pedido.altera_quantidade_produto(produto, quantidade)        
       end
     rescue Exception => e:
@@ -43,9 +47,15 @@ class LojaController < ApplicationController
   def remover_produto_lista_compras
     produto = Produto.find_by_id(params[:id]) if params[:id]    
     @pedido.remove_produto(produto)
+    flash[:notice] = 'Lembre-se que remover ou diminuir a quantidade de um produto gera um evento para Auditoria'
     respond_to do |format|
       format.js {render :layout=>false, :template => "loja/adiciona_produto_lista_compras.rjs"}
-    end    
+    end
+  end
+  
+  def remove_pagamento
+    
+    
   end
   
   def adiciona_pagamento
@@ -64,6 +74,9 @@ class LojaController < ApplicationController
     end
     
     begin
+      if (pgto_valor > @pedido.valor_restante) then
+        flash[:notice] = "Pagamento ultrapassou restante para quitar o pedido! Diferença será adicionada como serviço!"
+      end
       @pedido.adiciona_pagamento(pgto_valor, cliente, cartao)
     rescue Exception => e:
       flash[:notice] = e.to_s
@@ -73,12 +86,17 @@ class LojaController < ApplicationController
     end
   end
 
+  def descartar_pedido 
+    esvazia_lista_compras
+    redirect_to_index ("Dados do Pedido Descartado foram armazenados para Posterior Auditoria!")
+  end
+
+  def finalizar_pedido
+    
+  end
+
   def esvazia_lista_compras
     session[:pedido] = nil
-    respond_to do |format|
-      format.js if request.xhr?
-      format.html {redirect_to_index}
-    end
   end
 
 private

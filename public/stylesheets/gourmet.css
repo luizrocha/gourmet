@@ -24,7 +24,6 @@ margin-left: 13em;
 padding-top: 1ex;
 padding-left: 2em;
 background: white;
-//height: 200px;
 }
 
 #lateral {
@@ -332,18 +331,30 @@ width: 10px;
 text-align: left;
 }
 
+#listagem-compras-tabela form {
+	height:0px;
+}
+
+#editar_produto_img{
+	left:-10px;
+	position:relative;
+	top:-9px;}
+
+#remover_produto_img{
+	left:5px;
+	position:relative;
+	top:-9px;	
+}
+
 #listagem-compras-tabela .valor-total {
 text-align: right;
 font-weight: bold;
 }
 
 #adiciona_pagamento {
-//float: left;
 position: absolute;
 top: 112px;
 left: 6px;
-//width: 636px;
-//height: 300px;
 }
 
 #pagamento_complementos {
@@ -360,9 +371,16 @@ left: 6px;
 	left:0;
 }
 
-#adiciona_pagamento_submitbutton {
+#botao_adiciona_pagamento_submit {
 	position:relative;
 	top:-25px;
+	float:right;
+}
+
+#botao_adiciona_pagamento_cancelar {
+	position:relative;
+	top:-25px;
+	left:20px;
 	float:right;
 }
 
@@ -380,25 +398,47 @@ left: 6px;
 	height: 150px;
 }
 
+#resumo-pagamento-tabela .descricao {
+width: 350px;
+text-align: left;
+}
+
+#resumo-pagamento-tabela .valor {
+width: 50px;
+text-align: right;
+}
 
 #resumo-pagamento-divtotal {
-	position: relative;
-	top: 20px;
-	right:30px;
-	float: right;
+	float:left;
+	position:relative;
+	top:20px;
+}
+
+#resumo-pagamento-divtotal .campo_realcado {
 	font-weight:bold;
+	font-color: red;	
 }
 
 #resumo-pagamento-botoes-controle{
+	float:right;
+	height:90px;
+	left:10px;
 	position:relative;
-	top: 35px;
+	top:23px;
+	width:160px;
 }
 
 #resumo-pagamento-botoes-controle button{
-	width: 20em;
-	font-size:15px;
+	font-size:12px;
+	left:6px;
+	width:12em;
+	position:relative;
 }
 
+#resumo-pagamento-botoes-controle input{
+	width: 12em;
+	font-size:12px;
+}
 
 /**************************************
 *	Auto-Complete

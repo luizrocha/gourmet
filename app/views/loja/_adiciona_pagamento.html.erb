@@ -21,9 +21,10 @@
 			<!-- Complemento para pagamento tipo Cartao -->
 			<div id="pagamento_complemento_cartao" class="pagamento_complemento">
 				<select name="bandeira_cartao">
-					<option value="VisaElectron">Visa Electron</option>
-					<option value="Maestro">Maestro</option>
-					<option value="Redeshop">RedeShop</option>
+					<option value="VisaDebito">Visa Débito</option>
+					<option value="VisaCredito">Visa Crédito</option>
+					<option value="MasterDebito">Master Débito</option>
+					<option value="MasterCredito">Master Crédito</option>
 				</select>
 			</div>
 			
@@ -57,6 +58,7 @@
 				<input type="text" id="pagamento_prepago_identificador" name="prepago_id" size="10"/><br/>
 			</div>
 		</div>
-  		<%= submit_tag "Confirmar", :disable_with => "Aguarde...", :id => "adiciona_pagamento_submitbutton"%>
+  		<%= submit_tag "Confirmar", :disable_with => "Aguarde...", :id => "botao_adiciona_pagamento_submit"%>
+		<button type="button" id="botao_adiciona_pagamento_cancelar">Cancelar</button>
 	<%end%>
 </fieldset>

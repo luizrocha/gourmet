@@ -28,7 +28,16 @@
 	<div class="auto_complete" id="compras_novo_item_auto_complete"></div>
 	<%= auto_complete_field :compras_novo_item, :url=>{:action=>'autocomplete_novo_item'}, :frequency => 0.4 %>
   </fieldset>
-<script type="text/javascript">
-    //Adicionado para chamar foco para modificar quantidade ao editar produto.
-	jQuery("#compras_quantidade_item").focus().select();
-</script>
+  <% if @item_corrente %>
+	<script type="text/javascript">
+    	//Adicionado para chamar foco para modificar quantidade ao editar produto.
+		jQuery("#compras_quantidade_item").focus().select();
+	</script>
+  <% else %>
+	<script type="text/javascript">
+  		//Adicionado para chamar foco para modificar quantidade ao editar produto.
+		jQuery("#compras_quantidade_item").val("1");
+		jQuery("#compras_novo_item").val("");
+		jQuery("#compras_novo_item").focus().select();
+	</script>
+  <% end %>

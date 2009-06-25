@@ -21,8 +21,6 @@ class PedidoPagamento
   
 protected
 
-
-
   def validar_valor (valor)
     if !valor || valor.nil?
       raise "Pagamento deve ter um valor informado!"

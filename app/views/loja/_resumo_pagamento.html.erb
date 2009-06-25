@@ -15,41 +15,59 @@
 					<td class="descricao"><%= pagamento.descricao %></td>
 					<td>R$</td>
 					<td class="valor"><%= number_to_currency(pagamento.valor, :unit => "", :delimiter => ".", :separator => ",") %></td>
-					<td class="acoes"><%#= link_to_remote "remover", :url => {:action => "remover_dependente", :id => @cliente.id, :dependente => cliente_dependentes.id} %></td>
+					<td class="acoes"><%#= link_to_remote "Remover", :url => {:action => "remove_pagamento", :id => @pagamento.id} %></td>
 				</tr>
 				<% end %>
 	  		</table>
 		</div>
 		<div id="resumo-pagamento-divtotal">
 			<table id="resumo-pagamento-tabela-total">
-				<tr>
+				<tr class='campo_realcado'>
 					<td>Total:</td>
 					<td>R$</td>
 					<td><%= number_to_currency(@pedido.valor_total, :unit => "", :delimiter => ".", :separator => ",") %></td>
 				</tr>
+				<tr class='campo_realcado'>
+					<td>Total c/ Serv:</td>
+					<td>R$</td>
+					<td><%= number_to_currency(@pedido.valor_total_com_servico, :unit => "", :delimiter => ".", :separator => ",") %></td>
+				</tr>
+				<tr>
+					<td>Tx Serviço:</td>
+					<td>R$</td>
+					<td><%= number_to_currency(@pedido.valor_servico, :unit => "", :delimiter => ".", :separator => ",") %></td>
+				</tr>							
 				<tr>
 					<td>Pago:</td>
 					<td>R$</td>
 					<td><%= number_to_currency(@pedido.valor_pago, :unit => "", :delimiter => ".", :separator => ",") %></td>
 				</tr>
-				<tr>
+				<tr class='campo_realcado'>
 					<td>Pendente:</td>
 					<td>R$</td>
 					<td><%= number_to_currency(@pedido.valor_restante, :unit => "", :delimiter => ".", :separator => ",") %></td>
 				</tr>
+				<% if @pedido.valor_pago_de_servico > 0 %>
+				<tr>
+					<td>Serviço Pago:</td>
+					<td>R$</td>
+					<td><%= number_to_currency(@pedido.valor_pago_de_servico, :unit => "", :delimiter => ".", :separator => ",") %></td>
+				</tr>				
+				<% end %>
 			</table>
 		</div>
 		<div id="resumo-pagamento-botoes-controle">
 			<% if @pedido.valor_restante > 0 %>
-				<button id="adicionar_pagamento" type"button" enabled="true">Adicionar Pagamento</button>
+				<button id="botao_adicionar_pagamento" type"button" enabled="true">Adicionar Pagamento</button>
 			<% elsif @pedido.valor_restante <= 0 %>
-				<button id="adicionar_pagamento" type"button" enabled="false">Adicionar Pagamento</button>
+				<button id="botao_adicionar_pagamento" type"button" enabled="false">Adicionar Pagamento</button>
 			<% end %>
-			<% if @pedido.valor_restante <= 0 %>
-				<button id="encerrar_compra" type="button" enabled="true">Finalizar</button>
-			<% elsif @pedido.valor_restante >0 %>
-				<button id="encerrar_compra" type="button" enabled="false">Finalizar</button>
+			
+	  		<% form_for :pedido, :url => { :action => "finalizar_pedido" } do |f| %>
+				<%= submit_tag "Finalizar", :disable_with => "Aguarde...", :id => "botao_encerrar_compra"%>
 			<% end %>
-			<button id="descartar_compra" type="button">Descartar</button>
+			<% form_for :pedido, :url => { :action => "descartar_pedido" } do |f| %>
+	  			<%= submit_tag "Descartar", :confirm => 'Gostaria de Abandonar esta Venda? Estes dados serão armazenados para futura auditoria!', :id => "botao_descartar_compra"%>
+			<% end %>
 		</div>		
 	</fieldset>

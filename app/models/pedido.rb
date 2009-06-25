@@ -50,19 +50,43 @@ class Pedido
   def valor_total
     @items.sum { |item| item.valor_total }
   end
+  
+  def valor_servico
+    @items.sum { |item| ( item.produto.adiciona_taxa_servico ? (item.valor_total * 0.1) : 0 )}
+  end
+  
+  def valor_total_com_servico
+    return valor_total + valor_servico
+  end
+
+  def valor_pago_de_servico
+      if ( (valor_pago - valor_total) > 0 ) then
+        return (valor_pago - valor_total)
+      else
+        return 0
+      end
+  end
 
   def valor_restante
-    return (valor_total - valor_pago)
+    if ( valor_total - valor_pago ) > 0 then
+      return (valor_total - valor_pago)
+    else
+      return 0
+    end
   end
 
   def valor_pago
     return @pagamentos.sum { |pagamento| pagamento.valor }
   end
 
+  def obtem_item_produto (produto)
+    @items.find {|item| item.produto == produto}
+  end
+
   def total_de_items
     @items.sum { |item| item.quantidade }
   end
-    
+
 private
 
 def validar_item_venda(quantidade, produto)
@@ -79,11 +103,8 @@ def validar_item_venda(quantidade, produto)
    end
 end
 
+def validar_valor_pagamento (valor)
+end
 
-  def validar_valor_pagamento (valor)
-    if ( valor > valor_restante ) then
-      raise "Pagamento não pode ser maior que valor restante para quitar o pedido!"
-    end
-  end
 
 end

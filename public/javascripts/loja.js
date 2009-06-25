@@ -16,25 +16,9 @@ jQuery(document).ready(function() {
     jQuery(document).bind('keydown', 'alt+f8',function (evt){ 
 		var visibility_adicionaPagamento = jQuery("#adiciona_pagamento").css("visibility");
 		if (visibility_adicionaPagamento == "hidden") {
-			jQuery("#adiciona_pagamento").css("visibility", "visible");
-			jQuery("#pagamento_tipo").val("Dinheiro");
-			jQuery("#pagamento_complementos").css("visibility", "visible");
-			jQuery(".pagamento_complemento").css("visibility", "hidden");	
-			jQuery("#pagamento_complemento_dinheiro").css("visibility", "visible");	
-			valor = jQuery("#resumo_pagamento_restante").text().replace("R$","");
-			jQuery("#pagamento_valor").val(valor);
-			jQuery("#pagamento_valor").focus().select();
-			jQuery("#pagamento_montante").val("");
-			jQuery("#pagamento_troco").val("");
-			//Esconde selecao pagamento e listagem produtos
-			jQuery("#selecao-produto").css("visibility", "hidden");
-			jQuery("#listagem-compras").css("visibility", "hidden");
+			exibeDivAdicionarPagamento();
 		} else {
-			jQuery("#adiciona_pagamento").css("visibility", "hidden");
-			jQuery(".pagamento_complemento").css("visibility", "hidden");
-			//Esconde selecao pagamento e listagem produtos
-			jQuery("#selecao-produto").css("visibility", "visible");
-			jQuery("#listagem-compras").css("visibility", "visible");			
+			escondeDivAdicionarPagamento();
 		}
 	});	
 
@@ -43,10 +27,16 @@ jQuery(document).ready(function() {
 		switch (evt.keyCode) {
 		  //Se tecla for ENTER
 		  case 13: 
-			jQuery("#compras_novo_item").focus().select();
-			return true;
+			modo_edicao = jQuery("#compras_modo_edicao").val();
+			//Se estiver em modo de edicao, conclui edicao e atualiza produto
+			if (modo_edicao == 'true') {
+				adicionaItemCarrinho();
+			} else {
+			//Caso contrario, transfere foco para campo descricao
+				jQuery("#compras_novo_item").focus().select();
+				return true;
+			}
 		  	break;
-		  
 		  default: return true;
 		}
 	});	
@@ -63,18 +53,12 @@ jQuery(document).ready(function() {
 		  default: return true;
 		}			
 	});
-	
-	//ADICIONA ACAO BOTAO ISERIR/ATUALIZAR CARRINHO
-	jQuery("#botao_adicionar_item").live('click', function() {
-		adicionaItemCarrinho();
-	});
 
 	//ENTER (no campo valor pagamento) - Transfere focus para complemento, dependendo do tipo do pagamento
 	jQuery("#pagamento_valor").bind('keydown', 'return', function(evt) {
 		tipo = jQuery("#pagamento_tipo").val();
 		valor = jQuery("#pagamento_valor").val();
 		if (tipo == "Dinheiro") {
-			jQuery("#pagamento_montante").val(valor);
 			jQuery("#pagamento_montante").focus().select();
 		} else if (tipo == "Cartao") {
 		} else if (tipo == "Conta") {
@@ -94,6 +78,40 @@ jQuery(document).ready(function() {
 			jQuery("#pagamento_troco").val("0,00");
 		}
 	});
+
+	//*********************************************************************
+	//					MAPEAMENTO BOTOES
+	//						
+	//*********************************************************************
+
+	//ADICIONA ACAO BOTAO ISERIR/ATUALIZAR CARRINHO
+	jQuery("#botao_adicionar_item").live('click', function() {
+		adicionaItemCarrinho();
+	});
+
+	//ADICIONA ACAO BOTAO INSERIR PAGAMENTO
+	jQuery("#botao_adicionar_pagamento").live('click', function() {
+		exibeDivAdicionarPagamento();
+		return true;
+	});
+
+	//ADICIONA ACAO BOTAO CONFIRMAR INSERCAO PAGAMENTO
+	jQuery("#botao_adiciona_pagamento_submit").live('click', function() {
+		escondeDivAdicionarPagamento();
+		return true;
+	});
+
+	//ADICIONA ACAO BOTAO INSERIR PAGAMENTO
+	jQuery("#botao_encerrar_compra").live('click', function() {
+		exibeDivAdicionarPagamento();
+		return true;	
+	});
+	
+	jQuery("#botao_adiciona_pagamento_cancelar").live('click', function() {
+		escondeDivAdicionarPagamento();
+		return true;	
+	});
+	
 
 	//*********************************************************************
 	//					MAPEAMENTO EVENTOS
@@ -156,6 +174,30 @@ jQuery(document).ready(function() {
 	
 });
 
+function exibeDivAdicionarPagamento() {
+	jQuery("#adiciona_pagamento").css("visibility", "visible");
+	jQuery("#pagamento_tipo").val("Dinheiro");
+	jQuery("#pagamento_complementos").css("visibility", "visible");
+	jQuery(".pagamento_complemento").css("visibility", "hidden");	
+	jQuery("#pagamento_complemento_dinheiro").css("visibility", "visible");	
+	valor = jQuery("#resumo_pagamento_restante").text().replace("R$","");
+	jQuery("#pagamento_valor").val(valor);
+	jQuery("#pagamento_valor").focus().select();
+	jQuery("#pagamento_montante").val("");
+	jQuery("#pagamento_troco").val("");
+	//Esconde selecao pagamento e listagem produtos
+	jQuery("#selecao-produto").css("visibility", "hidden");
+	jQuery("#listagem-compras").css("visibility", "hidden");	
+}
+
+function escondeDivAdicionarPagamento() {
+	jQuery("#adiciona_pagamento").css("visibility", "hidden");
+	jQuery(".pagamento_complemento").css("visibility", "hidden");
+	//Exibe selecao pagamento e listagem produtos
+	jQuery("#selecao-produto").css("visibility", "visible");
+	jQuery("#listagem-compras").css("visibility", "visible");			
+}
+
 function adicionaItemCarrinho(){
 	descricao_produto  = jQuery("#compras_novo_item").val();
 	quantidade = jQuery("#compras_quantidade_item").val();
@@ -169,7 +211,7 @@ function adicionaItemCarrinho(){
 		modo_edicao = jQuery("#compras_modo_edicao").val();
 		new Ajax.Request('/loja/adiciona_produto_lista_compras', {asynchronous:true, evalScripts:true, method:'post', parameters:'authenticity_token=18694f0f8b9836a93f2b1d22e2d09ca925c87b3c&descricao_item='+descricao_produto+'&quantidade_item='+quantidade+'&modo_edicao='+modo_edicao}); 
 	}
-	jQuery("#compras_novo_item").val("");
 	jQuery("#compras_quantidade_item").val("1");
+	jQuery("#compras_novo_item").val("");
 	jQuery("#compras_novo_item").focus().select();
 }
