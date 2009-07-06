@@ -10,7 +10,7 @@ class Pedido < ActiveRecord::Base
   
   def adiciona_produto(produto, quantidade = nil)
     validar_item_venda(quantidade, produto)
-    item_corrente = PedidoItem.find (:one, condition = "produto.id = "+produto.id.to_s)
+    item_corrente = PedidoItem.find (:all, condition = "produto.id = "+produto.id.to_s)
     if item_corrente
         item_corrente.incrementa_quantidade(quantidade)  
     else

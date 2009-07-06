@@ -7,7 +7,7 @@ class PedidoPagamentoCartao < PedidoPagamento
   end
     
   def descricao
-      return tipo_pagamento.capitalize + " - "+ cartao
+      return tipo_pagamento.capitalize + " - "+ @cartao
   end 
 
 end

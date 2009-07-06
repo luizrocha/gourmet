@@ -47,13 +47,17 @@ ActiveRecord::Schema.define(:version => 20090706044150) do
   add_index "pedido_items", ["pedido_id"], :name => "index_pedido_items_on_pedido_id"
 
   create_table "pedido_pagamentos", :force => true do |t|
-    t.integer  "pedido_id",                                 :null => false
-    t.integer  "quantidade",                                :null => false
-    t.decimal  "valor_total", :precision => 8, :scale => 2, :null => false
+    t.string   "type"
+    t.integer  "pedido_id",                                                   :null => false
+    t.decimal  "valor",      :precision => 8, :scale => 2,                    :null => false
+    t.boolean  "cancelado",                                :default => false, :null => false
+    t.integer  "cliente_id"
+    t.string   "cartao"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "pedido_pagamentos", ["cliente_id"], :name => "index_pedido_pagamentos_on_cliente_id"
   add_index "pedido_pagamentos", ["pedido_id"], :name => "index_pedido_pagamentos_on_pedido_id"
 
   create_table "pedidos", :force => true do |t|

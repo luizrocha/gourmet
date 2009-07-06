@@ -6,7 +6,7 @@ class CreatePedidoPagamentos < ActiveRecord::Migration
       #Atributos Comuns
       t.integer :pedido_id, :null => false, :options => "CONSTRAINT fk_pedido_pagamentos_pedido REFERENCES pedidos(id)"
       t.decimal :valor, :null => false, :precision => 8, :scale => 2
-      t.boolean :cancelado, :null => false, :default => false
+      t.string :status, :null => false, :limit => 1 #(A)bertoecebido, (F)inalizado e (C)ancelado
 
       #Atributo Pagamentos em Conta (Vinculado ao Cliente)
       t.integer :cliente_id, :null => true, :options => "CONSTRAINT fk_pedido_pagamentos_cliente REFERENCES clientes(id)"
