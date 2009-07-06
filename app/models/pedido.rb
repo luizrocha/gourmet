@@ -1,11 +1,12 @@
-class Pedido
-  attr_reader :items
-  attr_reader :pagamentos
+class Pedido < ActiveRecord::Base
   
-  def initialize
-    @items = []
-    @pagamentos = []
+  has_many :items, :class_name => "PedidoItem", :foreign_key => :pedido_id
+  has_many :pagamentos, :class_name => "PedidoPagamento", :foreign_key => :pedido_id
+  
+  def after_initialize
+    status = "A"
   end
+
   
   def adiciona_produto(produto, quantidade = nil)
     validar_item_venda(quantidade, produto)
@@ -39,6 +40,16 @@ class Pedido
         item_corrente.modifica_quantidade(quantidade)  
     end
     item_corrente
+  end
+  
+  def cancelar_pedido()
+    status = "C" #Modifica Stauts p/ Cancelado
+    ##TODO: Adicionar Auditoria
+  end
+  
+  def finalizar_pedido()
+    status = "F" #Modifica Status p/ Finalizado
+    ##TODO: Persistir valor Total e outras informacoes
   end
   
   def remove_produto(produto)

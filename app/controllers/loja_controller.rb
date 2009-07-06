@@ -27,6 +27,7 @@ class LojaController < ApplicationController
         end
         @pedido.altera_quantidade_produto(produto, quantidade)        
       end
+      @pedido.save
     rescue Exception => e:
       flash[:notice] = e.to_s 
     end
@@ -46,16 +47,19 @@ class LojaController < ApplicationController
   
   def remover_produto_lista_compras
     produto = Produto.find_by_id(params[:id]) if params[:id]    
-    @pedido.remove_produto(produto)
-    flash[:notice] = 'Lembre-se que remover ou diminuir a quantidade de um produto gera um evento para Auditoria'
+    begin
+      @pedido.remove_produto(produto)
+      @pedido.save
+      flash[:notice] = 'Lembre-se que remover ou diminuir a quantidade de um produto gera um evento para Auditoria'
+    rescue Exception => e:
+      flash[:notice] = e.to_s
+    end
     respond_to do |format|
       format.js {render :layout=>false, :template => "loja/adiciona_produto_lista_compras.rjs"}
     end
   end
   
   def remove_pagamento
-    
-    
   end
   
   def adiciona_pagamento
@@ -78,6 +82,7 @@ class LojaController < ApplicationController
         flash[:notice] = "Pagamento ultrapassou restante para quitar o pedido! Diferença será adicionada como serviço!"
       end
       @pedido.adiciona_pagamento(pgto_valor, cliente, cartao)
+      @pedido.save
     rescue Exception => e:
       flash[:notice] = e.to_s
     end
@@ -87,21 +92,46 @@ class LojaController < ApplicationController
   end
 
   def descartar_pedido 
-    esvazia_lista_compras
+    begin
+      @pedido.cancelar_pedido
+      @pedido.save
+      session[:pedido_id] = nil
+    rescue Exception => e:
+          redirect_to_index("Erro ao Cancelar Pedido: " +e.to_s)
+    end
     redirect_to_index ("Dados do Pedido Descartado foram armazenados para Posterior Auditoria!")
   end
 
   def finalizar_pedido
-    
+    begin
+      @pedido.finalizar_pedido
+      @pedido.save
+        @pedido.errors.each_full { |msg| puts msg }
+      session[:pedido_id] = nil
+    rescue Exception => e:
+          @pedido.errors.each_full { |msg| puts msg }
+          redirect_to_index("Erro ao Finalizar Pedido: " +e.to_s)
+    end
+    redirect_to_index
   end
 
   def esvazia_lista_compras
+    pedido_id = session[:pedido_id]
     session[:pedido] = nil
   end
 
 private
   def busca_lista_compras
-    @pedido = (session[:pedido] ||= Pedido.new)
+    pedido_id = session[:pedido_id]
+    if ( pedido_id == nil ) then
+      @pedido = Pedido.new
+      @pedido.status = "A"
+      @pedido.save
+      @pedido.errors.each_full { |msg| puts msg }
+      session[:pedido_id] = @pedido.id
+    elsif
+      @pedido = Pedido.find(pedido_id)
+    end
   end
 
   def limpar_aviso
