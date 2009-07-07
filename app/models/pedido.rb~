@@ -3,18 +3,23 @@ class Pedido < ActiveRecord::Base
   has_many :items, :class_name => "PedidoItem", :foreign_key => :pedido_id
   has_many :pagamentos, :class_name => "PedidoPagamento", :foreign_key => :pedido_id
   
-  def after_initialize
+  def before_create
     status = "A"
   end
 
-  
   def adiciona_produto(produto, quantidade = nil)
     validar_item_venda(quantidade, produto)
-    item_corrente = PedidoItem.find (:all, condition = "produto.id = "+produto.id.to_s)
+    item_corrente = obter_item_corrente(produto)
     if item_corrente
-        item_corrente.incrementa_quantidade(quantidade)  
+        item_corrente.quantidade = quantidade
+	item_corrente.save!  
     else
-      item_corrente = PedidoItem.new(produto, quantidade)
+      item_corrente = PedidoItem.new
+      item_corrente.produto = produto
+      item_corrente.pedido = self
+      item_corrente.quantidade = quantidade if quantidade
+      item_corrente.quantidade = 1 if !quantidade
+      item_corrente.save!
       items << item_corrente
     end
     item_corrente
@@ -35,10 +40,11 @@ class Pedido < ActiveRecord::Base
   
   def altera_quantidade_produto(produto, quantidade)
     validar_item_venda(quantidade, produto)
-    item_corrente = items.find {|item| item.produto == produto}
+    item_corrente = obter_item_corrente(produto)
     if item_corrente
-        item_corrente.modifica_quantidade(quantidade)  
+        item_corrente.quantidade = quantidade
     end
+    item_corrente.save!
     item_corrente
   end
   
@@ -53,8 +59,8 @@ class Pedido < ActiveRecord::Base
   end
   
   def remove_produto(produto)
-    item_corrente = items.find {|item| item.produto == produto}
-    items.delete(item_corrente)
+    item_corrente = obter_item_corrente(produto)
+    PedidoItem.delete(item_corrente.id)
     item_corrente
   end
   
@@ -116,6 +122,10 @@ class Pedido < ActiveRecord::Base
         total += item.quantidade
     end
     total
+  end
+
+  def obter_item_corrente (produto)
+     PedidoItem.find_by_produto_id_and_pedido_id(produto.id.to_s, id.to_s)
   end
 
 private

@@ -21,15 +21,17 @@ class LojaController < ApplicationController
       if (modo_edicao != 'true') then
         @pedido.adiciona_produto(produto, quantidade)
       else
-        item = @pedido.obtem_item_produto(produto)
+        item = @pedido.obter_item_corrente(produto)
         if (item.quantidade > quantidade)
           flash[:notice] = 'Lembre-se que remover ou diminuir a quantidade de um produto gera um evento para Auditoria'
         end
-        @pedido.altera_quantidade_produto(produto, quantidade)        
+        @pedido.altera_quantidade_produto(produto, quantidade) 
       end
-      @pedido.save
+      @pedido.save!
+	
     rescue Exception => e:
-      flash[:notice] = e.to_s 
+      flash[:notice] = e.to_s
+      puts e.to_s 
     end
     respond_to do |format|
       format.js 
@@ -38,7 +40,7 @@ class LojaController < ApplicationController
   
   def editar_produto_lista_compras
     produto = Produto.find_by_id(params[:id]) if params[:id]
-    @item_corrente = @pedido.items.find {|item| item.produto == produto}
+    @item_corrente = @pedido.obter_item_corrente(produto)
     respond_to do |format|
        format.js {render :layout => false}       
     end  

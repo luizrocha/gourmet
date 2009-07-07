@@ -3,34 +3,22 @@ class PedidoItem < ActiveRecord::Base
   belongs_to :pedido
   belongs_to :produto
   
-	
-  def initialize(produto, quantidade = nil)
-    produto = produto
-    if (quantidade)
-      quantidade = quantidade
-    else
-      quantidade = 1
-    end
-    calcular_valor_item
+  def before_save
+      calcular_valor_item
   end
-  
-  def incrementa_quantidade (qtde = nil)
+
+  def incrementa_quantidade (qtd = nil)
     if (qtd)
-      quantidade += qtd
+      qtd += read_attribute(:quantidade)
+      write_attribute(:quantidade, qtd)
     else
-      quantidade += 1
+      qtd = read_attribute(:quantidade)
+      write_attribute(:quantidade, qtd + 1)
     end
-    calcular_valor_item
   end
   
   def decrementa_quantidade
     quantidade -= 1 if quantidade > 0
-    calcular_valor_item
-  end
-  
-  def modifica_quantidade(qtd)
-    quantidade = qtd
-    calcular_valor_item
   end
   
   def descricao
@@ -39,7 +27,7 @@ class PedidoItem < ActiveRecord::Base
 
 private
   def calcular_valor_item
-    valor_total = produto.valor_venda * quantidade
+    self.valor_total = (produto.valor_venda * quantidade)
   end
 
 end
