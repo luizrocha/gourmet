@@ -49,13 +49,12 @@ class Pedido < ActiveRecord::Base
   end
   
   def cancelar_pedido()
-    status = "C" #Modifica Stauts p/ Cancelado
+    encerrar_pedido("C")  #Finaliuza Stauts p/ Cancelado
     ##TODO: Adicionar Auditoria
   end
   
   def finalizar_pedido()
-    status = "F" #Modifica Status p/ Finalizado
-    ##TODO: Persistir valor Total e outras informacoes
+    encerrar_pedido("F")  #Finaliuza Stauts p/ Finalizado
   end
   
   def remove_produto(produto)
@@ -65,12 +64,15 @@ class Pedido < ActiveRecord::Base
   end
   
   def valor_total
-    #items.sum { |item| item.valor_total }
-    total = 0
-    items.each do |item|
+    if (status == "A") then
+      total = 0
+      items.each do |item|
 	 total += item.valor_total
+      end
+      return total
+    else
+      return read_attribute(:valor_total)
     end
-    total
   end
   
   def valor_servico
@@ -86,12 +88,16 @@ class Pedido < ActiveRecord::Base
     return valor_total + valor_servico
   end
 
-  def valor_pago_de_servico
-      if ( (valor_pago - valor_total) > 0 ) then
-        return (valor_pago - valor_total)
-      else
-        return 0
-      end
+  def valor_pago_servico
+    if (status == "A") then
+	if ( (valor_pago - valor_total) > 0 ) then
+          return (valor_pago - valor_total)
+      	else
+          return 0
+      	end
+    else
+      	return read_attribute(:valor_pago_servico)
+    end    
   end
 
   def valor_restante
@@ -109,10 +115,6 @@ class Pedido < ActiveRecord::Base
 	total += pagamento.valor
     end
     total
-  end
-
-  def obtem_item_produto (produto)
-    items.find {|item| item.produto == produto}
   end
 
   def total_de_items
@@ -147,5 +149,10 @@ end
 def validar_valor_pagamento (valor)
 end
 
+def encerrar_pedido(status)
+    write_attribute(:valor_total, valor_total)
+    write_attribute(:valor_pago_servico, valor_pago_servico)
+    write_attribute(:status, status)
+end
 
 end

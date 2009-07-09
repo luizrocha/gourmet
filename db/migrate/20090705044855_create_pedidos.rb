@@ -6,6 +6,8 @@ class CreatePedidos < ActiveRecord::Migration
       t.timestamp :data_abertura
       t.timestamp :data_finalizacao
       t.string :status, :null => false, :limit => 1 #(A)berto, (F)inalizado e (C)ancelado
+      t.decimal :valor_total, :null => true, :precision => 8, :scale => 2
+      t.decimal :valor_pago_servico, :null => true, :precision => 8, :scale => 2     
       t.timestamps
     end
     

@@ -96,7 +96,7 @@ class LojaController < ApplicationController
   def descartar_pedido 
     begin
       @pedido.cancelar_pedido
-      @pedido.save
+      @pedido.save!
       session[:pedido_id] = nil
     rescue Exception => e:
           redirect_to_index("Erro ao Cancelar Pedido: " +e.to_s)
@@ -107,11 +107,9 @@ class LojaController < ApplicationController
   def finalizar_pedido
     begin
       @pedido.finalizar_pedido
-      @pedido.save
-        @pedido.errors.each_full { |msg| puts msg }
+      @pedido.save!
       session[:pedido_id] = nil
     rescue Exception => e:
-          @pedido.errors.each_full { |msg| puts msg }
           redirect_to_index("Erro ao Finalizar Pedido: " +e.to_s)
     end
     redirect_to_index

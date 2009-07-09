@@ -5177,3 +5177,173 @@ Rendered loja/_listagem_compras (34.1ms)
   [4;35;1mPedidoPagamento Load (0.5ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 2) [0m
 Rendered loja/_resumo_pagamento (158.9ms)
 Completed in 1058ms (View: 250, DB: 18) | 200 OK [http://localhost/loja/adiciona_produto_lista_compras]
+
+
+Processing LojaController#editar_produto_lista_compras (for 127.0.0.1 at 2009-07-07 17:39:47) [POST]
+  Session ID: 02438ce30124044f2a863ea6828cb323
+  Parameters: {"authenticity_token"=>"c136d850b0557a48c84e7b6de0977f4fe58f87b7", "id"=>"4"}
+  [4;36;1mPedido Load (1.8ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 2) [0m
+  [4;35;1mUnidadeVenda Load (1.7ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (2.4ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = '4') LIMIT 1[0m
+  [4;35;1mPedidoItem Load (2.0ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items"."produto_id" = '4' AND "pedido_items"."pedido_id" = '2') LIMIT 1[0m
+Rendering loja/editar_produto_lista_compras
+  [4;36;1mProduto Load (1.8ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_selecao_produto (22.1ms)
+  [4;35;1mPedidoItem Load (1.5ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 2) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (2.2ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 8) [0m
+Rendered loja/_listagem_compras (56.8ms)
+Completed in 313ms (View: 108, DB: 15) | 200 OK [http://localhost/loja/editar_produto_lista_compras/4]
+
+
+Processing LojaController#adiciona_produto_lista_compras (for 127.0.0.1 at 2009-07-07 17:39:50) [POST]
+  Session ID: 02438ce30124044f2a863ea6828cb323
+  Parameters: {"descricao_item"=>"Beterraba", "authenticity_token"=>"18694f0f8b9836a93f2b1d22e2d09ca925c87b3c", "modo_edicao"=>"true", "quantidade_item"=>"27"}
+  [4;36;1mPedido Load (1.0ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 2) [0m
+  [4;35;1mUnidadeVenda Load (1.5ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (1.6ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."descricao" = 'Beterraba') LIMIT 1[0m
+  [4;35;1mPedidoItem Load (1.1ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items"."produto_id" = '4' AND "pedido_items"."pedido_id" = '2') LIMIT 1[0m
+  [4;36;1mUnidadeVenda Load (1.2ms)[0m   [0;1mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 2) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items"."produto_id" = '4' AND "pedido_items"."pedido_id" = '2') LIMIT 1[0m
+  [4;36;1mProduto Load (1.6ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mPedidoItem Update (3.0ms)[0m   [0mUPDATE "pedido_items" SET "updated_at" = '2009-07-07 20:39:50', "valor_total" = 21.06, "quantidade" = 27 WHERE "id" = 1[0m
+Rendering loja/adiciona_produto_lista_compras
+Rendered loja/_selecao_produto (6.3ms)
+  [4;36;1mPedidoItem Load (3.1ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 2) [0m
+  [4;35;1mProduto Load (4.2ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;36;1mProduto Load (5.0ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 8) [0m
+Rendered loja/_listagem_compras (81.9ms)
+  [4;35;1mPedidoPagamento Load (1.1ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 2) [0m
+Rendered loja/_resumo_pagamento (30.4ms)
+Completed in 552ms (View: 168, DB: 27) | 200 OK [http://localhost/loja/adiciona_produto_lista_compras]
+
+
+Processing LojaController#remover_produto_lista_compras (for 127.0.0.1 at 2009-07-07 17:40:08) [POST]
+  Session ID: 02438ce30124044f2a863ea6828cb323
+  Parameters: {"authenticity_token"=>"c136d850b0557a48c84e7b6de0977f4fe58f87b7", "id"=>"4"}
+  [4;36;1mPedido Load (1.1ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 2) [0m
+  [4;35;1mUnidadeVenda Load (1.6ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (1.5ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = '4') LIMIT 1[0m
+  [4;35;1mPedidoItem Load (1.0ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items"."produto_id" = '4' AND "pedido_items"."pedido_id" = '2') LIMIT 1[0m
+  [4;36;1mPedidoItem Delete all (345.9ms)[0m   [0;1mDELETE FROM "pedido_items" WHERE ("id" IN (1)) [0m
+Rendering loja/adiciona_produto_lista_compras.rjs
+Rendered loja/_selecao_produto (6.8ms)
+  [4;35;1mPedidoItem Load (2.0ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 2) [0m
+  [4;36;1mProduto Load (8.7ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 8) [0m
+Rendered loja/_listagem_compras (81.8ms)
+  [4;35;1mPedidoPagamento Load (0.5ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 2) [0m
+Rendered loja/_resumo_pagamento (31.3ms)
+Completed in 624ms (View: 169, DB: 365) | 200 OK [http://localhost/loja/remover_produto_lista_compras/4]
+
+
+Processing LojaController#remover_produto_lista_compras (for 127.0.0.1 at 2009-07-07 17:40:12) [POST]
+  Session ID: 02438ce30124044f2a863ea6828cb323
+  Parameters: {"authenticity_token"=>"c136d850b0557a48c84e7b6de0977f4fe58f87b7", "id"=>"8"}
+  [4;36;1mPedido Load (1.1ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 2) [0m
+  [4;35;1mUnidadeVenda Load (2.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (1.6ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = '8') LIMIT 1[0m
+  [4;35;1mPedidoItem Load (1.1ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items"."produto_id" = '8' AND "pedido_items"."pedido_id" = '2') LIMIT 1[0m
+  [4;36;1mPedidoItem Delete all (414.6ms)[0m   [0;1mDELETE FROM "pedido_items" WHERE ("id" IN (2)) [0m
+Rendering loja/adiciona_produto_lista_compras.rjs
+Rendered loja/_selecao_produto (5.7ms)
+  [4;35;1mPedidoItem Load (0.8ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 2) [0m
+Rendered loja/_listagem_compras (6.5ms)
+  [4;36;1mPedidoPagamento Load (0.7ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 2) [0m
+Rendered loja/_resumo_pagamento (40.2ms)
+Completed in 636ms (View: 113, DB: 425) | 200 OK [http://localhost/loja/remover_produto_lista_compras/8]
+
+
+Processing LojaController#finalizar_pedido (for 127.0.0.1 at 2009-07-07 17:41:21) [POST]
+  Session ID: 02438ce30124044f2a863ea6828cb323
+  Parameters: {"commit"=>"Finalizar", "authenticity_token"=>"c136d850b0557a48c84e7b6de0977f4fe58f87b7"}
+  [4;35;1mPedido Load (1.6ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 2) [0m
+Redirected to actionindex
+Completed in 49ms (DB: 5) | 302 Found [http://localhost/loja/finalizar_pedido]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-07 17:41:21) [GET]
+  Session ID: 02438ce30124044f2a863ea6828cb323
+  [4;36;1mPedido Create (2.0ms)[0m   [0;1mINSERT INTO "pedidos" ("numero_mesa", "data_abertura", "created_at", "updated_at", "quantidade_pessoas", "data_finalizacao", "status") VALUES(NULL, NULL, '2009-07-07 20:41:21', '2009-07-07 20:41:21', NULL, NULL, 'A')[0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (8.5ms)
+  [4;35;1mPedidoItem Load (0.6ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 3) [0m
+Rendered loja/_listagem_compras (40.3ms)
+Rendered loja/_adiciona_pagamento (5.7ms)
+  [4;36;1mPedidoPagamento Load (0.7ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 3) [0m
+Rendered loja/_resumo_pagamento (35.8ms)
+Completed in 342ms (View: 193, DB: 4) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#autocomplete_novo_item (for 127.0.0.1 at 2009-07-07 17:52:59) [POST]
+  Session ID: 02438ce30124044f2a863ea6828cb323
+  Parameters: {"compras"=>{"novo_item"=>"trak"}}
+  [4;35;1mPedido Load (1.0ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 3) [0m
+  [4;36;1mUnidadeVenda Load (1.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.7ms)[0m   [0mSELECT * FROM "produtos" WHERE (descricao like 'trak%') ORDER BY descricao[0m
+Rendering loja/autocomplete_novo_item
+Completed in 72ms (View: 6, DB: 6) | 200 OK [http://localhost/loja/autocomplete_novo_item]
+
+
+Processing LojaController#autocomplete_novo_item (for 127.0.0.1 at 2009-07-07 17:53:02) [POST]
+  Session ID: 02438ce30124044f2a863ea6828cb323
+  Parameters: {"compras"=>{"novo_item"=>"trak"}}
+  [4;36;1mPedido Load (1.0ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 3) [0m
+  [4;35;1mUnidadeVenda Load (2.5ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.8ms)[0m   [0;1mSELECT * FROM "produtos" WHERE (descricao like 'trak%') ORDER BY descricao[0m
+Rendering loja/autocomplete_novo_item
+Completed in 77ms (View: 5, DB: 7) | 200 OK [http://localhost/loja/autocomplete_novo_item]
+
+
+Processing LojaController#autocomplete_novo_item (for 127.0.0.1 at 2009-07-07 17:53:08) [POST]
+  Session ID: 02438ce30124044f2a863ea6828cb323
+  Parameters: {"compras"=>{"novo_item"=>"trak"}}
+  [4;35;1mPedido Load (1.0ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 3) [0m
+  [4;36;1mUnidadeVenda Load (1.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.7ms)[0m   [0mSELECT * FROM "produtos" WHERE (descricao like 'trak%') ORDER BY descricao[0m
+Rendering loja/autocomplete_novo_item
+Completed in 61ms (View: 4, DB: 6) | 200 OK [http://localhost/loja/autocomplete_novo_item]
+
+
+Processing LojaController#autocomplete_novo_item (for 127.0.0.1 at 2009-07-07 17:55:39) [POST]
+  Session ID: 02438ce30124044f2a863ea6828cb323
+  Parameters: {"compras"=>{"novo_item"=>"traktex"}}
+  [4;36;1mPedido Load (1.0ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 3) [0m
+  [4;35;1mUnidadeVenda Load (5.5ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.6ms)[0m   [0;1mSELECT * FROM "produtos" WHERE (descricao like 'traktex%') ORDER BY descricao[0m
+Rendering loja/autocomplete_novo_item
+Completed in 71ms (View: 4, DB: 10) | 200 OK [http://localhost/loja/autocomplete_novo_item]
+
+
+Processing LojaController#autocomplete_novo_item (for 127.0.0.1 at 2009-07-07 17:55:41) [POST]
+  Session ID: 02438ce30124044f2a863ea6828cb323
+  Parameters: {"compras"=>{"novo_item"=>"traktex"}}
+  [4;35;1mPedido Load (1.7ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 3) [0m
+  [4;36;1mUnidadeVenda Load (2.9ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (1.0ms)[0m   [0mSELECT * FROM "produtos" WHERE (descricao like 'traktex%') ORDER BY descricao[0m
+Rendering loja/autocomplete_novo_item
+Completed in 107ms (View: 6, DB: 8) | 200 OK [http://localhost/loja/autocomplete_novo_item]
+
+
+Processing LojaController#autocomplete_novo_item (for 127.0.0.1 at 2009-07-07 17:55:57) [POST]
+  Session ID: 02438ce30124044f2a863ea6828cb323
+  Parameters: {"compras"=>{"novo_item"=>"traktex"}}
+  [4;36;1mPedido Load (1.1ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 3) [0m
+  [4;35;1mUnidadeVenda Load (1.6ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.7ms)[0m   [0;1mSELECT * FROM "produtos" WHERE (descricao like 'traktex%') ORDER BY descricao[0m
+Rendering loja/autocomplete_novo_item
+Completed in 62ms (View: 4, DB: 6) | 200 OK [http://localhost/loja/autocomplete_novo_item]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-07 18:40:20) [GET]
+  Session ID: 02438ce30124044f2a863ea6828cb323
+  [4;35;1mPedido Load (1.6ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 3) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (5.1ms)
+  [4;36;1mPedidoItem Load (0.6ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 3) [0m
+Rendered loja/_listagem_compras (27.5ms)
+Rendered loja/_adiciona_pagamento (4.9ms)
+  [4;35;1mPedidoPagamento Load (0.8ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 3) [0m
+Rendered loja/_resumo_pagamento (45.7ms)
+Completed in 190ms (View: 152, DB: 4) | 200 OK [http://localhost/loja]
