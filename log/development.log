@@ -8794,3 +8794,54 @@ Rendered loja/_adiciona_pagamento (0.9ms)
   [4;36;1mPedidoPagamento Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 10) [0m
 Rendered loja/_resumo_pagamento (14.3ms)
 Completed in 60ms (View: 53, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-10 21:14:39) [GET]
+  Session ID: 4a22783837dd94100bbe56721491fb0f
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 10) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (1.1ms)
+  [4;35;1mPedidoItem Load (0.4ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 10) [0m
+  [4;36;1mUnidadeVenda Load (0.4ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 20) [0m
+  [4;36;1mProduto Load (0.4ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 8) [0m
+Rendered loja/_listagem_compras (23.7ms)
+Rendered loja/_adiciona_pagamento (1.1ms)
+  [4;35;1mPedidoPagamento Load (0.5ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 10) [0m
+Rendered loja/_resumo_pagamento (19.8ms)
+Completed in 71ms (View: 65, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-10 21:16:23) [GET]
+  Session ID: 4a22783837dd94100bbe56721491fb0f
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 10) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;35;1mPedidoItem Load (0.4ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 10) [0m
+  [4;36;1mUnidadeVenda Load (0.4ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 20) [0m
+  [4;36;1mProduto Load (0.4ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 8) [0m
+Rendered loja/_listagem_compras (85.5ms)
+Rendered loja/_adiciona_pagamento (0.9ms)
+  [4;35;1mPedidoPagamento Load (0.3ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 10) [0m
+Rendered loja/_resumo_pagamento (15.6ms)
+Completed in 124ms (View: 118, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-10 21:16:43) [GET]
+  Session ID: 4a22783837dd94100bbe56721491fb0f
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 10) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;35;1mPedidoItem Load (0.4ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 10) [0m
+  [4;36;1mUnidadeVenda Load (0.3ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.4ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 20) [0m
+  [4;36;1mProduto Load (0.4ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 8) [0m
+Rendered loja/_listagem_compras (21.7ms)
+Rendered loja/_adiciona_pagamento (0.9ms)
+  [4;35;1mPedidoPagamento Load (0.3ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 10) [0m
+Rendered loja/_resumo_pagamento (15.9ms)
+Completed in 61ms (View: 54, DB: 1) | 200 OK [http://localhost/loja]

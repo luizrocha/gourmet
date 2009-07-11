@@ -250,7 +250,7 @@
 #selecao-produto {
 	position: relative;
 	top: 5px;
-	width:600px;
+	width:550px;
 }
 
 #loja fieldset {
@@ -260,7 +260,7 @@
 }
 
 #loja .fieldset-camposprincipais {
-	width:560px;
+	width:500px;
 }
 
 #loja legend {
