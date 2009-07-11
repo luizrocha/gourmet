@@ -33,7 +33,7 @@
 					<td><%= number_to_currency(@pedido.valor_total_com_servico, :unit => "", :delimiter => ".", :separator => ",") %></td>
 				</tr>
 				<tr>
-					<td>Tx Serviço:</td>
+					<td>Tx Serv:</td>
 					<td>R$</td>
 					<td><%= number_to_currency(@pedido.valor_servico, :unit => "", :delimiter => ".", :separator => ",") %></td>
 				</tr>							
@@ -47,11 +47,16 @@
 					<td>R$</td>
 					<td><%= number_to_currency(@pedido.valor_restante, :unit => "", :delimiter => ".", :separator => ",") %></td>
 				</tr>
-				<% if @pedido.valor_pago_de_servico > 0 %>
+				<tr class='campo_realcado'>
+					<td>Pendente c/Serv:</td>
+					<td>R$</td>
+					<td><%= number_to_currency(@pedido.valor_restante_com_servico, :unit => "", :delimiter => ".", :separator => ",") %></td>
+				</tr>				
+				<% if @pedido.valor_pago_servico > 0 %>
 				<tr>
 					<td>Serviço Pago:</td>
 					<td>R$</td>
-					<td><%= number_to_currency(@pedido.valor_pago_de_servico, :unit => "", :delimiter => ".", :separator => ",") %></td>
+					<td><%= number_to_currency(@pedido.valor_pago_servico, :unit => "", :delimiter => ".", :separator => ",") %></td>
 				</tr>				
 				<% end %>
 			</table>

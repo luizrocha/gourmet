@@ -27,7 +27,13 @@ class PedidoItem < ActiveRecord::Base
 
 private
   def calcular_valor_item
-    self.valor_total = (produto.valor_venda * quantidade)
+    #Se nao foi persistido valor unitario - primeira vez que item esta sendo inserido no carrinho
+    #Valor unitario persistido para previnir alteracoes de precos apos o pedido ja estar aberto
+    if ( !read_attribute(:valor_unitario) ) then
+      write_attribute(:valor_unitario, produto.valor_venda)
+    end
+    valor_unitario = read_attribute(:valor_unitario) 
+    write_attribute(:valor_total, valor_unitario * quantidade)
   end
 
 end

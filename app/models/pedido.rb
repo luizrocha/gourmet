@@ -90,9 +90,11 @@ class Pedido < ActiveRecord::Base
 
   def valor_pago_servico
     if (status == "A") then
-	if ( (valor_pago - valor_total) > 0 ) then
+	      if ( (valor_pago - valor_total) > 0 ) then
           return (valor_pago - valor_total)
-      	else
+      	#elsif ( valor_servico > 0 ) then
+      	#  return ( valor_servico )
+    	  else
           return 0
       	end
     else
@@ -107,6 +109,14 @@ class Pedido < ActiveRecord::Base
       return 0
     end
   end
+  
+  def valor_restante_com_servico
+    if ( valor_total_com_servico - valor_pago ) > 0 then
+      return (valor_total_com_servico - valor_pago)
+    else
+      return 0
+    end
+  end    
 
   def valor_pago
     #return pagamentos.sum { |pagamento| pagamento.valor }
@@ -152,6 +162,7 @@ end
 def encerrar_pedido(status)
     write_attribute(:valor_total, valor_total)
     write_attribute(:valor_pago_servico, valor_pago_servico)
+    write_attribute(:valor_pago_total, valor_pago)
     write_attribute(:status, status)
 end
 

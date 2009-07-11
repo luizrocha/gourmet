@@ -11,7 +11,7 @@ class PedidoPagamento < ActiveRecord::Base
   def initialize(valor_inicial)
     super()
     validar_valor(valor_inicial)
-    valor = valor_inicial
+    write_attribute(:valor, valor_inicial)
   end
   
 protected

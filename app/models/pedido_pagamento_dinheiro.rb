@@ -6,7 +6,7 @@ class PedidoPagamentoDinheiro < PedidoPagamento
   end
     
   def descricao
-     return tipo_pagamento.capitalize
+     return "Dinheiro"
   end 
 
 end

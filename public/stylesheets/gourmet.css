@@ -1,75 +1,75 @@
 /* START: Pagina Principal */
 
 #banner {
-background: #9c9;
-padding-top: 8px;
-padding-bottom: 8px;
-border-bottom: 2px solid;
-font: small-caps 30px/30px "Times New Roman", serif;
-color: #284;
-text-align: left;
+	background: #9c9;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	border-bottom: 2px solid;
+	font: small-caps 30px/30px "Times New Roman", serif;
+	color: #284;
+	text-align: left;
 }
 
 #banner img {
-float: left;
-width: 5%;
+	float: left;
+	width: 5%;
 }
 
 #colunas {
-background: #141;
+	background: #141;
 }
 
 #pagina {
-margin-left: 13em;
-padding-top: 1ex;
-padding-left: 2em;
-background: white;
+	margin-left: 13em;
+	padding-top: 1ex;
+	padding-left: 2em;
+	background: white;
 }
 
 #lateral {
-float: left;
-padding-top: 1em;
-padding-left: 1em;
-padding-bottom: 1em;
-width: 8em;
-background: #141;
-text-align: left;
+	float: left;
+	padding-top: 1em;
+	padding-left: 1em;
+	padding-bottom: 1em;
+	width: 8em;
+	background: #141;
+	text-align: left;
 }
 
 #lateral a {
-color: #bfb;
-font-size: large;
+	color: #bfb;
+	font-size: large;
 }
 
 #pagina {
-color: #454;
+	color: #454;
 }
 
 #pagina a {
-color: #363;
+	color: #363;
 }
 
 #pagina h1 {
-font-size: large;
+	font-size: large;
 }
 
 #alertas {
-background: pink none repeat scroll 0 0;
-color: #339955;
-height: 1em;
-margin-left: 0;
-margin-top: 1em;
-padding: 0.5em;
-text-align: center;
-width: 51em;
+	background: pink none repeat scroll 0 0;
+	color: #339955;
+	height: 1em;
+	margin-left: 0;
+	margin-top: 1em;
+	padding: 0.5em;
+	text-align: center;
+	width: 51em;
 }
 
 #errorExplanation {
-background: pink none repeat scroll 0 0;
+	background: pink none repeat scroll 0 0;
 }
 
 .fieldWithErrors {
-background: pink none repeat scroll 0 0;
+	background: pink none repeat scroll 0 0;
 }
 
 /* END: Pagina Principal */
@@ -79,43 +79,43 @@ background: pink none repeat scroll 0 0;
 /* Formulario Cadastros */
 
 #formulario-cadastro fieldset {
-background: #efe;
+	background: #efe;
 }
 
 #formulario-cadastro legend {
-color: #dfd;
-background: #141;
-font-family: sans-serif;
-padding: 0.1em 0.5em;
+	color: #dfd;
+	background: #141;
+	font-family: sans-serif;
+	padding: 0.1em 0.5em;
 }
 
 #formulario-cadastro label {
-width: 10em;
-float: left;
-text-align: right;
-padding-top: 0.2em;
-margin-right: 0.1em;
-display: block;
+	width: 10em;
+	float: left;
+	text-align: right;
+	padding-top: 0.2em;
+	margin-right: 0.1em;
+	display: block;
 }
 
 #formulario-cadastro select, .formulario-cadastro textarea, .formulario-cadastro input {
-margin-left: 0.5em;
+	margin-left: 0.5em;
 }
 
 #formulario-cadastro .submit {
-margin-left: 4em;
+	margin-left: 4em;
 }
 
 #formulario-cadastro div {
-margin: 0.5em 0;
+	margin: 0.5em 0;
 }
 
 #formulario-div-opcoes-radiobuttons label {
-display: inline;
-float: none;
-margin-left: 3cm;
-margin-right: 0.1em;
-width: 10em;
+	display: inline;
+	float: none;
+	margin-left: 3cm;
+	margin-right: 0.1em;
+	width: 10em;
 }
 
 /* END: Formulario Cadastros */
@@ -144,72 +144,72 @@ width: 10em;
 *	Listagens
 ***************************************/
 #listagens-tabela {
-height: 325px;
+	height: 325px;
 }
 
 #listagens-tabela table {
-border-collapse: collapse;
+	border-collapse: collapse;
 }
 
 #listagens-tabela table tr td {
-padding: 1px;
+	padding: 1px;
 }
 
 #listagens-tabela table tr th {
-font-weight: bolder;
-padding-bottom: 1px;
+	font-weight: bolder;
+	padding-bottom: 1px;
 }
 
 #listagens-tabela .lista-coluna-principal {
-text-align: left;
-width: 45%;
+	text-align: left;
+	width: 45%;
 }
 
 #listagens-tabela .lista-coluna-invisivel {
-text-align: left;
-display:none;
-width: 0.1%;
+	text-align: left;
+	display:none;
+	width: 0.1%;
 }
 
 #listagens-tabela .lista-coluna-menor {
-text-align: left;
-width: 5%;
+	text-align: left;
+	width: 5%;
 }
 
 #listagens-tabela .lista-coluna-media {
-text-align: right;
-width: 5%;
+	text-align: right;
+	width: 5%;
 }
 
 #listagens-tabela .lista-acoes {
-font-size: x-small;
-padding-left: 1em;
-text-align: right;
-width: 13%;
+	font-size: x-small;
+	padding-left: 1em;
+	text-align: right;
+	width: 13%;
 }
 
 #listagens-tabela .lista-acoes {
-font-size: x-small;
-text-align: right;
-padding-left: 1em;
+	font-size: x-small;
+	text-align: right;
+	padding-left: 1em;
 }
 
 #listagens-tabela .lista-linha-par {
-background: #eeeeee;
+	background: #eeeeee;
 }
 
 #listagens-tabela .lista-linha-impar {
-background: #bbbbbb;
+	background: #bbbbbb;
 }
 
 #listagens-cabecalho {
-padding-bottom: 16px;
+	padding-bottom: 16px;
 }
 
 #listagens-autocomplete-produto {
-float: right;
-margin-right: 300px;
-margin-top: -5px
+	float: right;
+	margin-right: 300px;
+	margin-top: -5px
 }
 
 /**************************************
@@ -217,72 +217,76 @@ margin-top: -5px
 ***************************************/
 
 #notice {
-background: white none repeat scroll 0 0;
-color: #FFFFFF;
-margin-top: 1em;
-margin-left: 0em;
-padding: 0.5em 0.5em 0.5em 0.5em;
-text-align: center;
-width: 700px;
+	background: white none repeat scroll 0 0;
+	color: #FFFFFF;
+	margin-top: 1em;
+	margin-left: 0em;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	text-align: center;
+	width:560px;
+}
+
+#loja {
+	width:975px;
 }
 
 #loja label {
-width: 10em;
-text-align: right;
-font-size: 18px;
-padding-top: 0.2em;
-margin-right: 0.1em;
+	width: 10em;
+	text-align: right;
+	font-size: 18px;
+	padding-top: 0.2em;
+	margin-right: 0.1em;
 }
 
 #loja select, textarea, input, td {
-margin-left: 0.5em;
-font-size: 15px;
+	margin-left: 0.5em;
+	font-size: 15px;
 }
 
 #loja .submit {
-margin-left: 4em;
+	margin-left: 4em;
 }
 
 #selecao-produto {
-position: relative;
-top: 5px;
+	position: relative;
+	top: 5px;
+	width:600px;
 }
 
 #loja fieldset {
-background: #EEFFEE;
-font-size: 15pt;
-overflow: auto;
-
+	background: #EEFFEE;
+	font-size: 15pt;
+	overflow: auto;
 }
 
 #loja .fieldset-camposprincipais {
-width: 600px;
+	width:560px;
 }
 
 #loja legend {
-color: #dfd;
-background: #141;
-font-family: sans-serif;
-padding: 0.1em 0.5em;
+	color: #dfd;
+	background: #141;
+	font-family: sans-serif;
+	padding: 0.1em 0.5em;
 }
 
 
 #fieldset-selecao-produto{
-height: 85px;
-width: 200px;	
+	height: 85px;
+	width: 200px;	
 }
 
 #selecao-produto-quantidade-item {
-position: relative;
-top: -20px;
-width: 500px;
+	position: relative;
+	top: -20px;
+	width: 500px;
 }
 
 #selecao-produto-busca-item-descricao {
-position: relative;
-left: 27px;
-top: -15px;
-width: 475px;
+	position: relative;
+	left: 27px;
+	top: -15px;
+	width: 475px;
 }
 
 #selecao-produto-botoes-controle{
@@ -293,42 +297,42 @@ width: 475px;
 
 #listagem-compras{
 	margin-top: 10px;
- 	width: 646px;
+	width:600px;
  	height: 276px;
 }
 
 #listagem-compras-divtabela {
-overflow: auto;
-height: 200px;
+	overflow: auto;
+	height: 200px;
 }
 
 #listagem-compras-fieldset {
-height: 250px;
+	height: 250px;
 }
 
 #listagem-compras-tabela .descricao {
-width: 350px;
-text-align: left;
+	width: 310px;
+	text-align: left;
 }
 
 #listagem-compras-tabela .valor {
-width: 50px;
-text-align: right;
+	width: 50px;
+	text-align: right;
 }
 
 #listagem-compras-tabela .quantidade {
-width: 60px;
-text-align: right;
+	width: 50px;
+	text-align: right;
 }
 
 #listagem-compras-tabela .valor-total-item {
-width: 60px;
-text-align: right;
+	width: 70px;
+	text-align: right;
 }
 
 #listagem-compras-tabela .acoes {
-width: 10px;
-text-align: left;
+	width: 10px;
+	text-align: left;
 }
 
 #listagem-compras-tabela form {
@@ -347,14 +351,15 @@ text-align: left;
 }
 
 #listagem-compras-tabela .valor-total {
-text-align: right;
-font-weight: bold;
+	text-align: right;
+	font-weight: bold;
 }
 
 #adiciona_pagamento {
-position: absolute;
-top: 112px;
-left: 6px;
+	position: absolute;
+	top: 112px;
+	left: 6px;
+	width:600px;
 }
 
 #pagamento_complementos {
@@ -385,12 +390,11 @@ left: 6px;
 }
 
 #loja .fieldset-camposlaterais{
-	width: 320px;
+	width: 345px;
 	height: 366px;
 	float: right;
 	position:relative;
 	top: -392px;
-	right:35px;
 }
 
 #resumo-pagamento-divtabela {
@@ -399,13 +403,13 @@ left: 6px;
 }
 
 #resumo-pagamento-tabela .descricao {
-width: 350px;
-text-align: left;
+	width: 300px;
+	text-align: left;
 }
 
 #resumo-pagamento-tabela .valor {
-width: 50px;
-text-align: right;
+	width: 30px;
+	text-align: right;
 }
 
 #resumo-pagamento-divtotal {
@@ -445,29 +449,29 @@ text-align: right;
 ***************************************/
 
 div.auto_complete {
-width: 350px;
-background: #fff ;
+	width: 350px;
+	background: #fff ;
 }
 
 div.auto_complete ul {
-border: 1px solid #888 ;
-margin: 0;
-padding: 0;
-width: 100%;
-list-style-type: none;
+	border: 1px solid #888 ;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	list-style-type: none;
 }
 
 div.auto_complete ul li {
-margin: 0;
-padding: 3px;
+	margin: 0;
+	padding: 3px;
 }
 
 div.auto_complete ul li.selected {
-background-color: #ffb ;
+	background-color: #ffb ;
 }
 
 div.auto_complete ul strong.highlight {
-color: #800 ;
-margin: 0;
-padding: 0;
+	color: #800 ;
+	margin: 0;
+	padding: 0;
 }
