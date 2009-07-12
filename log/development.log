@@ -8845,3 +8845,131 @@ Rendered loja/_adiciona_pagamento (0.9ms)
   [4;35;1mPedidoPagamento Load (0.3ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 10) [0m
 Rendered loja/_resumo_pagamento (15.9ms)
 Completed in 61ms (View: 54, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing ProdutosController#index (for 127.0.0.1 at 2009-07-12 01:10:12) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;36;1mUnidadeVenda Load (0.4ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (2.3ms)[0m   [0mSELECT * FROM "produtos" ORDER BY descricao LIMIT 12 OFFSET 0[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "produtos" [0m
+Rendering template within layouts/gourmet
+Rendering produtos/index
+Rendered produtos/_lista_produto_autocomplete (1.0ms)
+Rendered produtos/_lista_produto_alphabox (5.3ms)
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 2) [0m
+  [4;36;1mUnidadeVenda Load (0.2ms)[0m   [0;1mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 2) [0m
+Rendered produtos/_lista_produto (23.4ms)
+Rendered produtos/_lista_produto_paginacao (0.6ms)
+Completed in 76ms (View: 44, DB: 4) | 200 OK [http://localhost/]
+
+
+Processing ProdutosController#por_descricao (for 127.0.0.1 at 2009-07-12 01:10:14) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"produto"=>{"descricao"=>"l"}}
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (1.0ms)[0m   [0;1mSELECT * FROM "produtos" WHERE (descricao like 'l%') ORDER BY descricao[0m
+Rendering produtos/renderiza_autocomplete_descricao.html.erb
+Completed in 32ms (View: 23, DB: 2) | 200 OK [http://localhost/produtos/por_descricao]
+
+
+Processing ProdutosController#por_descricao (for 127.0.0.1 at 2009-07-12 01:10:14) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"produto"=>{"descricao"=>"l"}}
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (1.0ms)[0m   [0;1mSELECT * FROM "produtos" WHERE (descricao like 'l%') ORDER BY descricao[0m
+Rendering produtos/renderiza_autocomplete_descricao.html.erb
+Completed in 13ms (View: 4, DB: 2) | 200 OK [http://localhost/produtos/por_descricao]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 01:10:15) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Create (0.7ms)[0m   [0mINSERT INTO "pedidos" ("status", "data_abertura", "updated_at", "numero_mesa", "valor_pago_total", "quantidade_pessoas", "data_finalizacao", "valor_total", "valor_pago_servico", "created_at") VALUES('A', NULL, '2009-07-12 04:10:15', NULL, NULL, NULL, NULL, NULL, NULL, '2009-07-12 04:10:15')[0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (1.1ms)
+  [4;36;1mPedidoItem Load (21.5ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+Rendered loja/_listagem_compras (46.8ms)
+Rendered loja/_adiciona_pagamento (1.2ms)
+  [4;35;1mPedidoPagamento Load (0.5ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (19.8ms)
+Completed in 170ms (View: 122, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 01:14:05) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (1.0ms)
+  [4;35;1mPedidoItem Load (0.2ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+Rendered loja/_listagem_compras (3.8ms)
+Rendered loja/_adiciona_pagamento (0.9ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (9.2ms)
+Completed in 39ms (View: 30, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 01:14:35) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+Rendered loja/_listagem_compras (4.1ms)
+Rendered loja/_adiciona_pagamento (1.0ms)
+  [4;35;1mPedidoPagamento Load (0.3ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (10.7ms)
+Completed in 40ms (View: 32, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 01:15:42) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;35;1mPedidoItem Load (0.2ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+Rendered loja/_listagem_compras (4.4ms)
+Rendered loja/_adiciona_pagamento (1.1ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (9.8ms)
+Completed in 40ms (View: 33, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 01:16:22) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+Rendered loja/_listagem_compras (4.1ms)
+Rendered loja/_adiciona_pagamento (0.9ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (9.5ms)
+Completed in 37ms (View: 30, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 01:16:26) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.9ms)
+  [4;35;1mPedidoItem Load (0.2ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+Rendered loja/_listagem_compras (3.9ms)
+Rendered loja/_adiciona_pagamento (0.9ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (9.1ms)
+Completed in 36ms (View: 30, DB: 1) | 200 OK [http://localhost/loja]
