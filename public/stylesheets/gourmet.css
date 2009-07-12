@@ -227,7 +227,7 @@
 }
 
 #loja {
-	width:975px;
+	width:920px;
 }
 
 #loja label {
@@ -297,7 +297,7 @@
 
 #listagem-compras{
 	margin-top: 10px;
-	width:600px;
+	width:550px;
  	height: 276px;
 }
 
@@ -359,7 +359,7 @@
 	position: absolute;
 	top: 112px;
 	left: 6px;
-	width:600px;
+	width:550px;
 }
 
 #pagamento_complementos {
