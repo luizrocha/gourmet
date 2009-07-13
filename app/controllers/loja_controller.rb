@@ -41,15 +41,19 @@ class LojaController < ApplicationController
   def selecionar_item
     items = (session[:items] ||= Hash.new)
     id = params[:id]
-    #Verifica se Item esta selecionado. Se estiver, de-seleciona
+    #Verifica se Item esta selecionado. Se estiver, remove-o do array dos selecionados
     if (items[id] and items[id] == true) then
       #Item ja esta na lista de selecionados, remover
       items[id] = nil
-
+      puts("Item Removido do Array dos Selecionados: "+params[:id])
+    #Senao, adiciona-o no array dos selecionados
+    else
+      items[id] = true
+      puts("Item Inserido no Array dos Selecionados: "+params[:id])
+    end
     session[:items] = items
-    
-    
-    puts("Item Selecionado: "+params[:id])
+    #Re-Calcular Valores parciais
+    #@pedido.calcular_valores_parciais(items)
     respond_to do |format|
       format.js {render :layout=>false, :template => "loja/adiciona_produto_lista_compras.rjs"}
     end
