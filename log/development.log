@@ -8973,3 +8973,1821 @@ Rendered loja/_adiciona_pagamento (0.9ms)
   [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
 Rendered loja/_resumo_pagamento (9.1ms)
 Completed in 36ms (View: 30, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 02:22:37) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (1.0ms)
+  [4;35;1mPedidoItem Load (0.2ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+Rendered loja/_listagem_compras (4.3ms)
+Rendered loja/_adiciona_pagamento (1.2ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (23.0ms)
+Completed in 54ms (View: 47, DB: 0) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#autocomplete_novo_item (for 127.0.0.1 at 2009-07-12 02:23:14) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"compras"=>{"novo_item"=>"bet"}}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.3ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.9ms)[0m   [0mSELECT * FROM "produtos" WHERE (descricao like 'bet%') ORDER BY descricao[0m
+Rendering loja/autocomplete_novo_item
+Completed in 17ms (View: 4, DB: 2) | 200 OK [http://localhost/loja/autocomplete_novo_item]
+
+
+Processing LojaController#adiciona_produto_lista_compras (for 127.0.0.1 at 2009-07-12 02:23:15) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"descricao_item"=>"Beterraba", "authenticity_token"=>"18694f0f8b9836a93f2b1d22e2d09ca925c87b3c", "quantidade_item"=>"1", "modo_edicao"=>"false"}
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.4ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."descricao" = 'Beterraba') LIMIT 1[0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 2) [0m
+  [4;36;1mPedidoItem Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items"."pedido_id" = '11' AND "pedido_items"."produto_id" = '4') LIMIT 1[0m
+  [4;35;1mPedidoItem Create (0.4ms)[0m   [0mINSERT INTO "pedido_items" ("updated_at", "produto_id", "valor_unitario", "quantidade", "valor_total", "pedido_id", "created_at") VALUES('2009-07-12 05:23:15', 4, 0.78, 1, 0.78, 11, '2009-07-12 05:23:15')[0m
+Rendering loja/adiciona_produto_lista_compras
+Rendered loja/_selecao_produto (0.9ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+
+
+ActionView::TemplateError (undefined method `pedido_item_path' for #<ActionView::Base:0x217143c>) on line #17 of app/views/loja/_listagem_compras.html.erb:
+14: 		<table id="listagem-compras-tabela">
+15: 		<% for item in @pedido.items %>
+16: 		<tr>
+17: 			<td class="selecao"><%= button_to 'a', item, :method => "get" %></td>
+18: 			<td class="descricao"><%= item.descricao %></td>
+19: 			<td class="valor"><%= number_to_currency(item.valor_unitario, :unit => "", :delimiter => ".", :separator => ",") %></td>
+20: 			<td class="quantidade"><%= item.quantidade %></td>
+
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/polymorphic_routes.rb:112:in `__send__'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/polymorphic_routes.rb:112:in `polymorphic_url'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/polymorphic_routes.rb:119:in `polymorphic_path'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/url_helper.rb:91:in `url_for'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/url_helper.rb:306:in `button_to'
+    app/views/loja/_listagem_compras.html.erb:17
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_collection.rb:359:in `method_missing_without_paginate'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `method_missing'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `each'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `send'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `method_missing'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_collection.rb:359:in `method_missing_without_paginate'
+    /Users/luizrocha/.gem/ruby/1.8/gems/mislav-will_paginate-2.2.3/lib/will_paginate/finder.rb:164:in `method_missing'
+    app/views/loja/_listagem_compras.html.erb:15
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:152:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/prototype_helper.rb:1002:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/prototype_helper.rb:767:in `replace_html'
+    app/views/loja/adiciona_produto_lista_compras.rjs:12:in `__instance_exec0'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/object/extending.rb:74:in `send'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/object/extending.rb:74:in `instance_exec'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/prototype_helper.rb:587:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/capture_helper.rb:129:in `with_output_buffer'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/prototype_helper.rb:586:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/prototype_helper.rb:1038:in `new'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/prototype_helper.rb:1038:in `update_page'
+    app/views/loja/adiciona_produto_lista_compras.rjs:1
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:256:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1174:in `render_for_file'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:905:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:135:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:135:in `custom'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:164:in `call'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:164:in `respond'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:158:in `each'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:158:in `respond'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/mime_responds.rb:107:in `respond_to'
+    app/controllers/loja_controller.rb:36:in `adiciona_produto_lista_compras'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (118.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (1.1ms)
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 02:57:43) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.produto) on line #17 of app/views/loja/_listagem_compras.html.erb:
+14: 		<table id="listagem-compras-tabela">
+15: 		<% for item in @pedido.items %>
+16: 		<tr>
+17: 			<td class="selecao"><%= button_to_remote 'S', { :action => "selecionar_item", :id => @item.produto.id } %></td>
+18: 			<td class="descricao"><%= item.descricao %></td>
+19: 			<td class="valor"><%= number_to_currency(item.valor_unitario, :unit => "", :delimiter => ".", :separator => ",") %></td>
+20: 			<td class="quantidade"><%= item.quantidade %></td>
+
+    app/views/loja/_listagem_compras.html.erb:17
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_collection.rb:359:in `method_missing_without_paginate'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `method_missing'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `each'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `send'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `method_missing'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_collection.rb:359:in `method_missing_without_paginate'
+    /Users/luizrocha/.gem/ruby/1.8/gems/mislav-will_paginate-2.2.3/lib/will_paginate/finder.rb:164:in `method_missing'
+    app/views/loja/_listagem_compras.html.erb:15
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:152:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render'
+    app/views/loja/index.html.erb:5
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:256:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:367:in `_render_with_layout'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:254:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1174:in `render_for_file'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:896:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:868:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1248:in `default_render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1254:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (113.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (0.9ms)
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 02:57:45) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.produto) on line #17 of app/views/loja/_listagem_compras.html.erb:
+14: 		<table id="listagem-compras-tabela">
+15: 		<% for item in @pedido.items %>
+16: 		<tr>
+17: 			<td class="selecao"><%= button_to_remote 'S', { :action => "selecionar_item", :id => @item.produto.id } %></td>
+18: 			<td class="descricao"><%= item.descricao %></td>
+19: 			<td class="valor"><%= number_to_currency(item.valor_unitario, :unit => "", :delimiter => ".", :separator => ",") %></td>
+20: 			<td class="quantidade"><%= item.quantidade %></td>
+
+    app/views/loja/_listagem_compras.html.erb:17
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_collection.rb:359:in `method_missing_without_paginate'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `method_missing'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `each'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `send'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `method_missing'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_collection.rb:359:in `method_missing_without_paginate'
+    /Users/luizrocha/.gem/ruby/1.8/gems/mislav-will_paginate-2.2.3/lib/will_paginate/finder.rb:164:in `method_missing'
+    app/views/loja/_listagem_compras.html.erb:15
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:152:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render'
+    app/views/loja/index.html.erb:5
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:256:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:367:in `_render_with_layout'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:254:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1174:in `render_for_file'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:896:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:868:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1248:in `default_render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1254:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (49.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (0.8ms)
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 02:57:46) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.produto) on line #17 of app/views/loja/_listagem_compras.html.erb:
+14: 		<table id="listagem-compras-tabela">
+15: 		<% for item in @pedido.items %>
+16: 		<tr>
+17: 			<td class="selecao"><%= button_to_remote 'S', { :action => "selecionar_item", :id => @item.produto.id } %></td>
+18: 			<td class="descricao"><%= item.descricao %></td>
+19: 			<td class="valor"><%= number_to_currency(item.valor_unitario, :unit => "", :delimiter => ".", :separator => ",") %></td>
+20: 			<td class="quantidade"><%= item.quantidade %></td>
+
+    app/views/loja/_listagem_compras.html.erb:17
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_collection.rb:359:in `method_missing_without_paginate'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `method_missing'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `each'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `send'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `method_missing'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_collection.rb:359:in `method_missing_without_paginate'
+    /Users/luizrocha/.gem/ruby/1.8/gems/mislav-will_paginate-2.2.3/lib/will_paginate/finder.rb:164:in `method_missing'
+    app/views/loja/_listagem_compras.html.erb:15
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:152:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render'
+    app/views/loja/index.html.erb:5
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:256:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:367:in `_render_with_layout'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:254:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1174:in `render_for_file'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:896:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:868:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1248:in `default_render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1254:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (45.5ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (0.8ms)
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 02:57:47) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.produto) on line #17 of app/views/loja/_listagem_compras.html.erb:
+14: 		<table id="listagem-compras-tabela">
+15: 		<% for item in @pedido.items %>
+16: 		<tr>
+17: 			<td class="selecao"><%= button_to_remote 'S', { :action => "selecionar_item", :id => @item.produto.id } %></td>
+18: 			<td class="descricao"><%= item.descricao %></td>
+19: 			<td class="valor"><%= number_to_currency(item.valor_unitario, :unit => "", :delimiter => ".", :separator => ",") %></td>
+20: 			<td class="quantidade"><%= item.quantidade %></td>
+
+    app/views/loja/_listagem_compras.html.erb:17
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_collection.rb:359:in `method_missing_without_paginate'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `method_missing'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `each'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `send'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `method_missing'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_collection.rb:359:in `method_missing_without_paginate'
+    /Users/luizrocha/.gem/ruby/1.8/gems/mislav-will_paginate-2.2.3/lib/will_paginate/finder.rb:164:in `method_missing'
+    app/views/loja/_listagem_compras.html.erb:15
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:152:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render'
+    app/views/loja/index.html.erb:5
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:256:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:367:in `_render_with_layout'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:254:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1174:in `render_for_file'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:896:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:868:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1248:in `default_render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1254:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (45.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (0.8ms)
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 02:57:48) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.produto) on line #17 of app/views/loja/_listagem_compras.html.erb:
+14: 		<table id="listagem-compras-tabela">
+15: 		<% for item in @pedido.items %>
+16: 		<tr>
+17: 			<td class="selecao"><%= button_to_remote 'S', { :action => "selecionar_item", :id => @item.produto.id } %></td>
+18: 			<td class="descricao"><%= item.descricao %></td>
+19: 			<td class="valor"><%= number_to_currency(item.valor_unitario, :unit => "", :delimiter => ".", :separator => ",") %></td>
+20: 			<td class="quantidade"><%= item.quantidade %></td>
+
+    app/views/loja/_listagem_compras.html.erb:17
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_collection.rb:359:in `method_missing_without_paginate'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `method_missing'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `each'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `send'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_proxy.rb:212:in `method_missing'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/associations/association_collection.rb:359:in `method_missing_without_paginate'
+    /Users/luizrocha/.gem/ruby/1.8/gems/mislav-will_paginate-2.2.3/lib/will_paginate/finder.rb:164:in `method_missing'
+    app/views/loja/_listagem_compras.html.erb:15
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:152:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render'
+    app/views/loja/index.html.erb:5
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:256:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:367:in `_render_with_layout'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:254:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1174:in `render_for_file'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:896:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:868:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1248:in `default_render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1254:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (46.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (0.7ms)
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 02:58:00) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (89.5ms)
+Rendered loja/_adiciona_pagamento (1.0ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.9ms)
+Completed in 122ms (View: 116, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:00:04) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;35;1mPedidoItem Load (0.3ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.3ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (19.4ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.6ms)
+Completed in 51ms (View: 45, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:00:04) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (19.0ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.4ms)
+Completed in 50ms (View: 44, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:16:28) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;35;1mPedidoItem Load (0.4ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.4ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (21.0ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.3ms)
+Completed in 118ms (View: 46, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:16:33) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (18.8ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.8ms)
+Completed in 50ms (View: 44, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:37:44) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;35;1mPedidoItem Load (0.3ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.3ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.7ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (19.7ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (67.6ms)
+Completed in 110ms (View: 104, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:37:46) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (19.8ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.4ms)
+Completed in 51ms (View: 44, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:37:47) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.7ms)
+  [4;35;1mPedidoItem Load (0.3ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.3ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (18.9ms)
+Rendered loja/_adiciona_pagamento (0.9ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.2ms)
+Completed in 50ms (View: 44, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:37:47) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.4ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (81.7ms)
+Rendered loja/_adiciona_pagamento (0.9ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (9.3ms)
+Completed in 114ms (View: 107, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:37:48) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;35;1mPedidoItem Load (0.3ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.3ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (19.2ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.4ms)
+Completed in 51ms (View: 44, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:37:48) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (18.8ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.3ms)
+Completed in 50ms (View: 43, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:38:26) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;35;1mPedidoItem Load (0.3ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.4ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (84.9ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.8ms)
+Completed in 117ms (View: 110, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:38:26) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (19.4ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.7ms)
+Completed in 52ms (View: 46, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:38:27) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;35;1mPedidoItem Load (0.3ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.3ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (19.5ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.8ms)
+Completed in 51ms (View: 45, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:38:28) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (20.1ms)
+Rendered loja/_adiciona_pagamento (0.9ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.8ms)
+Completed in 52ms (View: 45, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:38:28) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (1.7ms)
+  [4;35;1mPedidoItem Load (0.3ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.3ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (18.8ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.2ms)
+Completed in 51ms (View: 45, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:38:57) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (19.6ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.6ms)
+Completed in 51ms (View: 44, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 03:39:08) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;35;1mPedidoItem Load (0.3ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.3ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (19.3ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.9ms)
+Completed in 52ms (View: 45, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 17:45:14) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (18.8ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.2ms)
+Completed in 50ms (View: 43, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 17:49:53) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;35;1mPedidoItem Load (0.3ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.4ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.4ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (86.2ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.9ms)
+Completed in 118ms (View: 111, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 17:50:00) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (19.3ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.7ms)
+Completed in 52ms (View: 45, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 17:50:01) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;36;1mPedido Load (0.2ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;35;1mPedidoItem Load (0.3ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.4ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (19.0ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.5ms)
+Completed in 50ms (View: 44, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 17:50:02) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (20.7ms)
+Rendered loja/_adiciona_pagamento (0.9ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (9.0ms)
+Completed in 53ms (View: 46, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 17:50:03) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;35;1mPedidoItem Load (0.3ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.3ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (19.1ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.5ms)
+Completed in 51ms (View: 44, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 17:50:56) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (1.5ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (22.5ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (69.8ms)
+Completed in 123ms (View: 115, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 17:50:57) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;35;1mPedidoItem Load (0.3ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.3ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (19.6ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.4ms)
+Completed in 51ms (View: 44, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 17:51:06) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+Rendered loja/_listagem_compras (19.1ms)
+Rendered loja/_adiciona_pagamento (0.9ms)
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.8ms)
+Completed in 51ms (View: 45, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#autocomplete_novo_item (for 127.0.0.1 at 2009-07-12 17:51:10) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"compras"=>{"novo_item"=>"cerv"}}
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.8ms)[0m   [0;1mSELECT * FROM "produtos" WHERE (descricao like 'cerv%') ORDER BY descricao[0m
+Rendering loja/autocomplete_novo_item
+Completed in 17ms (View: 4, DB: 2) | 200 OK [http://localhost/loja/autocomplete_novo_item]
+
+
+Processing LojaController#adiciona_produto_lista_compras (for 127.0.0.1 at 2009-07-12 17:51:11) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"descricao_item"=>"Cerveja Skol", "authenticity_token"=>"18694f0f8b9836a93f2b1d22e2d09ca925c87b3c", "quantidade_item"=>"1", "modo_edicao"=>"false"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+  [4;36;1mUnidadeVenda Load (0.4ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.4ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."descricao" = 'Cerveja Skol') LIMIT 1[0m
+  [4;36;1mUnidadeVenda Load (0.2ms)[0m   [0;1mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;35;1mPedidoItem Load (0.2ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items"."pedido_id" = '11' AND "pedido_items"."produto_id" = '21') LIMIT 1[0m
+  [4;36;1mPedidoItem Create (0.4ms)[0m   [0;1mINSERT INTO "pedido_items" ("updated_at", "produto_id", "valor_unitario", "quantidade", "valor_total", "pedido_id", "created_at") VALUES('2009-07-12 20:51:11', 21, 5.0, 1, 5.0, 11, '2009-07-12 20:51:11')[0m
+Rendering loja/adiciona_produto_lista_compras
+Rendered loja/_selecao_produto (0.9ms)
+  [4;35;1mPedidoItem Load (0.4ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.4ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (8.3ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (9.1ms)
+Completed in 69ms (View: 34, DB: 4) | 200 OK [http://localhost/loja/adiciona_produto_lista_compras]
+
+
+Processing ProdutosController#index (for 127.0.0.1 at 2009-07-12 17:53:27) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (2.0ms)[0m   [0;1mSELECT * FROM "produtos" ORDER BY descricao LIMIT 12 OFFSET 0[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "produtos" [0m
+Rendering template within layouts/gourmet
+Rendering produtos/index
+Rendered produtos/_lista_produto_autocomplete (0.8ms)
+Rendered produtos/_lista_produto_alphabox (5.5ms)
+  [4;36;1mUnidadeVenda Load (0.3ms)[0m   [0;1mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 2) [0m
+  [4;35;1mUnidadeVenda Load (0.2ms)[0m   [0mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "unidade_vendas" WHERE ("unidade_vendas"."id" = 2) [0m
+Rendered produtos/_lista_produto (18.9ms)
+Rendered produtos/_lista_produto_paginacao (0.6ms)
+Completed in 49ms (View: 36, DB: 4) | 200 OK [http://localhost/]
+
+
+Processing LojaController#adiciona_produto_lista_compras (for 127.0.0.1 at 2009-07-12 17:54:04) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+
+
+TypeError (can't convert nil into String):
+    /app/controllers/loja_controller.rb:18:in `new'
+    /app/controllers/loja_controller.rb:18:in `adiciona_produto_lista_compras'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (95.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (1.0ms)
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 18:00:44) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.4ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.4ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.4ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (23.8ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (9.4ms)
+Completed in 61ms (View: 52, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 18:00:46) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.7ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (21.5ms)
+Rendered loja/_adiciona_pagamento (0.9ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.7ms)
+Completed in 54ms (View: 48, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 18:01:14) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (23.4ms)
+Rendered loja/_adiciona_pagamento (1.7ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (8.9ms)
+Completed in 117ms (View: 50, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 18:01:26) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.4ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.4ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.4ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (22.7ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.2ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (10.1ms)
+Completed in 58ms (View: 49, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#adiciona_pagamento (for 127.0.0.1 at 2009-07-12 18:01:39) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"prepago_id"=>"", "commit"=>"Confirmar", "nome"=>"", "authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b", "valor"=>"10,00", "cliente_id"=>"", "apartamento"=>"", "tipo_pagamento"=>"Dinheiro", "bandeira_cartao"=>"VisaDebito", "montante"=>"0,00", "bloco"=>""}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mPedidoPagamento Load (0.2ms)[0m   [0mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+  [4;36;1mPedidoPagamentoDinheiro Create (0.4ms)[0m   [0;1mINSERT INTO "pedido_pagamentos" ("cancelado", "updated_at", "cartao", "type", "valor", "cliente_id", "pedido_id", "created_at") VALUES('f', '2009-07-12 21:01:39', NULL, 'PedidoPagamentoDinheiro', 10.0, NULL, 11, '2009-07-12 21:01:39')[0m
+Rendering loja/adiciona_pagamento
+  [4;35;1mUnidadeVenda Load (0.5ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_resumo_pagamento (77.4ms)
+Rendered loja/_listagem_compras (4.2ms)
+Completed in 134ms (View: 106, DB: 4) | 200 OK [http://localhost/loja/adiciona_pagamento]
+
+
+Processing LojaController#adiciona_pagamento (for 127.0.0.1 at 2009-07-12 18:01:39) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"prepago_id"=>"", "commit"=>"Confirmar", "nome"=>"", "authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b", "valor"=>"10,00", "cliente_id"=>"", "apartamento"=>"", "tipo_pagamento"=>"Dinheiro", "bandeira_cartao"=>"VisaDebito", "montante"=>"0,00", "bloco"=>""}
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+  [4;35;1mPedidoItem Load (0.4ms)[0m   [0mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;36;1mPedidoPagamento Load (0.3ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+  [4;35;1mPedidoPagamentoDinheiro Create (0.4ms)[0m   [0mINSERT INTO "pedido_pagamentos" ("cancelado", "updated_at", "cartao", "type", "valor", "cliente_id", "pedido_id", "created_at") VALUES('f', '2009-07-12 21:01:39', NULL, 'PedidoPagamentoDinheiro', 10.0, NULL, 11, '2009-07-12 21:01:39')[0m
+Rendering loja/adiciona_pagamento
+  [4;36;1mUnidadeVenda Load (0.5ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_resumo_pagamento (20.7ms)
+Rendered loja/_listagem_compras (3.9ms)
+Completed in 67ms (View: 35, DB: 3) | 200 OK [http://localhost/loja/adiciona_pagamento]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 18:02:26) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.4ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (22.2ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (15.9ms)
+Completed in 61ms (View: 54, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 18:02:37) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (21.9ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (15.7ms)
+Completed in 61ms (View: 54, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 18:02:38) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (22.2ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (16.2ms)
+Completed in 61ms (View: 55, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 18:05:46) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.4ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (86.0ms)
+Rendered loja/_adiciona_pagamento (1.3ms)
+  [4;36;1mPedidoPagamento Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (15.5ms)
+Completed in 125ms (View: 119, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#selecionar_item (for 127.0.0.1 at 2009-07-12 18:05:50) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b", "id"=>"4"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering loja/selecionar_item
+
+
+ActionView::MissingTemplate (Missing template loja/selecionar_item.erb in view path /Users/luizrocha/Development/Projects/Rails/gourmet/app/views:):
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:95:in `find_full_path'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:16:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:332:in `new'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:332:in `_unmemoized__pick_template'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/memoizable.rb:70:in `_pick_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:256:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1174:in `render_for_file'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:896:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:868:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1248:in `default_render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1254:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing LojaController#selecionar_item (for 127.0.0.1 at 2009-07-12 18:06:00) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b", "id"=>"21"}
+  [4;36;1mPedido Load (0.3ms)[0m   [0;1mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering loja/selecionar_item
+
+
+ActionView::MissingTemplate (Missing template loja/selecionar_item.erb in view path /Users/luizrocha/Development/Projects/Rails/gourmet/app/views:):
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:95:in `find_full_path'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:16:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:332:in `new'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:332:in `_unmemoized__pick_template'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/memoizable.rb:70:in `_pick_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:256:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1174:in `render_for_file'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:896:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:868:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1248:in `default_render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1254:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 18:07:30) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (21.4ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (15.3ms)
+Completed in 61ms (View: 53, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#selecionar_item (for 127.0.0.1 at 2009-07-12 18:07:33) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b", "id"=>"4"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering loja/adiciona_produto_lista_compras.rjs
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.4ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.4ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (22.8ms)
+  [4;36;1mPedidoPagamento Load (0.5ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (16.7ms)
+Completed in 60ms (View: 51, DB: 3) | 200 OK [http://localhost/loja/selecionar_item/4]
+
+
+Processing LojaController#selecionar_item (for 127.0.0.1 at 2009-07-12 18:07:55) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b", "id"=>"4"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering loja/adiciona_produto_lista_compras.rjs
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (21.9ms)
+  [4;36;1mPedidoPagamento Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (16.6ms)
+Completed in 59ms (View: 50, DB: 3) | 200 OK [http://localhost/loja/selecionar_item/4]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 18:08:38) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.5ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (86.3ms)
+Rendered loja/_adiciona_pagamento (0.8ms)
+  [4;36;1mPedidoPagamento Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (15.0ms)
+Completed in 124ms (View: 118, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#selecionar_item (for 127.0.0.1 at 2009-07-12 18:08:45) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b", "id"=>"4"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering loja/adiciona_produto_lista_compras.rjs
+Rendered loja/_selecao_produto (0.9ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (22.3ms)
+  [4;36;1mPedidoPagamento Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (16.1ms)
+Completed in 59ms (View: 50, DB: 3) | 200 OK [http://localhost/loja/selecionar_item/4]
+
+
+Processing LojaController#selecionar_item (for 127.0.0.1 at 2009-07-12 18:08:50) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b", "id"=>"21"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering loja/adiciona_produto_lista_compras.rjs
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (21.7ms)
+  [4;36;1mPedidoPagamento Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (15.9ms)
+Completed in 120ms (View: 111, DB: 3) | 200 OK [http://localhost/loja/selecionar_item/21]
+
+
+Processing LojaController#index (for 127.0.0.1 at 2009-07-12 18:12:08) [GET]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering template within layouts/loja
+Rendering loja/index
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (22.2ms)
+Rendered loja/_adiciona_pagamento (0.9ms)
+  [4;36;1mPedidoPagamento Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (14.9ms)
+Completed in 60ms (View: 54, DB: 1) | 200 OK [http://localhost/loja]
+
+
+Processing LojaController#selecionar_item (for 127.0.0.1 at 2009-07-12 18:12:15) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b", "id"=>"4"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering loja/adiciona_produto_lista_compras.rjs
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.4ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (22.2ms)
+  [4;36;1mPedidoPagamento Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (16.3ms)
+Completed in 121ms (View: 112, DB: 3) | 200 OK [http://localhost/loja/selecionar_item/4]
+
+
+Processing LojaController#selecionar_item (for 127.0.0.1 at 2009-07-12 18:12:16) [POST]
+  Session ID: 95816a021434cc4aa0decd366a7599a9
+  Parameters: {"authenticity_token"=>"2eb214ded9cfb2083ab0069aef62e788c147d94b", "id"=>"21"}
+  [4;35;1mPedido Load (0.3ms)[0m   [0mSELECT * FROM "pedidos" WHERE ("pedidos"."id" = 11) [0m
+Rendering loja/adiciona_produto_lista_compras.rjs
+Rendered loja/_selecao_produto (0.8ms)
+  [4;36;1mPedidoItem Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_items" WHERE ("pedido_items".pedido_id = 11) [0m
+  [4;35;1mUnidadeVenda Load (0.3ms)[0m   [0mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Load (0.3ms)[0m   [0;1mSELECT * FROM "produtos" WHERE ("produtos"."id" = 4) [0m
+  [4;35;1mProduto Load (0.3ms)[0m   [0mSELECT * FROM "produtos" WHERE ("produtos"."id" = 21) [0m
+Rendered loja/_listagem_compras (22.7ms)
+  [4;36;1mPedidoPagamento Load (0.4ms)[0m   [0;1mSELECT * FROM "pedido_pagamentos" WHERE ("pedido_pagamentos".pedido_id = 11) [0m
+Rendered loja/_resumo_pagamento (16.2ms)
+Completed in 60ms (View: 51, DB: 3) | 200 OK [http://localhost/loja/selecionar_item/21]

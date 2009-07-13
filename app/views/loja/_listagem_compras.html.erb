@@ -2,6 +2,7 @@
   <legend>Items</legend>
   <table id="listagem-compras-tabela">
 	<tr>
+		<th></th>
 		<th class="descricao">Item</th>
 		<th class="valor">Valor</th>
 		<th class="quantidade">Qtd</th>
@@ -13,16 +14,17 @@
 		<table id="listagem-compras-tabela">
 		<% for item in @pedido.items %>
 		<tr>
+			<td class="selecao"><%= button_to_remote 'S', :url => {:action => "selecionar_item", :id => item.produto.id} %></td>
 			<td class="descricao"><%= item.descricao %></td>
 			<td class="valor"><%= number_to_currency(item.valor_unitario, :unit => "", :delimiter => ".", :separator => ",") %></td>
 			<td class="quantidade"><%= item.quantidade %></td>
 			<td class="valor-total-item"><%= number_to_currency(item.valor_total.to_s, :unit => "", :delimiter => ".", :separator => ",")%> </td>
 			<td class="acoes">
 				<% form_remote_tag :id => 'form_1', :url => { :action => 'editar_produto_lista_compras', :id => item.produto.id } do %>
-					<%= image_submit_tag ('icons/edit.png', :alt => 'Editar Item', :title => "Editar Item", :id => "editar_produto_img") -%>
+					<%= image_submit_tag('icons/edit.png', :alt => 'Editar Item', :title => "Editar Item", :id => "editar_produto_img") -%>
 	 			<% end %>
 				<% form_remote_tag :url => { :action => 'remover_produto_lista_compras', :id => item.produto.id }, :id => 'form_2' do %>
-					<%= image_submit_tag ('icons/delete.png', :alt => 'Remover Item', :title => "Remover Item", :id => "remover_produto_img") -%>
+					<%= image_submit_tag('icons/delete.png', :alt => 'Remover Item', :title => "Remover Item", :id => "remover_produto_img") -%>
 				<% end %>
 			</td>
 		</tr>

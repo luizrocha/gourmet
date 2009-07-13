@@ -67,7 +67,7 @@
 			<% elsif @pedido.valor_restante <= 0 %>
 				<button id="botao_adicionar_pagamento" type"button" enabled="false">Adicionar Pagamento</button>
 			<% end %>
-			
+			<button id="botao_calcular_parcial" type"button" enabled="true">Calcular Parcial</button>
 	  		<% form_for :pedido, :url => { :action => "finalizar_pedido" } do |f| %>
 				<%= submit_tag "Finalizar", :disable_with => "Aguarde...", :id => "botao_encerrar_compra"%>
 			<% end %>

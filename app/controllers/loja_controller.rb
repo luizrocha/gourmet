@@ -38,6 +38,24 @@ class LojaController < ApplicationController
     end
   end
   
+  def selecionar_item
+    items = (session[:items] ||= Hash.new)
+    id = params[:id]
+    #Verifica se Item esta selecionado. Se estiver, de-seleciona
+    if (items[id] and items[id] == true) then
+      #Item ja esta na lista de selecionados, remover
+      items[id] = nil
+
+    session[:items] = items
+    
+    
+    puts("Item Selecionado: "+params[:id])
+    respond_to do |format|
+      format.js {render :layout=>false, :template => "loja/adiciona_produto_lista_compras.rjs"}
+    end
+    
+  end
+  
   def editar_produto_lista_compras
     produto = Produto.find_by_id(params[:id]) if params[:id]
     @item_corrente = @pedido.obter_item_corrente(produto)
@@ -69,9 +87,9 @@ class LojaController < ApplicationController
     #Tratamento Parametros e Lookups Referencias
     pgto_valor = BigDecimal.new(params[:valor].gsub(",","."))
     tipo_pgto = params[:tipo_pagamento]
-    if ( tipo_pgto.eql? "Cartao" ) then
+    if( tipo_pgto.eql? "Cartao" ) then
       cartao = params[:bandeira_cartao]
-    elsif ( tipo_pgto.eql? "Conta" ) then
+    elsif( tipo_pgto.eql? "Conta" ) then
       cliente_nome = params[:tipo_pagamento_conta_cliente]
       cliente_bloco = params[:tipo_pagamento_conta_bloco]
       cliente_apartamento = params[:tipo_pagamento_conta_apartamento]
@@ -80,7 +98,7 @@ class LojaController < ApplicationController
     end
     
     begin
-      if (pgto_valor > @pedido.valor_restante) then
+      if(pgto_valor > @pedido.valor_restante) then
         flash[:notice] = "Pagamento ultrapassou restante para quitar o pedido! Diferença será adicionada como serviço!"
       end
       @pedido.adiciona_pagamento(pgto_valor, cliente, cartao)
@@ -101,7 +119,7 @@ class LojaController < ApplicationController
     rescue Exception => e:
           redirect_to_index("Erro ao Cancelar Pedido: " +e.to_s)
     end
-    redirect_to_index ("Dados do Pedido Descartado foram armazenados para Posterior Auditoria!")
+    redirect_to_index("Dados do Pedido Descartado foram armazenados para Posterior Auditoria!")
   end
 
   def finalizar_pedido

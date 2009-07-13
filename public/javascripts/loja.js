@@ -143,6 +143,12 @@ jQuery(document).ready(function() {
 		jQuery("#pagamento_valor").focus().select();	
 	});
 	
+	//Click na linha do produto quando estiver no modo de selecao de item
+	jQuery("table tr").dblclick(function(){
+		jQuery("td:first > input",this).submit();
+	});
+	
+	
 	//*********************************************************************
 	//					AJUSTES INICIAIS
 	//						
