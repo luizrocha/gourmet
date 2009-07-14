@@ -107,6 +107,7 @@ jQuery(document).ready(function() {
 		return true;	
 	});
 	
+	//ADICIONA ACAO BOTAO CANCELAR INSERCAO PAGAMENTO
 	jQuery("#botao_adiciona_pagamento_cancelar").live('click', function() {
 		escondeDivAdicionarPagamento();
 		return true;	
@@ -141,13 +142,7 @@ jQuery(document).ready(function() {
 	});
 	jQuery("#pagamento_tipo").change(function(){
 		jQuery("#pagamento_valor").focus().select();	
-	});
-	
-	//Click na linha do produto quando estiver no modo de selecao de item
-	jQuery("table tr").dblclick(function(){
-		jQuery("td:first > input",this).submit();
-	});
-	
+	});
 	
 	//*********************************************************************
 	//					AJUSTES INICIAIS

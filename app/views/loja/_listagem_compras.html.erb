@@ -17,9 +17,9 @@
 			<td class="selecao">
 				<% if @modo_selecao then %>
 					<% if item_esta_selecionado_para_calculo_parcial(item.produto.id) then %>
-						<%= button_to_remote '-', :url => {:action => "selecionar_item", :id => item.produto.id} %>
+						<%= button_to_remote '-', :name => 'botao_selecionar_item', :url => {:action => "selecionar_item", :id => item.produto.id}, :html_options => {:name => 'botao_selecionar_item'}%>
 					<%else%>
-						<%= button_to_remote '+', :url => {:action => "selecionar_item", :id => item.produto.id} %>
+						<%= button_to_remote '+', :name => 'botao_selecionar_item', :url => {:action => "selecionar_item", :id => item.produto.id}%>
 					<%end%>
 				<% end %>
 			</td>
@@ -45,7 +45,7 @@
 				<td/>
 				<td/>
 				<td class="quantidade">
-					<%= text_field 'item_selecionado', 'quantidade', :maxlength => 5, :value => item.quantidade%>
+				   <% form_remote_tag :id => 'form_2', :url => { :action => 'alterar_quantidade_item_selecionado', :id => item.produto.id } do -%><%= text_field 'item_selecionado', 'quantidade', :maxlength => 5, :value => item.quantidade%><% end %>					
 				</td>
 				<td class="valor-total-item">111.11</td>
 				<td/>

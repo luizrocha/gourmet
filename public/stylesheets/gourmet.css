@@ -228,6 +228,7 @@
 
 #loja {
 	width:920px;
+	font-family:Helvetica;
 }
 
 #loja label {
@@ -240,7 +241,7 @@
 
 #loja select, textarea, input, td {
 	margin-left: 0.5em;
-	font-size: 15px;
+	font-size: 13px;
 }
 
 #loja .submit {
