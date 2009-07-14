@@ -137,10 +137,27 @@ class Pedido < ActiveRecord::Base
   end
 
   def obter_item_corrente (produto)
-     PedidoItem.find_by_produto_id_and_pedido_id(produto.id.to_s, id.to_s)
+    obter_item_por_produto_id(produto.id.to_s)
   end
 
+def calcular_valores_parciais(items)
+  valor_calculado = 0.0
+  items.each_pair { |id, booleano|
+    puts("Percorrendo Array[id]: "+id+", booleando="+booleano.to_s)
+     if(booleano) then
+       item = obter_item_por_produto_id(id)
+       puts("Item no Loop: "+item.produto.descricao+", valor_unit="+item.valor_unitario.to_s)
+       valor_calculado += item.valor_unitario
+     end
+  }
+  valor_calculado
+end
+
 private
+
+def obter_item_por_produto_id(produto_id)
+     PedidoItem.find_by_produto_id_and_pedido_id(produto_id, id.to_s)
+end
 
 def validar_item_venda(quantidade, produto)
    if (!produto) then

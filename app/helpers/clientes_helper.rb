@@ -10,7 +10,6 @@ module ClientesHelper
 		prefix = cliente.new_record? ? 'new' : cliente.id
 		fields_for("cliente[dependentes][]", cliente, &block)
 		#{prefix}_item_attributes
-	end
-  
+	end  
   
 end

@@ -14,20 +14,44 @@
 		<table id="listagem-compras-tabela">
 		<% for item in @pedido.items %>
 		<tr>
-			<td class="selecao"><%= button_to_remote 'S', :url => {:action => "selecionar_item", :id => item.produto.id} %></td>
+			<td class="selecao">
+				<% if @modo_selecao then %>
+					<% if item_esta_selecionado_para_calculo_parcial(item.produto.id) then %>
+						<%= button_to_remote '-', :url => {:action => "selecionar_item", :id => item.produto.id} %>
+					<%else%>
+						<%= button_to_remote '+', :url => {:action => "selecionar_item", :id => item.produto.id} %>
+					<%end%>
+				<% end %>
+			</td>
 			<td class="descricao"><%= item.descricao %></td>
 			<td class="valor"><%= number_to_currency(item.valor_unitario, :unit => "", :delimiter => ".", :separator => ",") %></td>
 			<td class="quantidade"><%= item.quantidade %></td>
 			<td class="valor-total-item"><%= number_to_currency(item.valor_total.to_s, :unit => "", :delimiter => ".", :separator => ",")%> </td>
 			<td class="acoes">
+			  <% if !@modo_selecao then %>
 				<% form_remote_tag :id => 'form_1', :url => { :action => 'editar_produto_lista_compras', :id => item.produto.id } do %>
 					<%= image_submit_tag('icons/edit.png', :alt => 'Editar Item', :title => "Editar Item", :id => "editar_produto_img") -%>
 	 			<% end %>
 				<% form_remote_tag :url => { :action => 'remover_produto_lista_compras', :id => item.produto.id }, :id => 'form_2' do %>
 					<%= image_submit_tag('icons/delete.png', :alt => 'Remover Item', :title => "Remover Item", :id => "remover_produto_img") -%>
 				<% end %>
+			  <%end%>
 			</td>
 		</tr>
+		<% if @modo_selecao then %>
+			<% if item_esta_selecionado_para_calculo_parcial(item.produto.id) then %>
+			<tr>
+				<td/>
+				<td/>
+				<td/>
+				<td class="quantidade">
+					<%= text_field 'item_selecionado', 'quantidade', :maxlength => 5, :value => item.quantidade%>
+				</td>
+				<td class="valor-total-item">111.11</td>
+				<td/>
+			</tr>
+			<% end %>
+		<% end %>
 		<% end %>
 	  </table>
 	</div>

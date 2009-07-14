@@ -1,6 +1,7 @@
 class LojaController < ApplicationController
   protect_from_forgery :only => [:create, :update, :destroy] 
   before_filter :busca_lista_compras, :except => :esvazia_lista_compras
+  before_filter :busca_parametro_modo_selecao
   before_filter :limpar_aviso
 
   def index
@@ -38,22 +39,37 @@ class LojaController < ApplicationController
     end
   end
   
+  def chavear_selecao_parcial
+    if ( session[:modo_selecao] ) then
+      session[:modo_selecao] = nil
+      session[:items_selecionados] = nil
+      @modo_selecao = nil
+    else
+      session[:modo_selecao] = true
+      @modo_selecao = true
+    end
+    respond_to do |format|
+      format.js {render :layout=>false, :template => "loja/adiciona_produto_lista_compras.rjs"}
+    end
+  end
+  
   def selecionar_item
-    items = (session[:items] ||= Hash.new)
+    items = (session[:items_selecionados] ||= Hash.new)
     id = params[:id]
     #Verifica se Item esta selecionado. Se estiver, remove-o do array dos selecionados
     if (items[id] and items[id] == true) then
       #Item ja esta na lista de selecionados, remover
-      items[id] = nil
+      items.delete(id)
       puts("Item Removido do Array dos Selecionados: "+params[:id])
     #Senao, adiciona-o no array dos selecionados
     else
       items[id] = true
       puts("Item Inserido no Array dos Selecionados: "+params[:id])
     end
-    session[:items] = items
+    session[:items_selecionados] = items
     #Re-Calcular Valores parciais
-    #@pedido.calcular_valores_parciais(items)
+    valor_calculado = @pedido.calcular_valores_parciais(items)
+    puts("Valor Calculado dos Selecionados: "+valor_calculado.to_s)
     respond_to do |format|
       format.js {render :layout=>false, :template => "loja/adiciona_produto_lista_compras.rjs"}
     end
@@ -143,6 +159,10 @@ class LojaController < ApplicationController
   end
 
 private
+  def busca_parametro_modo_selecao
+    @modo_selecao = session[:modo_selecao]
+  end
+
   def busca_lista_compras
     pedido_id = session[:pedido_id]
     if ( pedido_id == nil ) then
