@@ -140,17 +140,25 @@ class Pedido < ActiveRecord::Base
     obter_item_por_produto_id(produto.id.to_s)
   end
 
-def calcular_valores_parciais(items)
-  valor_calculado = 0.0
+#Calcula os Valores dos Items que possuem chaves no hash "Items", com as quantidades definidas
+#no hash "items_qtd"
+def calcular_valores_parciais(items, items_quantidade, items_valor, modo_calcular_servico = nil)
+  valor_total_calculado = 0.0
   items.each_pair { |id, booleano|
     puts("Percorrendo Array[id]: "+id+", booleando="+booleano.to_s)
      if(booleano) then
        item = obter_item_por_produto_id(id)
-       puts("Item no Loop: "+item.produto.descricao+", valor_unit="+item.valor_unitario.to_s)
-       valor_calculado += item.valor_unitario
+       item_qtd = items_quantidade.fetch(id)
+       puts("Item no Loop: "+item.produto.descricao+", valor_unit="+item.valor_unitario.to_s+", qtd="+item_qtd.to_s)
+       if (!modo_calcular_servico) then
+         items_valor[id] = (item.valor_unitario * item_qtd)
+         valor_total_calculado += items_valor.fetch(id)
+       elsif (item.produto.adiciona_taxa_servico)
+         valor_total_calculado += (item.valor_unitario * item_qtd * 0.1)
+       end
      end
   }
-  valor_calculado
+  valor_total_calculado
 end
 
 private

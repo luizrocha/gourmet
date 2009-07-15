@@ -39,10 +39,36 @@ class LojaController < ApplicationController
     end
   end
   
+  def alterar_quantidade_item_selecionado
+    items_selecionados = (session[:items_selecionados] ||= Hash.new)
+    id = params[:id]
+    qtd = BigDecimal.new(params[:item_selecionado][:quantidade])
+    #Verificar se item realmente esta na lista de selecionados
+    if (items_selecionados[id] and items_selecionados[id] == true) then
+      items_quantidade = (session[:items_selecionados_quantidade] ||= Hash.new)
+      items_valor = (session[:items_selecionados_valor] ||= Hash.new)
+      items_quantidade[id] = qtd
+      #Calcular Valores parciais, retornando valor total
+      valor_calculado = @pedido.calcular_valores_parciais(items_selecionados,items_quantidade,items_valor)
+      #Armazenando na session os items, quantidades e valores parciais
+      session[:items_selecionados] = items_selecionados
+      session[:items_selecionados_quantidade] = items_quantidade
+      session[:items_selecionados_valor] = items_valor
+
+      puts("Valor Calculado dos Selecionados: "+valor_calculado.to_s)
+      respond_to do |format|
+        format.js {render :layout=>false, :template => "loja/adiciona_produto_lista_compras.rjs"}
+      end
+      
+    end
+  end
+  
   def chavear_selecao_parcial
     if ( session[:modo_selecao] ) then
       session[:modo_selecao] = nil
       session[:items_selecionados] = nil
+      session[:items_selecionados_quantidade] = nil
+      session[:items_selecionados_valor] = nil
       @modo_selecao = nil
     else
       session[:modo_selecao] = true
@@ -55,20 +81,29 @@ class LojaController < ApplicationController
   
   def selecionar_item
     items = (session[:items_selecionados] ||= Hash.new)
+    items_quantidade = (session[:items_selecionados_quantidade] ||= Hash.new)
+    items_valor = (session[:items_selecionados_valor] ||= Hash.new)
     id = params[:id]
     #Verifica se Item esta selecionado. Se estiver, remove-o do array dos selecionados
     if (items[id] and items[id] == true) then
-      #Item ja esta na lista de selecionados, remover
       items.delete(id)
+      items_qtd.delete(id)
+      items_valor.delete(id)
       puts("Item Removido do Array dos Selecionados: "+params[:id])
-    #Senao, adiciona-o no array dos selecionados
+    #Senao, adiciona-o no array dos selecionados e inicializa arrays auxiliares
     else
       items[id] = true
+      items_quantidade[id] = 0
+      items_valor[id] = 0
       puts("Item Inserido no Array dos Selecionados: "+params[:id])
-    end
+    end    
+    #Calcular Valores parciais, retornando valor total
+    valor_calculado = @pedido.calcular_valores_parciais(items,items_quantidade,items_valor)
+    #Armazenando na session os items, quantidades e valores parciais
     session[:items_selecionados] = items
-    #Re-Calcular Valores parciais
-    valor_calculado = @pedido.calcular_valores_parciais(items)
+    session[:items_selecionados_quantidade] = items_quantidade
+    session[:items_selecionados_valor] = items_valor
+    
     puts("Valor Calculado dos Selecionados: "+valor_calculado.to_s)
     respond_to do |format|
       format.js {render :layout=>false, :template => "loja/adiciona_produto_lista_compras.rjs"}
