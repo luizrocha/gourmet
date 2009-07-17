@@ -1,5 +1,5 @@
 # Be sure to restart your server when you modify this file
-require 'brazilian-rails'
+#require 'brazilian-rails'
 
 
 # Uncomment below to force Rails into production mode when
@@ -78,4 +78,8 @@ Rails::Initializer.run do |config|
   
   config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', 
     :source => 'http://gems.github.com'
+
+ config.gem 'brazilian-rails', :version => '~> 2.1.6', :lib => 'brazilian-rails', :source => 'http://gems.github.com'
+
+
 end

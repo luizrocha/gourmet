@@ -5,9 +5,9 @@ class Produto < ActiveRecord::Base
 
   belongs_to :unidade_venda  
   
-  validates_inclusion_of :unidade_venda_id, :in => UnidadeVenda.find(:all).map {|unidade| unidade.id}
   validates_presence_of :descricao, :unidade_venda_id, :valor_venda, :message => "deve ser preenchido"
   validates_numericality_of :valor_venda, :message => "deve ser preenchido com um número válido"
+  validates_numericality_of :estoque_minimo, :estoque_maximo, :allow_nil => true, :message => "deve ser preenchido com um número válido"
   validates_length_of :descricao, :maximum => 50, :message => "pode ter no máximo 50 caracteres"
   validate :valor_venda_deve_ser_no_minimo_1_centavo
   validates_uniqueness_of :codigo_barras, :allow_nil => true, :allow_blank => true, :message => "já é um código de outro produto cadastrado"
