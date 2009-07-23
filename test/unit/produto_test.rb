@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class ProdutoTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
-  end
 
   test "Testa atributos obrigatorios nao definidos" do
     produto = Produto.new
@@ -28,7 +24,7 @@ class ProdutoTest < ActiveSupport::TestCase
 
   test "Testa valor de venda positivo acima de 1 centavo" do
     produto = Produto.new(:descricao => "XXX", :unidade_venda_id =>"1", :valor_venda => "1")
-    assert produto.valid?
+    assert produto.valid? , "Produto deveria ser valido #{produto.errors.inspect}"  
   end
   
   test "Testa valor nao numerico na variavel valor_venda que somente deve aceitar numeros" do
@@ -36,7 +32,7 @@ class ProdutoTest < ActiveSupport::TestCase
     assert !produto.valid?
     
     produto.valor_venda = "1"
-    assert produto.valid?
+    assert produto.valid? , "Produto deveria ser valido #{produto.errors.inspect}"  
   end
 
   test "Testa valor nao numerico na variavel estoque_minimo que somente deve aceitar numeros" do
@@ -46,7 +42,7 @@ class ProdutoTest < ActiveSupport::TestCase
     assert_equal "deve ser preenchido com um número válido" , produto.errors.on(:estoque_minimo)
     
     produto.estoque_minimo = "1"
-    assert produto.valid? , "Produto nao valido #{produto.errors.inspect}"
+    assert produto.valid? , "Produto deveria ser valido #{produto.errors.inspect}"  
   end
 
   test "Testa valor nao numerico na variavel estoque_maximo que somente deve aceitar numeros" do
@@ -56,7 +52,7 @@ class ProdutoTest < ActiveSupport::TestCase
     assert_equal "deve ser preenchido com um número válido" , produto.errors.on(:estoque_maximo)
     
     produto.estoque_maximo = "1"
-    assert produto.valid? , "Produto nao valido #{produto.errors.inspect}"
+    assert produto.valid? , "Produto deveria ser valido #{produto.errors.inspect}"  
   end
   
   test "Testa descricao com mais de 50 caracteres" do
@@ -67,13 +63,13 @@ class ProdutoTest < ActiveSupport::TestCase
     #puts (produto.errors.full_messages)    
     
     produto.descricao = "12345678901234567890123456789012345678901234567890"
-    assert produto.valid? , "Produto nao valido #{produto.errors.inspect}"  
+    assert produto.valid? , "Produto deveria ser valido #{produto.errors.inspect}"  
   end
   
   test "Testa codigo-de-barras que deve ser unico" do
     produto1 = Produto.new(:descricao => "XXX", :unidade_venda_id =>"1", :valor_venda => "1")
     produto1.codigo_barras = "99383498394"
-    assert produto1.valid? , "Produto nao valido #{produto1.errors.inspect}"
+    assert produto1.valid? , "Produto deveria ser valido #{produto1.errors.inspect}"  
     
     produto2 = Produto.new(:descricao => "YYY", :unidade_venda_id =>"1", :valor_venda => "2")
     #Codigo de barras do produto 2 ja existe num fixture para simular o erro

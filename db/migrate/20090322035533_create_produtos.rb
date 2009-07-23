@@ -5,7 +5,7 @@ class CreateProdutos < ActiveRecord::Migration
       t.string :fabricante
       t.string :referencia_fabricante
       t.integer :referencia
-      t.string :codigo_barras 
+      t.string :codigo_barras
       t.decimal :estoque_minimo, :precision => 10, :scale => 2
       t.decimal :estoque_maximo, :precision => 10, :scale => 2
       t.decimal :valor_venda, :precision => 8, :scale => 2, :null => false
