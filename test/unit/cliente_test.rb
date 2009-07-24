@@ -23,12 +23,32 @@ class ClienteTest < ActiveSupport::TestCase
     assert cliente.valid? , "Cliente deveria ser valido #{cliente.errors.inspect}"
   end
 
-  test "Testa categoria com mais de 2 caracteres" do
+  test "Testa categoria até 2 caracteres" do
     cliente = Cliente.new(:nome => "Teste")
     cliente.categoria = "12"
     assert !cliente.valid?
     
     cliente.categoria = "M"
+    assert cliente.valid? , "Cliente deveria ser valido #{cliente.errors.inspect}"
+  end
+
+  test "Testa apartamento até 3 caracteres" do
+    cliente = Cliente.new(:nome => "Teste", :categoria => "M")
+    cliente.apartamento = "9999"
+    assert !cliente.valid?
+    assert_equal "pode ter no máximo 3 caracteres" , cliente.errors.on(:apartamento)
+
+    cliente.apartamento = "704"
+    assert cliente.valid? , "Cliente deveria ser valido #{cliente.errors.inspect}"
+  end
+
+  test "Testa bloco até 2 caracteres" do
+    cliente = Cliente.new(:nome => "Teste", :categoria => "M")
+    cliente.bloco = "123"
+    assert !cliente.valid?
+    assert_equal "pode ter no máximo 2 caracteres" , cliente.errors.on(:bloco)
+
+    cliente.bloco = "1"
     assert cliente.valid? , "Cliente deveria ser valido #{cliente.errors.inspect}"
   end
 
@@ -97,6 +117,22 @@ class ClienteTest < ActiveSupport::TestCase
     assert cliente.valid?, "Cliente deveria ser valido #{cliente.errors.inspect}"
     
     cliente.categoria = "F"
+    assert cliente.valid?, "Cliente deveria ser valido #{cliente.errors.inspect}"
+  end
+  
+  test "Testa valor limite_credito positivo" do
+    cliente = Cliente.new(:nome => "Teste", :categoria => "M")
+    cliente.limite_credito = -0.01
+    assert !cliente.valid?
+    assert_equal "deve ser um valor positivo ou zero", cliente.errors.on(:limite_credito)
+    
+    cliente.limite_credito = 0
+    assert cliente.valid?, "Cliente deveria ser valido #{cliente.errors.inspect}"
+    
+    cliente.limite_credito = 1
+    assert cliente.valid?, "Cliente deveria ser valido #{cliente.errors.inspect}"
+
+    cliente.limite_credito = nil
     assert cliente.valid?, "Cliente deveria ser valido #{cliente.errors.inspect}"
   end
   
