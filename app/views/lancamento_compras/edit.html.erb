@@ -1,0 +1,32 @@
+<h1>Editing lancamento</h1>
+
+<% form_for(@lancamento) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :valor %><br />
+    <%= f.text_field :valor %>
+  </p>
+  <p>
+    <%= f.label :data %><br />
+    <%= f.datetime_select :data %>
+  </p>
+  <p>
+    <%= f.label :forma_de_pagamento_id %><br />
+    <%= f.text_field :forma_de_pagamento_id %>
+  </p>
+  <p>
+    <%= f.label :centro_de_custo_id %><br />
+    <%= f.text_field :centro_de_custo_id %>
+  </p>
+  <p>
+    <%= f.label :tipo_credito_debito %><br />
+    <%= f.text_field :tipo_credito_debito %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @lancamento %> |
+<%= link_to 'Back', lancamentos_path %>

@@ -1,0 +1,47 @@
+<div id="listagens-tabela">
+<script type="text/javascript">
+	jQuery("table tr").dblclick(function(){
+		jQuery("td:first > form",this).submit();
+	});
+	jQuery("table tr").dblclick(function(){
+		jQuery("td:first > form",this).submit();
+	});	
+	
+	
+	jQuery("table tr").hover(
+      function(){
+        jQuery("div", this).show();
+      }, 
+      function () {
+        jQuery("div", this).hide();
+      }
+    );
+</script>
+<table>	
+  <tr>
+	<th class="lista-coluna-invisivel"></th>
+	<th><%=link_to_remote "Data", :url => { :action => "por_ordenacao", :ordem => "data #{@tipo_ordenacao}, data_de_vencimento, forma_de_pagamento_id, centro_de_custo_id, valor", :tipo_ordenacao => @tipo_ordenacao}%></th>
+	<th><%=link_to_remote "Vencimento", :url => { :action => "por_ordenacao", :ordem => "data_de_vencimento #{@tipo_ordenacao}, forma_de_pagamento_id, centro_de_custo_id, valor", :tipo_ordenacao => @tipo_ordenacao}%></th>
+	<th colspan=2>Valor</th>
+    <th>Forma Pgto</th>
+    <th>Centro Custo</th>
+	<th/>
+  </tr>
+  <% for lancamento_compra in @lancamento_compras %>
+  <tr class="<%= cycle('lista-linha-impar', 'lista-linha-par') %>">
+	<td class="lista-coluna-invisivel"><%= button_to 'a', lancamento_compra, :method => "get" %><span>LDDLDLDL</span></td>
+    <td><%= lancamento_compra.data.strftime("%d-%m-%Y") %></td>
+	<td><%= lancamento_compra.data_de_vencimento.strftime("%d-%m-%Y") %></td>
+    <td class="lista-coluna-menor">R$</td>
+	<td><%= number_to_currency(lancamento_compra.valor, :unit => "", :separator => ",", :delimiter => ".")%></td>
+	<td><%= lancamento_compra.forma_de_pagamento.nome %></td>
+	<td><%= lancamento_compra.centro_de_custo.nome %></td>
+	<td class="lista-acoes">    
+    	<%= link_to 'Modificar', edit_lancamento_compra_path(lancamento_compra) %>
+    	<%= link_to 'Remover', lancamento_compra, :confirm => 'Tem certeza?', :method => :delete %>
+		<span class="span-detalhe-flutuante"><%= lancamento_compra.fornecedor %></span>
+	</td>
+  </tr>
+  <% end %>
+</table>
+</div>

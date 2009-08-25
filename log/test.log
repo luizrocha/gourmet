@@ -1,0 +1,55 @@
+# Logfile created on Thu Jul 16 02:15:29 -0300 2009  [4;36;1mUnidadeVenda Load (1.2ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.0ms)[0m   [0;1mSQLite3::SQLException: no such table: unidade_vendas: SELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.7ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.7ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.7ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.7ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.7ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (1.7ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mUnidadeVenda Load (0.6ms)[0m   [0;1mSELECT * FROM "unidade_vendas" [0m
+  [4;36;1mProduto Exists (0.2ms)[0m   [0;1mSELECT "produtos".id FROM "produtos" WHERE ("produtos"."codigo_barras" = '99383498394') LIMIT 1[0m
+  [4;35;1mProduto Exists (0.1ms)[0m   [0mSELECT "produtos".id FROM "produtos" WHERE ("produtos"."codigo_barras" = '99383498394') LIMIT 1[0m
+  [4;36;1mProduto Exists (0.1ms)[0m   [0;1mSELECT "produtos".id FROM "produtos" WHERE ("produtos"."codigo_barras" = '99383498394') LIMIT 1[0m
+  [4;36;1mProduto Exists (0.2ms)[0m   [0;1mSELECT "produtos".id FROM "produtos" WHERE ("produtos"."codigo_barras" = '99383498394') LIMIT 1[0m
+  [4;35;1mProduto Exists (0.1ms)[0m   [0mSELECT "produtos".id FROM "produtos" WHERE ("produtos"."codigo_barras" = '423424543') LIMIT 1[0m
+  [4;36;1mProduto Exists (0.2ms)[0m   [0;1mSELECT "produtos".id FROM "produtos" WHERE ("produtos"."codigo_barras" = '99383498394') LIMIT 1[0m
+  [4;35;1mProduto Exists (0.2ms)[0m   [0mSELECT "produtos".id FROM "produtos" WHERE ("produtos"."codigo_barras" = '423424543') LIMIT 1[0m
+  [4;36;1mProduto Exists (0.2ms)[0m   [0;1mSELECT "produtos".id FROM "produtos" WHERE ("produtos"."codigo_barras" = '99383498394') LIMIT 1[0m
+  [4;35;1mProduto Exists (0.2ms)[0m   [0mSELECT "produtos".id FROM "produtos" WHERE ("produtos"."codigo_barras" = '423424543') LIMIT 1[0m
+  [4;36;1mProduto Exists (0.2ms)[0m   [0;1mSELECT "produtos".id FROM "produtos" WHERE ("produtos"."codigo_barras" = '99383498394') LIMIT 1[0m
+  [4;35;1mProduto Exists (0.1ms)[0m   [0mSELECT "produtos".id FROM "produtos" WHERE ("produtos"."codigo_barras" = '423424543') LIMIT 1[0m
+  [4;36;1mProduto Exists (0.2ms)[0m   [0;1mSELECT "produtos".id FROM "produtos" WHERE ("produtos"."codigo_barras" = '99383498394') LIMIT 1[0m
+  [4;35;1mProduto Exists (0.1ms)[0m   [0mSELECT "produtos".id FROM "produtos" WHERE ("produtos"."codigo_barras" = '423424543') LIMIT 1[0m

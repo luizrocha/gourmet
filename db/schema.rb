@@ -9,7 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090706044150) do
+ActiveRecord::Schema.define(:version => 20090823041157) do
+
+  create_table "centro_de_custos", :force => true do |t|
+    t.string   "nome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "clientes", :force => true do |t|
     t.string   "nome",               :limit => 50,                                                :null => false
@@ -35,16 +41,40 @@ ActiveRecord::Schema.define(:version => 20090706044150) do
   add_index "clientes", ["bloco"], :name => "index_clientes_on_bloco"
   add_index "clientes", ["nome"], :name => "index_clientes_on_nome"
 
-  create_table "pedido_items", :force => true do |t|
-    t.integer  "produto_id",                                :null => false
-    t.integer  "pedido_id",                                 :null => false
-    t.integer  "quantidade",                                :null => false
-    t.decimal  "valor_total", :precision => 8, :scale => 2, :null => false
+  create_table "forma_de_pagamentos", :force => true do |t|
+    t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "pedido_items", ["pedido_id"], :name => "index_pedido_items_on_pedido_id"
+  create_table "lancamentos", :force => true do |t|
+    t.string   "type"
+    t.string   "descricao"
+    t.decimal  "valor",                              :precision => 8, :scale => 2, :null => false
+    t.datetime "data",                                                             :null => false
+    t.integer  "centro_de_custo_id",                                               :null => false
+    t.string   "tipo_credito_debito",   :limit => 1,                               :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "fornecedor"
+    t.string   "numero_nota_fiscal"
+    t.integer  "forma_de_pagamento_id"
+    t.datetime "data_de_vencimento"
+  end
+
+  add_index "lancamentos", ["centro_de_custo_id"], :name => "index_lancamentos_on_centro_de_custo_id"
+  add_index "lancamentos", ["data"], :name => "index_lancamentos_on_data"
+  add_index "lancamentos", ["forma_de_pagamento_id"], :name => "index_lancamentos_on_forma_de_pagamento_id"
+
+  create_table "pedido_items", :force => true do |t|
+    t.integer  "pedido_id",                                    :null => false
+    t.integer  "quantidade",                                   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "produto_id"
+    t.decimal  "valor_total",    :precision => 8, :scale => 2
+    t.decimal  "valor_unitario", :precision => 8, :scale => 2
+  end
 
   create_table "pedido_pagamentos", :force => true do |t|
     t.string   "type"
@@ -65,13 +95,13 @@ ActiveRecord::Schema.define(:version => 20090706044150) do
     t.integer  "quantidade_pessoas"
     t.datetime "data_abertura"
     t.datetime "data_finalizacao"
-    t.string   "status",             :limit => 1, :null => false
+    t.string   "status",             :limit => 1,                               :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "valor_total",                     :precision => 8, :scale => 2
+    t.decimal  "valor_pago_servico",              :precision => 8, :scale => 2
+    t.decimal  "valor_pago_total",                :precision => 8, :scale => 2
   end
-
-  add_index "pedidos", ["data_finalizacao"], :name => "index_pedidos_on_data_finalizacao"
-  add_index "pedidos", ["status"], :name => "index_pedidos_on_status"
 
   create_table "produtos", :force => true do |t|
     t.string   "descricao",             :limit => 50,                    :null => false

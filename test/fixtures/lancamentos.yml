@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  valor: 9.99
+  data: 2009-08-23 01:11:57
+  forma_de_pagamento_id: 1
+  centro_de_custo_id: 1
+  tipo_lancamento: MyString
+
+two:
+  valor: 9.99
+  data: 2009-08-23 01:11:57
+  forma_de_pagamento_id: 1
+  centro_de_custo_id: 1
+  tipo_lancamento: MyString

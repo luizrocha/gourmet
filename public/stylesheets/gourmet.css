@@ -158,6 +158,7 @@
 #listagens-tabela table tr th {
 	font-weight: bolder;
 	padding-bottom: 1px;
+	text-align:left;
 }
 
 #listagens-tabela .lista-coluna-principal {
@@ -200,6 +201,18 @@
 
 #listagens-tabela .lista-linha-impar {
 	background: #bbbbbb;
+}
+
+#listagens-tabela .span-detalhe-flutuante {
+	background-color:#9c9;
+	border:1px dotted #CC9933;
+	margin-top:-11px;
+	padding:4px 10px;
+	position:absolute;
+	right:285px;
+	width:286px;
+	text-align:left;
+	display:none;
 }
 
 #listagens-cabecalho {

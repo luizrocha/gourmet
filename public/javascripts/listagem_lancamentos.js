@@ -8,12 +8,16 @@ jQuery(document).ready(function() {
 	});
 	
 	//*********************************************************************
-	//					AJUSTES INICIAIS
+	//	CONFIGURA EXIBICAO NOME FORNECEDOR NO CLIQUE NA LINHA DO LANCAMENTO
 	//						
 	//*********************************************************************
-	
-	//Foco inicial no autocomplete Descricao
-	jQuery("#produto_descricao").focus().select();	
-
-
+	jQuery("table tr").hover(
+      function(){
+        jQuery("span", this).show();
+      }, 
+      function () {
+        jQuery("span", this).hide();
+      }
+    );
+    
 })
