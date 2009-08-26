@@ -1,0 +1,18 @@
+<p>
+  <b>Nome:</b>
+  <%=h @usuario.nome %>
+</p>
+
+<p>
+  <b>Hashed password:</b>
+  <%=h @usuario.hashed_password %>
+</p>
+
+<p>
+  <b>Salt:</b>
+  <%=h @usuario.salt %>
+</p>
+
+
+<%= link_to 'Edit', edit_usuario_path(@usuario) %> |
+<%= link_to 'Back', usuarios_path %>

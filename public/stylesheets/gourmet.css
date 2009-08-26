@@ -204,15 +204,15 @@
 }
 
 #listagens-tabela .span-detalhe-flutuante {
-	background-color:#9c9;
+	background-color:#99CC99;
 	border:1px dotted #CC9933;
-	margin-top:-11px;
-	padding:4px 10px;
-	position:absolute;
-	right:285px;
-	width:286px;
-	text-align:left;
 	display:none;
+	left:560px;
+	margin-top:0;
+	padding:0 6px;
+	position:fixed;
+	text-align:left;
+	width:230px;	
 }
 
 #listagens-cabecalho {

@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  before_filter :autorizacao, :except => :login
   helper :all # include all helpers, all the time
   layout "gourmet"
 
@@ -13,4 +14,14 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+
+  protected
+  def autorizacao
+    unless Usuario.find_by_id(session[:usuario_id])
+      session[:original_uri] = request.request_uri
+      flash[:notice] = "Por favor, identifique-se. Sistema restrito!"
+      redirect_to :controller => 'administracao' , :action => 'login'
+    end
+  end
+
 end

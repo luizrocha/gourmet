@@ -1,0 +1,29 @@
+<div id="formulario-cadastro">
+<h1>Novo Usuário</h1>
+<% form_for(@usuario) do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+    <legend>Dados</legend>
+    <div> 
+		<%= f.label :nome %>
+	    <%= f.text_field :nome %>
+	</div>
+  </fieldset>
+  <fieldset>
+	<legend>Senha</legend>
+	<div>
+		<%= f.label :usuario_password, 'Senha' %>
+		<%= f.password_field :password, :size => 40 %>
+	</div>
+	<div>
+		<%= f.label :usuario_password_confirmation, 'Confirmar' %>
+		<%= f.password_field :password_confirmation, :size => 40 %>
+	</div>
+  </fieldset>
+  <p>
+    <%= f.submit "Salvar" %>
+  </p>
+<% end %>
+<%= link_to 'Exibir', @usuario %> |
+<%= link_to 'Voltar', usuarios_path %>
+</div>

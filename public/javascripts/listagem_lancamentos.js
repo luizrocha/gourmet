@@ -7,11 +7,13 @@ jQuery(document).ready(function() {
 		jQuery("td:first > form",this).submit();
 	});
 	
+	5
+	
 	//*********************************************************************
 	//	CONFIGURA EXIBICAO NOME FORNECEDOR NO CLIQUE NA LINHA DO LANCAMENTO
 	//						
 	//*********************************************************************
-	jQuery("table tr").hover(
+	jQuery("#valor",jQuery("table tr")).hover(
       function(){
         jQuery("span", this).show();
       }, 

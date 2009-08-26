@@ -10,10 +10,10 @@
 	
 	jQuery("table tr").hover(
       function(){
-        jQuery("div", this).show();
+        jQuery("span", this).show();
       }, 
       function () {
-        jQuery("div", this).hide();
+        jQuery("span", this).hide();
       }
     );
 </script>
@@ -29,17 +29,19 @@
   </tr>
   <% for lancamento_compra in @lancamento_compras %>
   <tr class="<%= cycle('lista-linha-impar', 'lista-linha-par') %>">
-	<td class="lista-coluna-invisivel"><%= button_to 'a', lancamento_compra, :method => "get" %><span>LDDLDLDL</span></td>
+	<td class="lista-coluna-invisivel"><%= button_to 'a', lancamento_compra, :method => "get" %></td>
     <td><%= lancamento_compra.data.strftime("%d-%m-%Y") %></td>
 	<td><%= lancamento_compra.data_de_vencimento.strftime("%d-%m-%Y") %></td>
     <td class="lista-coluna-menor">R$</td>
-	<td><%= number_to_currency(lancamento_compra.valor, :unit => "", :separator => ",", :delimiter => ".")%></td>
+	<td id="valor">
+		<%= number_to_currency(lancamento_compra.valor, :unit => "", :separator => ",", :delimiter => ".")%>
+		<span class="span-detalhe-flutuante"><%= lancamento_compra.fornecedor %></span>
+	</td>
 	<td><%= lancamento_compra.forma_de_pagamento.nome %></td>
 	<td><%= lancamento_compra.centro_de_custo.nome %></td>
 	<td class="lista-acoes">    
     	<%= link_to 'Modificar', edit_lancamento_compra_path(lancamento_compra) %>
     	<%= link_to 'Remover', lancamento_compra, :confirm => 'Tem certeza?', :method => :delete %>
-		<span class="span-detalhe-flutuante"><%= lancamento_compra.fornecedor %></span>
 	</td>
   </tr>
   <% end %>

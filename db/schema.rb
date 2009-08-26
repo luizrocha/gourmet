@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090823041157) do
+ActiveRecord::Schema.define(:version => 20090826012305) do
 
   create_table "centro_de_custos", :force => true do |t|
     t.string   "nome"
@@ -134,6 +134,14 @@ ActiveRecord::Schema.define(:version => 20090823041157) do
     t.string   "sigla"
     t.string   "nome"
     t.boolean  "fracionario"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "usuarios", :force => true do |t|
+    t.string   "nome"
+    t.string   "hashed_password"
+    t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
