@@ -1,0 +1,26 @@
+<% form_remote_tag :url=>{:action=>'por_filtro'} do-%>
+<div>
+  <%=check_box("filtro", "data")%>
+  Data Lançamento:
+  <%= date_select "filtro", "data_inicial", :use_month_numbers => true, :order => [:day, :month, :year] %>
+  a
+  <%= date_select "filtro", "data_final", :use_month_numbers => true, :order => [:day, :month, :year] %>  
+</div>
+<div>
+  <%=check_box("filtro", "data_vencimento")%>
+  Data Vencimento:
+  <%= date_select "filtro", "data_vencimento_inicial", :use_month_numbers => true, :order => [:day, :month, :year] %>
+  a
+  <%= date_select "filtro", "data_vencimento_final", :use_month_numbers => true, :order => [:day, :month, :year] %>  
+</div>
+<div>
+  <%=check_box("filtro", "forma_de_pagamento")%>
+  Forma de Pagamento:
+  <%= select("filtro", "forma_de_pagamento_id", FormaDePagamento.find(:all).collect {|forma_de_pagamento| [forma_de_pagamento.nome, forma_de_pagamento.id]}, { :prompt => "-- Selecionar --"}) %>
+</div>
+<div>
+  <%=check_box("filtro", "centro_de_custo")%>
+  Centro de Custo:
+  <%= select("filtro", "centro_de_custo_id", CentroDeCusto.find(:all).collect {|centro_de_custo| [centro_de_custo.nome, centro_de_custo.id]}, { :prompt => "-- Selecionar --"}) %>
+</div>
+<div><%= submit_tag 'Buscar' %><% end %><%= button_to "Excel", :action => 'exportar_excel' %></div>

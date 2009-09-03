@@ -144,7 +144,8 @@
 *	Listagens
 ***************************************/
 #listagens-tabela {
-	height: 325px;
+	height: 250px;
+	overflow: auto;
 }
 
 #listagens-tabela table {
@@ -217,6 +218,10 @@
 
 #listagens-cabecalho {
 	padding-bottom: 16px;
+}
+
+#listagens-rodape {
+	padding-top: 20px;
 }
 
 #listagens-autocomplete-produto {

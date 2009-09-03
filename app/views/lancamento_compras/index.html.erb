@@ -2,11 +2,11 @@
 <div id="listagens">
 <h1>Lancamentos</h1>
 <div id="listagens-cabecalho">
-<%= link_to 'Adicionar Lançamento de Compra', new_lancamento_compra_path %>
-<%#= render :partial => 'lista_produto_autocomplete' -%>
-<%#= render :partial => 'lista_produto_alphabox' -%>
+<%= link_to 'Adicionar Lançamento de Compra', new_lancamento_compra_path -%>
+<%= render :partial => 'filtros_lista_lancamentos_compras' %>
 </div>
-<%= render :partial => 'lista_lancamentos_compras', :object => @lancamento_compras -%>
+<%= render :partial => 'lista_lancamentos_compras' -%>
+<%= render :partial => 'lista_lancamentos_compras_rodape' %>
 <%#= render :partial => 'lista_produto', :object => @produtos -%>
 <%#= render :partial => 'lista_produto_paginacao', :object => @produtos -%>
 </div>
