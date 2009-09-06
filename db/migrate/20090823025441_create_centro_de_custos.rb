@@ -8,6 +8,7 @@ class CreateCentroDeCustos < ActiveRecord::Migration
     alimentos = CentroDeCusto.create(:nome => "Alimentos")
     bebidas = CentroDeCusto.create(:nome => "Bebidas")
     mercadinho = CentroDeCusto.create(:nome => "Mercadinho")
+    administrativo = CentroDeCusto.create(:nome => "Administrativo")
   end
 
   def self.down

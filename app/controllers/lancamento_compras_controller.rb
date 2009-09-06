@@ -1,5 +1,4 @@
 class LancamentoComprasController < ApplicationController
-  require 'spreadsheet'
 
   def index
     @lancamento_compras = LancamentoCompra.find(:all, :order => "data_de_vencimento, forma_de_pagamento_id, centro_de_custo_id")
