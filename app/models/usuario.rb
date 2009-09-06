@@ -37,7 +37,11 @@ class Usuario < ActiveRecord::Base
       self.hashed_password = Usuario.encrypted_password(self.password, self.salt)
     end
 
-
+    def after_destroy
+      if Usuario.count.zero?
+        raise "Não é possível remover o último usuário!"
+      end
+    end
 
   private
 

@@ -1,8 +1,5 @@
 class AdministracaoController < ApplicationController
-
-    # just display the form and wait for user to
-    # enter a name and password
-
+    
     def login
       session[:usuario_id] = nil
       if request.post?
@@ -11,14 +8,12 @@ class AdministracaoController < ApplicationController
           session[:usuario_id] = usuario.id
           uri = session[:original_uri]
           session[:original_uri] = nil
-          redirect_to(uri || { :action => "index" })
+          redirect_to( uri || { :action => "index" })
         else
           flash.now[:notice] = "Usuário e/ou senha inválidos!"
         end
       end
     end
-
-
 
     def logout
       session[:usuario_id] = nil

@@ -23,4 +23,4 @@
   Centro de Custo:
   <%= select("filtro", "centro_de_custo_id", CentroDeCusto.find(:all).collect {|centro_de_custo| [centro_de_custo.nome, centro_de_custo.id]}, { :prompt => "-- Selecionar --"}) %>
 </div>
-<div><%= submit_tag 'Buscar' %><% end %><%= button_to "Excel", :action => 'exportar_excel' %></div>
+<div><%= submit_tag 'Buscar' %><% end %><%= button_to "Excel", :action => 'exportar_excel.xls' %></div>

@@ -1,16 +1,17 @@
 class LancamentoComprasController < ApplicationController
+  require 'spreadsheet'
+
   def index
-    @lancamento_compras = LancamentoCompra.find(:all, :order => "data")    
+    @lancamento_compras = LancamentoCompra.find(:all, :order => "data_de_vencimento, forma_de_pagamento_id, centro_de_custo_id")
     total = 0
     @lancamento_compras.each do |lancamento|
   	  total += lancamento.valor
     end
     @valor_total = total
-
+    session[:lancamento_compras] = @lancamento_compras
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @lancamento_compras }
-      format.xls { send_data @lancamento_compras.to_xls }
     end
   end
 
@@ -37,7 +38,7 @@ class LancamentoComprasController < ApplicationController
     end
     puts "Where clause: "+whereClause
     #Faz a consulta
-    @lancamento_compras = LancamentoCompra.find(:all, :conditions => "#{whereClause}", :order => "data")
+    @lancamento_compras = LancamentoCompra.find(:all, :conditions => "#{whereClause}", :order => "data_de_vencimento, forma_de_pagamento_id, centro_de_custo_id")
     total = 0
     @lancamento_compras.each do |lancamento|
   	  total += lancamento.valor
@@ -45,15 +46,18 @@ class LancamentoComprasController < ApplicationController
     @valor_total = total
     session[:lancamento_compras] = @lancamento_compras
     respond_to do |format|
-      format.xls { send_data @lancamento_compras.to_xls } if params[:commit] == "Excel"
-      format.html # index.html.erb
+      format.xls  { render :layout => false }
+      format.html
       format.xml  { render :xml => @lancamento_compras }
       format.js if request.xhr?
     end  
   end
 
   def exportar_excel
-   send_data session[:lancamento_compras].to_xls
+    @lancamento_compras = session[:lancamento_compras]
+    respond_to do |format|
+      format.xls  { render :layout => false }
+    end    
   end
 
   def por_ordenacao

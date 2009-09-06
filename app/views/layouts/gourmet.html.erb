@@ -24,7 +24,12 @@
 			<%= link_to 'Produtos',	:controller	=> 'produtos' %><br/></br>
 			<%= link_to 'Clientes',	:controller	=> 'clientes' %><br/></br>
 			<%= link_to 'Compras', :controller => 'lancamento_compras' %><br/></br>
-			<%= link_to 'Caixa Loja', {:controller => 'loja'}, :popup => ['new_window','height=1100,width=1500'] %><br/></br>
+			<%= link_to 'Caixa Loja', {:controller => 'loja'}, :popup => ['new_window','height=1100,width=1500'] %>
+			<br/>	
+			<br/>
+			<%= link_to 'Sair', :controller => 'administracao', :action => 'logout' %>
+
+			
 		</div>
 		<div id="pagina">
 			<% if flash[:notice] -%>

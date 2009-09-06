@@ -75,8 +75,7 @@ Rails::Initializer.run do |config|
   # Please note that observers generated using script/generate observer need to have an _observer suffix
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
   
-  
-  config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', 
+ config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', 
     :source => 'http://gems.github.com'
 
  config.gem 'brazilian-rails', :version => '~> 2.1.6', :lib => 'brazilian-rails', :source => 'http://gems.github.com'

@@ -63,7 +63,12 @@ class UsuariosController < ApplicationController
 
     def destroy
       @usuario = Usuario.find(params[:id])
-      @usuario.destroy
+      begin
+        flash[:notice] = "User #{@user.name} deleted"
+        @usuario.destroy
+      rescue Exception => e
+        flash[:notice] = e.message
+      end
 
       respond_to do |format|
         format.html { redirect_to(usuarios_url) }
