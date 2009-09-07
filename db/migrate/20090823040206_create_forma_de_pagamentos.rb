@@ -10,6 +10,7 @@ class CreateFormaDePagamentos < ActiveRecord::Migration
       cheque = FormaDePagamento.create(:nome => "Cheque")
       hipercard = FormaDePagamento.create(:nome => "Hipercard Juliana")
       transferencia = FormaDePagamento.create(:nome => "Transferencia Bancária")
+      debitoBcoReal = FormaDePagamento.create(:nome => "Cartão Débito BCO Real")
       
   end
 
