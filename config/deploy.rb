@@ -40,7 +40,7 @@ set :scm_verbose, true
 namespace :passenger do
   desc "Restart Application"
   task :restart do
-	run 'touch #{current_path}/tmp/restart.txt'
+	run 'touch /home/luiz/rails/gourmet.bistrodavilla.com.br/current/tmp/restart.txt'
   end
 end
 
