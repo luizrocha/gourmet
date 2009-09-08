@@ -1,3 +1,5 @@
+Spreadsheet.client_encoding = 'UTF-8'
+
 sheet = workbook.create_worksheet
 sheet.name = "Compras"
 

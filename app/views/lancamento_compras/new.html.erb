@@ -1,3 +1,9 @@
+<script type="text/javascript">
+	jQuery(function() {
+		$("#data").datepicker();
+	});
+</script>
+
 <div id="formulario-cadastro">
 <h1>Novo Lancamento</h1>
 <% form_for(@lancamento_compra) do |form| %>
@@ -30,11 +36,11 @@
     </div>	
 	<div>
       <%= form.label :data, "Data:" %>
-	  <%= form.date_select :data, :use_month_numbers => true, :order => [:day, :month, :year] %>
+	  <%= form.text_field :data %>
     </div>
 	<div>
       <%= form.label :data_de_vencimento, "Data de Vencimento:" %>
-	  <%= form.date_select :data_de_vencimento , :use_month_numbers => true, :order => [:day, :month, :year] %>
+	  <%= form.text_field :data_de_vencimento %>
     </div>
 	<div>
       <%= form.label :valor, "Valor:" %>

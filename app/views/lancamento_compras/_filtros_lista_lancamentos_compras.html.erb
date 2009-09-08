@@ -1,17 +1,36 @@
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery("#filtro_data_inicial").datepicker({ dateFormat: 'dd/mm/yy' });
+		jQuery("#filtro_data_inicial").datepicker('option', 'monthNames', ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']);
+		jQuery("#filtro_data_inicial").datepicker('option', 'dayNamesMin', ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']);
+		
+		jQuery("#filtro_data_final").datepicker({ dateFormat: 'dd/mm/yy' });
+		jQuery("#filtro_data_final").datepicker('option', 'monthNames', ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']);
+		jQuery("#filtro_data_final").datepicker('option', 'dayNamesMin', ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']);
+		
+		jQuery("#filtro_data_vencimento_inicial").datepicker({ dateFormat: 'dd/mm/yy' });
+		jQuery("#filtro_data_vencimento_inicial").datepicker('option', 'monthNames', ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']);
+		jQuery("#filtro_data_vencimento_inicial").datepicker('option', 'dayNamesMin', ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']);
+		jQuery("#filtro_data_vencimento_final").datepicker({ dateFormat: 'dd/mm/yy' });
+		jQuery("#filtro_data_vencimento_final").datepicker('option', 'monthNames', ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']);
+		jQuery("#filtro_data_vencimento_final").datepicker('option', 'dayNamesMin', ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']);		
+	});
+</script>
+
 <% form_remote_tag :url=>{:action=>'por_filtro'} do-%>
 <div>
   <%=check_box("filtro", "data")%>
   Data Lançamento:
-  <%= date_select "filtro", "data_inicial", :use_month_numbers => true, :order => [:day, :month, :year] %>
+  <%=text_field 'filtro', 'data_inicial', :size => 8 %>
   a
-  <%= date_select "filtro", "data_final", :use_month_numbers => true, :order => [:day, :month, :year] %>  
+  <%=text_field 'filtro', 'data_final', :size => 8 %>
 </div>
 <div>
   <%=check_box("filtro", "data_vencimento")%>
   Data Vencimento:
-  <%= date_select "filtro", "data_vencimento_inicial", :use_month_numbers => true, :order => [:day, :month, :year] %>
+  <%=text_field 'filtro', 'data_vencimento_inicial', :size => 8 %>
   a
-  <%= date_select "filtro", "data_vencimento_final", :use_month_numbers => true, :order => [:day, :month, :year] %>  
+  <%=text_field 'filtro', 'data_vencimento_final', :size => 8 %>
 </div>
 <div>
   <%=check_box("filtro", "forma_de_pagamento")%>

@@ -1,4 +1,5 @@
 class LancamentoComprasController < ApplicationController
+  require 'spreadsheet'
 
   def index
     @lancamento_compras = LancamentoCompra.find(:all, :order => "data_de_vencimento, forma_de_pagamento_id, centro_de_custo_id")
@@ -14,17 +15,27 @@ class LancamentoComprasController < ApplicationController
     end
   end
 
+  def converte_para_data(strData, hora=nil, minuto=nil, segundo=nil)
+    date_array = strData.split("/")
+    if ( hora && minuto && segundo ) then
+      return DateTime.new(date_array[2].to_i, date_array[1].to_i,
+      date_array[0].to_i, hora, minuto, segundo)
+    else
+      return Date.new(date_array[2].to_i, date_array[1].to_i, date_array[0].to_i)
+    end
+  end
+
   def por_filtro
     whereClause = " id >= 0 ";
     filtro = params[:filtro]
     if (filtro[:data] == "1") then
-      data_inicial = Date.new(filtro['data_inicial(1i)'].to_i,filtro['data_inicial(2i)'].to_i,filtro['data_inicial(3i)'].to_i)
-      data_final = DateTime.new(filtro['data_final(1i)'].to_i,filtro['data_final(2i)'].to_i,filtro['data_final(3i)'].to_i,23,59,59)
+      data_inicial = converte_para_data(filtro['data_inicial'])
+      data_final = converte_para_data(filtro['data_final'],23,59,59)
       whereClause = whereClause + " and data >= '#{data_inicial}' and data <= '#{data_final}' "
     end
     if (filtro[:data_vencimento] == "1") then
-      data_vencimento_inicial = Date.new(filtro['data_vencimento_inicial(1i)'].to_i,filtro['data_vencimento_inicial(2i)'].to_i,filtro['data_vencimento_inicial(3i)'].to_i)
-      data_vencimento_final = DateTime.new(filtro['data_vencimento_final(1i)'].to_i,filtro['data_vencimento_final(2i)'].to_i,filtro['data_vencimento_final(3i)'].to_i,23,59,59)
+      data_vencimento_inicial = converte_para_data(filtro['data_vencimento_inicial'])
+      data_vencimento_final = converte_para_data(filtro['data_vencimento_final'],23,59,59)
       whereClause = whereClause + " and data_de_vencimento >= '#{data_vencimento_inicial}' and data_de_vencimento <= '#{data_vencimento_final}' "
     end
     if (filtro[:forma_de_pagamento] == "1") then
