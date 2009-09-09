@@ -15,16 +15,6 @@ class LancamentoComprasController < ApplicationController
     end
   end
 
-  def converte_para_data(strData, hora=nil, minuto=nil, segundo=nil)
-    date_array = strData.split("/")
-    if ( hora && minuto && segundo ) then
-      return DateTime.new(date_array[2].to_i, date_array[1].to_i,
-      date_array[0].to_i, hora, minuto, segundo)
-    else
-      return Date.new(date_array[2].to_i, date_array[1].to_i, date_array[0].to_i)
-    end
-  end
-
   def por_filtro
     whereClause = " id >= 0 ";
     filtro = params[:filtro]
@@ -111,7 +101,9 @@ class LancamentoComprasController < ApplicationController
 
   def create
     @lancamento_compra = LancamentoCompra.new(params[:lancamento_compra])
-
+    @lancamento_compra.data = converte_para_data params[:lancamento_compra][:data]
+    @lancamento_compra.data_de_vencimento = converte_para_data params[:lancamento_compra][:data_de_vencimento]
+    
     respond_to do |format|
       if @lancamento_compra.save
         flash[:notice] = 'Lancamento was successfully created.'
@@ -129,6 +121,8 @@ class LancamentoComprasController < ApplicationController
 
     respond_to do |format|
       if @lancamento_compra.update_attributes(params[:lancamento_compra])
+        @lancamento_compra.data = converte_para_data params[:lancamento_compra][:data]
+        @lancamento_compra.data_de_vencimento = converte_para_data params[:lancamento_compra][:data_de_vencimento]
         flash[:notice] = 'Lancamento was successfully updated.'
         format.html { redirect_to(@lancamento_compra) }
         format.xml  { head :ok }
@@ -148,4 +142,17 @@ class LancamentoComprasController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+private
+  
+  def converte_para_data(strData, hora=nil, minuto=nil, segundo=nil)
+    date_array = strData.split("/")
+    if ( hora && minuto && segundo ) then
+      return DateTime.new(date_array[2].to_i, date_array[1].to_i,
+      date_array[0].to_i, hora, minuto, segundo)
+    else
+      return Date.new(date_array[2].to_i, date_array[1].to_i, date_array[0].to_i)
+    end
+  end
+  
 end

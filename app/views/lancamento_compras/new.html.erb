@@ -1,7 +1,15 @@
 <script type="text/javascript">
-	jQuery(function() {
-		$("#data").datepicker();
-	});
+jQuery(document).ready(function() {
+	jQuery("#lancamento_compra_data").datepicker({ dateFormat: 'dd/mm/yy' });
+	jQuery("#lancamento_compra_data").datepicker('option', 'monthNames', ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']);
+	jQuery("#lancamento_compra_data").datepicker('option', 'dayNamesMin', ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']);
+
+	jQuery("#lancamento_compra_data_de_vencimento").datepicker({ dateFormat: 'dd/mm/yy' });
+	jQuery("#lancamento_compra_data_de_vencimento").datepicker('option', 'monthNames', ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']);
+	jQuery("#lancamento_compra_data_de_vencimento").datepicker('option', 'dayNamesMin', ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']);	
+	
+});
+
 </script>
 
 <div id="formulario-cadastro">
@@ -36,11 +44,11 @@
     </div>	
 	<div>
       <%= form.label :data, "Data:" %>
-	  <%= form.text_field :data %>
+	  <%= form.text_field :data , :size => 8 %>
     </div>
 	<div>
       <%= form.label :data_de_vencimento, "Data de Vencimento:" %>
-	  <%= form.text_field :data_de_vencimento %>
+	  <%= form.text_field :data_de_vencimento , :size => 8 %>
     </div>
 	<div>
       <%= form.label :valor, "Valor:" %>
