@@ -1,0 +1,12 @@
+<%= javascript_include_tag "listagem_lancamentos.js" %>
+<div id="listagens">
+<h1>Compras</h1>
+<div id="listagens-cabecalho">
+<%= link_to 'Lançar nova compra', new_compra_path -%>
+<%= render :partial => 'filtros_lista_compras' %>
+</div>
+<%= render :partial => 'lista_compras' -%>
+<%= render :partial => 'lista_compras_rodape' %>
+<%#= render :partial => 'lista_produto', :object => @produtos -%>
+<%#= render :partial => 'lista_produto_paginacao', :object => @produtos -%>
+</div>

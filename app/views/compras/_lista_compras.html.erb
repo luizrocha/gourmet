@@ -1,0 +1,47 @@
+<div id="listagens-tabela">
+<script type="text/javascript">
+	jQuery("table tr").dblclick(function(){
+		jQuery("td:first > form",this).submit();
+	});
+	jQuery("table tr").dblclick(function(){
+		jQuery("td:first > form",this).submit();
+	});	
+	
+	
+	jQuery("table tr").hover(
+      function(){
+        jQuery("span", this).show();
+      }, 
+      function () {
+        jQuery("span", this).hide();
+      }
+    );
+</script>
+<table>	
+  <tr>
+	<th class="lista-coluna-invisivel"></th>
+    <th>Centro Custo</th>	
+	<th><%=link_to_remote "Data", :url => { :action => "por_ordenacao", :ordem => "data #{@tipo_ordenacao}, centro_de_custo_id, valor", :tipo_ordenacao => @tipo_ordenacao}%></th>
+    <th>Fornecedor</th>
+	<th>Valor Total</th>
+	<th/>
+  </tr>
+  <% for compra in @compras %>
+  <tr class="<%= cycle('lista-linha-impar', 'lista-linha-par') %>">
+	<td class="lista-coluna-invisivel"><%= button_to 'a', compra, :method => "get" %></td>
+	<td><%= compra.centro_de_custo.nome %></td>
+    <td><%= compra.data.strftime("%d-%m-%Y") %></td>
+	<td><%= compra.fornecedor %></td>
+    <td class="lista-coluna-menor">R$</td>
+	<td id="valor">
+		<%= number_to_currency(compra.valor_total, :unit => "", :separator => ",", :delimiter => ".")%>
+		<span class="span-detalhe-flutuante"><%= compra.fornecedor %></span>
+	</td>
+	<td class="lista-acoes">    
+    	<%= link_to 'Modificar', edit_compra_path(compra) %>
+    	<%= link_to 'Remover', compra, :confirm => 'Tem certeza?', :method => :delete %>
+	</td>
+  </tr>
+  <% end %>
+</table>
+</div>

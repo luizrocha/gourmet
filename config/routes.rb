@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :usuarios
   map.resources :historico_recursos
-  map.resources :lancamento_compras
+  map.resources :compras
   map.resources :clientes
   map.resources :produtos
 

@@ -1,7 +1,7 @@
 class Cliente < ActiveRecord::Base  
     cattr_reader :per_page
     @@per_page = 8 
-    usar_como_cpf :cpf
+    #usar_como_cpf :cpf
       
     belongs_to :responsavel, :class_name => "Cliente", :foreign_key => :id_responsavel
     has_many :dependentes, :class_name => "Cliente", :foreign_key => :id_responsavel

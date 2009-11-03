@@ -1,0 +1,2 @@
+page.replace_html("listagens-tabela" , :partial => "lista_lancamentos_compras")
+page.replace_html("listagens-rodape" , :partial => "lista_lancamentos_compras_rodape")

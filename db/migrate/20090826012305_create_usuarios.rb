@@ -7,6 +7,11 @@ class CreateUsuarios < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    usuarioMaster = Usuario.new()
+    usuarioMaster.password = "master"
+    usuarioMaster.nome = "master"
+    usuarioMaster.save!
   end
 
   def self.down

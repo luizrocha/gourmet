@@ -1,0 +1,18 @@
+<p>
+  <b>Valor:</b>
+  <%=h @compra.valor_total %>
+</p>
+
+<p>
+  <b>Data:</b>
+  <%=h @compra.data %>
+</p>
+
+<p>
+  <b>Centro de custo:</b>
+  <%=h @compra.centro_de_custo_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_compra_path(@compra) %> |
+<%= link_to 'Back', compras_path %>

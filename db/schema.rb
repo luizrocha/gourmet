@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090826012305) do
+ActiveRecord::Schema.define(:version => 20091028211728) do
 
   create_table "centro_de_custos", :force => true do |t|
     t.string   "nome"
@@ -41,28 +41,42 @@ ActiveRecord::Schema.define(:version => 20090826012305) do
   add_index "clientes", ["bloco"], :name => "index_clientes_on_bloco"
   add_index "clientes", ["nome"], :name => "index_clientes_on_nome"
 
+  create_table "compras", :force => true do |t|
+    t.date     "data",               :null => false
+    t.string   "fornecedor"
+    t.string   "numero_nota_fiscal"
+    t.integer  "centro_de_custo_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "compras", ["centro_de_custo_id"], :name => "index_compras_on_centro_de_custo_id"
+
   create_table "forma_de_pagamentos", :force => true do |t|
     t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
+    t.string   "tipoCartao",              :limit => 1
+    t.string   "numeroCartao"
+    t.integer  "dia_vencimento"
+    t.integer  "dia_encerramento_fatura"
   end
 
   create_table "lancamentos", :force => true do |t|
-    t.string   "type"
     t.string   "descricao"
     t.decimal  "valor",                              :precision => 8, :scale => 2, :null => false
     t.datetime "data",                                                             :null => false
-    t.integer  "centro_de_custo_id",                                               :null => false
     t.string   "tipo_credito_debito",   :limit => 1,                               :null => false
+    t.string   "status",                :limit => 1,                               :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "fornecedor"
-    t.string   "numero_nota_fiscal"
+    t.string   "type"
     t.integer  "forma_de_pagamento_id"
     t.datetime "data_de_vencimento"
+    t.integer  "compra_id"
   end
 
-  add_index "lancamentos", ["centro_de_custo_id"], :name => "index_lancamentos_on_centro_de_custo_id"
   add_index "lancamentos", ["data"], :name => "index_lancamentos_on_data"
   add_index "lancamentos", ["forma_de_pagamento_id"], :name => "index_lancamentos_on_forma_de_pagamento_id"
 

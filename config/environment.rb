@@ -80,7 +80,7 @@ Rails::Initializer.run do |config|
  config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', 
     :source => 'http://gems.github.com'
 
- config.gem 'brazilian-rails', :version => '~> 2.1.6', :lib => 'brazilian-rails', :source => 'http://gems.github.com'
+ #config.gem 'brazilian-rails', :version => '~> 2.1.6', :lib => 'brazilian-rails', :source => 'http://gems.github.com'
 
 
 end
