@@ -6,6 +6,14 @@ class Lancamento < ActiveRecord::Base
   validates_length_of :descricao, :maximum => 100, :allow_nil => true, :message => "pode ter no máximo 100 caracteres"
   validate :valor_deve_ser_positivo
 
+  def pagamentoConfirmado?
+      return status.eql? "C"
+  end
+  
+  def pagamentoPendente?
+      return !pagamentoConfirmado?
+  end
+
 protected
 
   def valor_deve_ser_positivo

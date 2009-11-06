@@ -20,28 +20,38 @@
 <table>	
   <tr>
 	<th class="lista-coluna-invisivel"></th>
-    <th>Centro Custo</th>	
-	<th><%=link_to_remote "Data", :url => { :action => "por_ordenacao", :ordem => "data #{@tipo_ordenacao}, centro_de_custo_id, valor", :tipo_ordenacao => @tipo_ordenacao}%></th>
+	<th/><!--Status-->
+	<th><%=link_to_remote "Data", :url => { :action => "por_ordenacao", :ordem => "data #{@tipo_ordenacao}, centro_de_custo_id, valor", :tipo_ordenacao => @tipo_ordenacao} -%></th>
     <th>Fornecedor</th>
-	<th>Valor Total</th>
+	<th>Valor</th>
+    <th>Centro de Custo</th>	
 	<th/>
   </tr>
   <% for compra in @compras %>
-  <tr class="<%= cycle('lista-linha-impar', 'lista-linha-par') %>">
-	<td class="lista-coluna-invisivel"><%= button_to 'a', compra, :method => "get" %></td>
-	<td><%= compra.centro_de_custo.nome %></td>
-    <td><%= compra.data.strftime("%d-%m-%Y") %></td>
-	<td><%= compra.fornecedor %></td>
-    <td class="lista-coluna-menor">R$</td>
-	<td id="valor">
-		<%= number_to_currency(compra.valor_total, :unit => "", :separator => ",", :delimiter => ".")%>
-		<span class="span-detalhe-flutuante"><%= compra.fornecedor %></span>
-	</td>
-	<td class="lista-acoes">    
-    	<%= link_to 'Modificar', edit_compra_path(compra) %>
-    	<%= link_to 'Remover', compra, :confirm => 'Tem certeza?', :method => :delete %>
-	</td>
-  </tr>
+	  <tr class="<%= cycle('lista-linha-impar', 'lista-linha-par') %>">
+		<td class="lista-coluna-invisivel"><%= button_to 'a', compra, :method => "get" %></td>
+		<%if compra.parcelasPendentesJaVencidas? %>
+			<td><%= image_tag("icons/hand_red.png") -%></td>
+		<% elsif compra.parcelasPendentes? %>
+			<td><%= image_tag("icons/hand_yellow.png") -%></td>
+		<% elsif compra.parcelasPagas? %>
+			<td><%= image_tag("icons/hand_green.png") -%></td>
+		<% else %>
+			<td/>
+		<% end %>
+	    <td><%= compra.data.strftime("%d-%m-%Y") -%></td>
+		<td><%= compra.fornecedor -%></td>
+	    <td class="lista-coluna-menor">R$</td>
+		<td id="valor">
+			<%= number_to_currency(compra.valor_total, :unit => "", :separator => ",", :delimiter => ".") -%>
+			<span class="span-detalhe-flutuante"><%= compra.fornecedor %></span>
+		</td>
+		<td><%= compra.centro_de_custo.nome -%></td>
+		<td class="lista-acoes">    
+	    	<%= link_to 'Modificar', edit_compra_path(compra) -%>
+	    	<%= link_to 'Remover', compra, :confirm => 'Tem certeza?', :method => :delete -%>
+		</td>
+	  </tr>
   <% end %>
 </table>
 </div>
