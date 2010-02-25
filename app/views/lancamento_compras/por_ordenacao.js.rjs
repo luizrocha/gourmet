@@ -1,1 +1,0 @@
-page.replace_html("listagens-tabela" , :partial => "lista_lancamentos_compras")

@@ -21,42 +21,28 @@
 	<integer>357</integer>
 	<key>metaData</key>
 	<dict>
-		<key>app/controllers/compras_controller.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>5</integer>
-				<key>line</key>
-				<integer>10</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>app/models/compra.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>5</integer>
+				<integer>30</integer>
 				<key>line</key>
-				<integer>15</integer>
+				<integer>40</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>6</integer>
 		</dict>
 		<key>app/models/lancamento.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>19</integer>
+				<integer>14</integer>
 				<key>line</key>
-				<integer>11</integer>
+				<integer>8</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
@@ -67,45 +53,31 @@
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>16</integer>
+				<integer>6</integer>
 				<key>line</key>
-				<integer>11</integer>
+				<integer>8</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>21</integer>
+				<integer>25</integer>
 				<key>line</key>
-				<integer>11</integer>
+				<integer>8</integer>
 			</dict>
-		</dict>
-		<key>app/models/lancamento_compra.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>22</integer>
-				<key>line</key>
-				<integer>17</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
 		</dict>
 		<key>app/views/compras/_lista_compras.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>13</integer>
+				<integer>25</integer>
 				<key>line</key>
-				<integer>29</integer>
+				<integer>25</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>20</integer>
+			<integer>0</integer>
 		</dict>
 		<key>app/views/compras/index.html.erb</key>
 		<dict>
@@ -121,91 +93,106 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/views/compras/new.html.erb</key>
+		<key>app/views/loja/_listagem_compras.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>26</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>20</integer>
+				<integer>36</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>86</integer>
+			<key>firstVisibleLine</key>
+			<integer>19</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>35</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>36</integer>
+			</dict>
+		</dict>
+		<key>db/migrate/20090823041157_create_lancamentos.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>18</integer>
+				<key>line</key>
+				<integer>7</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>5</integer>
+			<integer>0</integer>
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>18</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>7</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>6</integer>
+				<integer>22</integer>
 				<key>line</key>
-				<integer>42</integer>
+				<integer>7</integer>
 			</dict>
 		</dict>
-		<key>app/views/compras/show.html.erb</key>
+		<key>db/migrate/20091028160121_create_compras.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>26</integer>
+				<integer>22</integer>
 				<key>line</key>
-				<integer>2</integer>
+				<integer>19</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-		</dict>
-		<key>config/routes.rb</key>
-		<dict>
-			<key>caret</key>
+			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>24</integer>
+				<integer>18</integer>
 				<key>line</key>
-				<integer>3</integer>
+				<integer>19</integer>
 			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>db/migrate/20090826012305_create_usuarios.rb</key>
-		<dict>
-			<key>caret</key>
+			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>33</integer>
+				<integer>36</integer>
 				<key>line</key>
-				<integer>10</integer>
+				<integer>19</integer>
 			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>app/views/compras/index.html.erb</string>
 		<string>app/views/compras/_lista_compras.html.erb</string>
-		<string>app/models/lancamento_compra.rb</string>
+		<string>app/views/loja/_listagem_compras.html.erb</string>
+		<string>db/migrate/20090823041157_create_lancamentos.rb</string>
+		<string>db/migrate/20091028160121_create_compras.rb</string>
 		<string>app/models/lancamento.rb</string>
 		<string>app/models/compra.rb</string>
-		<string>app/views/compras/new.html.erb</string>
-		<string>app/controllers/compras_controller.rb</string>
-		<string>app/views/compras/show.html.erb</string>
-		<string>db/migrate/20090826012305_create_usuarios.rb</string>
-		<string>config/routes.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>

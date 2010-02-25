@@ -23,12 +23,13 @@
 	<th/><!--Status-->
 	<th><%=link_to_remote "Data", :url => { :action => "por_ordenacao", :ordem => "data #{@tipo_ordenacao}, centro_de_custo_id, valor", :tipo_ordenacao => @tipo_ordenacao} -%></th>
     <th>Fornecedor</th>
-	<th>Valor</th>
+	<th colspan=2>Valor</th>
     <th>Centro de Custo</th>	
 	<th/>
   </tr>
   <% for compra in @compras %>
-	  <tr class="<%= cycle('lista-linha-impar', 'lista-linha-par') %>">
+	  <% estilo = cycle('lista-linha-impar', 'lista-linha-par') %>
+	  <tr class="<%= estilo %>">
 		<td class="lista-coluna-invisivel"><%= button_to 'a', compra, :method => "get" %></td>
 		<%if compra.parcelasPendentesJaVencidas? %>
 			<td><%= image_tag("icons/hand_red.png") -%></td>
@@ -52,6 +53,10 @@
 	    	<%= link_to 'Remover', compra, :confirm => 'Tem certeza?', :method => :delete -%>
 		</td>
 	  </tr>
+	  <tr class="<%= estilo %>">
+	  	<t>
+	  </tr>
+		
   <% end %>
 </table>
 </div>
